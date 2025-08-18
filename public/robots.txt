@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://segurosaudeseesp.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow development files
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /_redirects
+Disallow: /*.json$
+
+# Allow important files
+Allow: /robots.txt
+Allow: /sitemap.xml
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+Allow: /*.ico
