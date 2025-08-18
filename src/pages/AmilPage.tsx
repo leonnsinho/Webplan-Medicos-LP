@@ -10,7 +10,7 @@ const AmilPage: React.FC = () => {
     name: '',
     email: '',
     phone: '',
-    subject: 'amil_plano',
+    subject: 'amil_enfermeiro_individual',
     message: ''
   });
 
@@ -18,10 +18,11 @@ const AmilPage: React.FC = () => {
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const subjectOptions = [
-    { value: 'amil_plano', label: 'Plano Amil - Pessoa Física' },
-    { value: 'amil_empresarial', label: 'Plano Amil - Empresarial' },
-    { value: 'amil_adesao', label: 'Plano Amil - Por Adesão' },
-    { value: 'amil_informacoes', label: 'Informações Gerais Amil' }
+    { value: 'amil_enfermeiro_individual', label: 'Plano AMIL Enfermeiro - Individual' },
+    { value: 'amil_enfermeiro_familiar', label: 'Plano AMIL Enfermeiro - Familiar' },
+    { value: 'amil_enfermeiro_cnpj', label: 'Plano AMIL Enfermeiro - CNPJ' },
+    { value: 'amil_plano_tradicional', label: 'Plano AMIL - Tradicional' },
+    { value: 'amil_informacoes', label: 'Informações Gerais - Desconto COREN' }
   ];
 
   const validateForm = (): boolean => {
@@ -51,7 +52,7 @@ const AmilPage: React.FC = () => {
           name: '',
           email: '',
           phone: '',
-          subject: 'amil_plano',
+          subject: 'amil_enfermeiro_individual',
           message: ''
         });
       }, 1000);
@@ -74,7 +75,7 @@ const AmilPage: React.FC = () => {
         'phone': formData.phone,
         'subject': formData.subject,
         'message': formData.message,
-        '_subject': 'Nova solicitação de cotação Amil - WebPlan Seguros',
+        '_subject': 'Nova solicitação - Plano AMIL para Enfermeiro com COREN - WebPlan Seguros',
         '_captcha': 'false',
         '_template': 'table'
       };
@@ -108,7 +109,7 @@ const AmilPage: React.FC = () => {
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
-      'Olá! Gostaria de saber mais sobre os planos Amil disponíveis.'
+      'Olá! Sou enfermeiro(a) com COREN ativo e gostaria de saber mais sobre os planos AMIL com descontos exclusivos para nossa categoria.'
     );
     const whatsappUrl = `https://wa.me/5511959305175?text=${message}`;
     window.open(whatsappUrl, '_blank');
@@ -141,7 +142,7 @@ const AmilPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  Cuidando da sua saúde há mais de 40 anos
+                  Planos Especiais para Enfermeiros com COREN Ativo
                 </motion.h2>
                 
                 <motion.p 
@@ -150,8 +151,8 @@ const AmilPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  A Amil é uma das maiores operadoras de planos de saúde do Brasil, 
-                  oferecendo cobertura completa com a maior rede credenciada do país.
+                  Benefícios exclusivos e condições especiais para profissionais da enfermagem. 
+                  Com mais de 40 categorias de planos, a AMIL oferece vantagens únicas para quem tem COREN ativo.
                 </motion.p>
 
                 <motion.div 
@@ -217,10 +218,10 @@ const AmilPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection direction="up" className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-emerald-800 mb-4">
-              Por que escolher a Amil?
+              Vantagens Exclusivas para Enfermeiros
             </h2>
             <p className="text-lg text-emerald-600 max-w-3xl mx-auto">
-              Descubra os benefícios exclusivos que fazem da Amil a escolha certa para sua saúde
+              Condições especiais desenvolvidas para profissionais da enfermagem com COREN ativo
             </p>
           </AnimatedSection>
 
@@ -228,38 +229,38 @@ const AmilPage: React.FC = () => {
             {[
               {
                 icon: Users,
-                title: "Maior Rede Credenciada",
-                description: "Mais de 30.000 prestadores em todo o Brasil",
+                title: "Descontos Exclusivos COREN",
+                description: "Condições diferenciadas de preços para enfermeiros com COREN ativo",
                 color: "emerald"
               },
               {
                 icon: Shield,
-                title: "Cobertura Completa",
-                description: "Atendimento ambulatorial, hospitalar e emergencial",
+                title: "Maior Rede Credenciada",
+                description: "Acesso aos melhores hospitais e clínicas em todo o Brasil",
                 color: "teal"
               },
               {
                 icon: Award,
-                title: "Qualidade Reconhecida",
-                description: "Nota máxima na ANS em satisfação do cliente",
+                title: "Telemedicina Incluída",
+                description: "Consultas médicas à distância com qualidade profissional",
                 color: "emerald"
               },
               {
                 icon: Clock,
-                title: "Atendimento 24h",
-                description: "Central de atendimento disponível 24 horas por dia",
+                title: "Cobertura de Reembolso",
+                description: "Flexibilidade para atendimento fora da rede credenciada",
                 color: "teal"
               },
               {
                 icon: Heart,
-                title: "Programas de Saúde",
-                description: "Programas de prevenção e promoção da saúde",
+                title: "Condições Especiais CNPJ",
+                description: "Vantagens adicionais para enfermeiros com empresa própria",
                 color: "emerald"
               },
               {
                 icon: Star,
-                title: "Tradição e Confiança",
-                description: "Mais de 40 anos cuidando da saúde dos brasileiros",
+                title: "Mais de 40 Categorias",
+                description: "Ampla variedade de planos para atender todas as necessidades",
                 color: "teal"
               }
             ].map((feature, index) => (
@@ -286,31 +287,31 @@ const AmilPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection direction="up" className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-emerald-800 mb-4">
-              Planos Amil Disponíveis
+              Planos AMIL para Enfermeiros
             </h2>
             <p className="text-lg text-emerald-600 max-w-3xl mx-auto">
-              Escolha o plano que melhor se adapta às suas necessidades
+              Opções especiais com descontos exclusivos para profissionais com COREN ativo
             </p>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                name: "Amil Pessoa Física",
-                description: "Plano individual ou familiar com cobertura nacional",
-                features: ["Rede credenciada nacional", "Cobertura ambulatorial", "Internação", "Emergência 24h"],
+                name: "AMIL Enfermeiro Individual",
+                description: "Plano individual com desconto especial COREN",
+                features: ["Desconto exclusivo COREN", "Telemedicina incluída", "Rede credenciada nacional", "Cobertura ambulatorial completa"],
                 highlight: false
               },
               {
-                name: "Amil Empresarial",
-                description: "Soluções corporativas para empresas de todos os portes",
-                features: ["A partir de 2 vidas", "Gestão online", "Relatórios gerenciais", "Suporte dedicado"],
+                name: "AMIL Enfermeiro Familiar",
+                description: "Proteção para toda a família com condições especiais",
+                features: ["Até 6 dependentes", "Desconto progressivo", "Reembolso conforme categoria", "Atendimento 24h"],
                 highlight: true
               },
               {
-                name: "Amil por Adesão",
-                description: "Planos coletivos com mensalidades especiais",
-                features: ["Sem carência", "Preços diferenciados", "Cobertura completa", "Fácil adesão"],
+                name: "AMIL Enfermeiro CNPJ",
+                description: "Condições especiais para enfermeiros com empresa própria",
+                features: ["Vantagens CNPJ", "Gestão simplificada", "Cobertura empresarial", "Suporte dedicado"],
                 highlight: false
               }
             ].map((plan, index) => (
@@ -363,15 +364,107 @@ const AmilPage: React.FC = () => {
         </div>
       </section>
 
+      {/* Detailed Benefits Section for Nurses */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection direction="up" className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-emerald-800 mb-4">
+              Benefícios Detalhados para Enfermeiros
+            </h2>
+            <p className="text-lg text-emerald-600 max-w-3xl mx-auto">
+              Entenda como funciona cada vantagem exclusiva desenvolvida para profissionais da enfermagem
+            </p>
+          </AnimatedSection>
+
+          <div className="space-y-12">
+            {[
+              {
+                title: "Descontos Exclusivos para Enfermeiros com COREN Ativo",
+                description: "A AMIL oferece condições diferenciadas de preços especificamente para enfermeiros(as) com COREN ativo. Isso significa que, além de ter acesso a planos de saúde de qualidade premium, você paga menos por toda essa proteção e benefícios.",
+                features: ["Desconto especial na mensalidade", "Condições de pagamento facilitadas", "Sem taxa de adesão", "Desconto progressivo para familiares"],
+                icon: Users,
+                color: "emerald"
+              },
+              {
+                title: "Cobertura Abrangente e Acesso aos Melhores Hospitais",
+                description: "Os planos AMIL garantem cobertura em uma extensa rede de hospitais e clínicas, incluindo alguns dos melhores e mais renomados do país. Isso proporciona segurança total e tranquilidade no atendimento.",
+                features: ["Rede credenciada com mais de 30.000 prestadores", "Hospitais de referência nacional", "Clínicas especializadas", "Laboratórios de alta qualidade"],
+                icon: Shield,
+                color: "teal"
+              },
+              {
+                title: "Telemedicina: Facilite o Atendimento Médico",
+                description: "A AMIL oferece o benefício completo de telemedicina, permitindo consultas médicas à distância com a mesma qualidade e profissionalismo de um atendimento presencial. Especialmente útil para profissionais com rotina agitada.",
+                features: ["Consultas médicas online 24h", "Especialistas disponíveis", "Prescrições digitais válidas", "Atendimento psicológico virtual"],
+                icon: Clock,
+                color: "emerald"
+              },
+              {
+                title: "Cobertura de Reembolso Conforme a Categoria",
+                description: "Dependendo da categoria do seu plano, você tem direito a reembolso por consultas e procedimentos realizados fora da rede credenciada. Isso garante total flexibilidade para escolher os profissionais que melhor atendem suas necessidades.",
+                features: ["Reembolso de consultas particulares", "Procedimentos fora da rede", "Tabela de reembolso transparente", "Processo simplificado"],
+                icon: Award,
+                color: "teal"
+              },
+              {
+                title: "Condições Especiais para CNPJ",
+                description: "Se você é enfermeiro que possui empresa própria ou trabalha com CNPJ, pode contar com condições ainda mais vantajosas para contratação do plano de saúde, facilitando o acesso a benefícios exclusivos para você e sua equipe.",
+                features: ["Descontos adicionais para CNPJ", "Planos empresariais especiais", "Gestão online facilitada", "Suporte comercial dedicado"],
+                icon: Heart,
+                color: "emerald"
+              }
+            ].map((benefit, index) => (
+              <AnimatedSection key={benefit.title} direction={index % 2 === 0 ? "left" : "right"} delay={0.2 * index}>
+                <div className={`flex flex-col lg:flex-row items-center gap-8 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                  <div className="lg:w-1/3">
+                    <motion.div 
+                      className={`bg-gradient-to-br from-emerald-100 to-teal-100 rounded-3xl p-8 text-center shadow-lg`}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className={`bg-${benefit.color}-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4`}>
+                        <benefit.icon className="text-white" size={40} />
+                      </div>
+                      <h3 className={`text-xl font-bold text-${benefit.color}-800`}>{benefit.title}</h3>
+                    </motion.div>
+                  </div>
+                  
+                  <div className="lg:w-2/3">
+                    <h3 className={`text-2xl font-bold text-${benefit.color}-800 mb-4`}>{benefit.title}</h3>
+                    <p className={`text-lg text-${benefit.color}-600 mb-6 leading-relaxed`}>{benefit.description}</p>
+                    
+                    <ul className="grid md:grid-cols-2 gap-3">
+                      {benefit.features.map((feature, featureIndex) => (
+                        <motion.li 
+                          key={featureIndex}
+                          className={`flex items-center gap-3 text-${benefit.color}-700`}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: 0.1 * featureIndex }}
+                        >
+                          <CheckCircle size={20} className={`text-${benefit.color}-500 flex-shrink-0`} />
+                          <span className="font-medium">{feature}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Contact Form Section */}
       <section id="formulario" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection direction="up" className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-emerald-800 mb-4">
-              Solicite sua Cotação Amil
+              Solicite seu Plano AMIL com Desconto COREN
             </h2>
             <p className="text-lg sm:text-xl text-emerald-600 max-w-3xl mx-auto">
-              Preencha o formulário e receba uma proposta personalizada
+              Preencha o formulário e receba uma proposta personalizada com condições especiais para enfermeiros
             </p>
           </AnimatedSection>
 
@@ -381,7 +474,7 @@ const AmilPage: React.FC = () => {
               <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl shadow-xl p-6 sm:p-8 border-2 border-emerald-200">
                 <h3 className="text-xl sm:text-2xl font-bold text-emerald-800 mb-6 flex items-center gap-3">
                   <Mail className="text-emerald-600" size={24} />
-                  Formulário de Cotação Amil
+                  Formulário para Enfermeiros - Desconto COREN
                 </h3>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -493,7 +586,7 @@ const AmilPage: React.FC = () => {
                     whileTap={{ scale: 0.98 }}
                   >
                     <Send size={20} />
-                    Solicitar Cotação Amil
+                    Solicitar Plano AMIL - Desconto COREN
                   </motion.button>
                 </form>
               </div>
@@ -520,7 +613,7 @@ const AmilPage: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.7 }}
                   >
-                    Fale com um especialista Amil
+                    Fale com um especialista AMIL - Enfermeiros
                   </motion.h3>
                   
                   <motion.p 
@@ -530,14 +623,14 @@ const AmilPage: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.8 }}
                   >
-                    Tire suas dúvidas sobre os planos Amil diretamente com nossos consultores especializados.
+                    Tire suas dúvidas sobre os descontos especiais AMIL para enfermeiros com COREN ativo diretamente com nossos consultores especializados.
                   </motion.p>
                   
                   <div className="space-y-4 mb-8">
                     {[
-                      { icon: Phone, text: "Atendimento personalizado", color: "emerald" },
-                      { icon: CheckCircle, text: "Consultoria gratuita", color: "teal" },
-                      { icon: CheckCircle, text: "Especialistas Amil", color: "emerald" }
+                      { icon: Phone, text: "Consultoria especializada em enfermeiros", color: "emerald" },
+                      { icon: CheckCircle, text: "Informações sobre desconto COREN", color: "teal" },
+                      { icon: CheckCircle, text: "Especialistas AMIL dedicados", color: "emerald" }
                     ].map((feature, index) => (
                       <motion.div 
                         key={feature.text}
@@ -564,7 +657,7 @@ const AmilPage: React.FC = () => {
                     whileTap={{ scale: 0.95 }}
                   >
                     <MessageCircle size={24} />
-                    Consultor Amil via WhatsApp
+                    Consultor AMIL Enfermeiros
                   </motion.button>
                 </div>
               </div>
