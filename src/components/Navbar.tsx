@@ -17,7 +17,8 @@ const navItems: NavItem[] = [
       { label: 'SulAmérica', href: '/sulamerica' },
       { label: 'São Camilo', href: '/sao-camilo' },
       { label: 'Alice', href: '/alice' },
-      { label: 'Porto Seguro', href: '/porto-seguro' }
+      { label: 'Porto Seguro', href: '/porto-seguro' },
+      { label: 'Bradesco Saúde', href: '/bradesco' }
     ]
   },
   { label: 'Contato', href: '#contato' }
