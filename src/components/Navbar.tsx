@@ -15,7 +15,8 @@ const navItems: NavItem[] = [
     dropdownItems: [
       { label: 'Amil', href: '/amil' },
       { label: 'SulAmérica', href: '/sulamerica' },
-      { label: 'São Camilo', href: '/sao-camilo' }
+      { label: 'São Camilo', href: '/sao-camilo' },
+      { label: 'Alice', href: '/alice' }
     ]
   },
   { label: 'Contato', href: '#contato' }
