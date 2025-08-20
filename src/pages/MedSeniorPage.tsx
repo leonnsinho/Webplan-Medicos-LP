@@ -117,7 +117,7 @@ const MedSeniorPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50">
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -131,14 +131,14 @@ const MedSeniorPage: React.FC = () => {
                   transition={{ duration: 0.6 }}
                 >
                   <img src={medSeniorLogo} alt="MedSênior Logo" className="h-16 w-auto" />
-                  <div className="h-12 w-px bg-purple-300"></div>
-                  <h1 className="text-4xl sm:text-5xl font-bold text-purple-800">
+                  <div className="h-12 w-px bg-green-300"></div>
+                  <h1 className="text-4xl sm:text-5xl font-bold text-green-800">
                     MedSênior
                   </h1>
                 </motion.div>
                 
                 <motion.h2 
-                  className="text-2xl sm:text-3xl font-semibold text-purple-700 mb-6"
+                  className="text-2xl sm:text-3xl font-semibold text-green-700 mb-6"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
@@ -147,7 +147,7 @@ const MedSeniorPage: React.FC = () => {
                 </motion.h2>
                 
                 <motion.p 
-                  className="text-lg text-purple-600 mb-8 leading-relaxed"
+                  className="text-lg text-green-600 mb-8 leading-relaxed"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
@@ -163,13 +163,13 @@ const MedSeniorPage: React.FC = () => {
                 >
                   <button
                     onClick={() => document.getElementById('formulario')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                    className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                   >
                     Solicitar Cotação
                   </button>
                   <button
                     onClick={handleWhatsAppClick}
-                    className="bg-transparent border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
+                    className="bg-transparent border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
                   >
                     Falar com Consultor
                   </button>
@@ -184,17 +184,17 @@ const MedSeniorPage: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
-                <div className="bg-white rounded-3xl shadow-2xl p-8 border-4 border-purple-100">
+                <div className="bg-white rounded-3xl shadow-2xl p-8 border-4 border-green-100">
                   <img src={medSeniorLogo} alt="MedSênior Logo" className="w-full h-64 object-contain" />
                   <div className="mt-6 text-center">
-                    <h3 className="text-xl font-bold text-purple-800 mb-2">Plano Individual 44+</h3>
-                    <p className="text-purple-600">Sem burocracia, só qualidade</p>
+                    <h3 className="text-xl font-bold text-green-800 mb-2">Plano Individual 44+</h3>
+                    <p className="text-green-600">Sem burocracia, só qualidade</p>
                   </div>
                 </div>
                 
                 {/* Floating elements */}
                 <motion.div 
-                  className="absolute -top-4 -right-4 bg-purple-500 text-white p-3 rounded-full"
+                  className="absolute -top-4 -right-4 bg-green-500 text-white p-3 rounded-full"
                   animate={{ y: [-10, 10, -10] }}
                   transition={{ repeat: Infinity, duration: 3 }}
                 >
@@ -202,7 +202,7 @@ const MedSeniorPage: React.FC = () => {
                 </motion.div>
                 
                 <motion.div 
-                  className="absolute -bottom-4 -left-4 bg-blue-500 text-white p-3 rounded-full"
+                  className="absolute -bottom-4 -left-4 bg-emerald-500 text-white p-3 rounded-full"
                   animate={{ y: [10, -10, 10] }}
                   transition={{ repeat: Infinity, duration: 3, delay: 1.5 }}
                 >
@@ -220,7 +220,7 @@ const MedSeniorPage: React.FC = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Principais Vantagens do <span className="text-purple-600">MedSênior</span>
+                Principais Vantagens do <span className="text-green-600">MedSênior</span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Plano individual descomplicado, rede de excelência e reajuste controlado pela ANS
@@ -262,14 +262,14 @@ const MedSeniorPage: React.FC = () => {
               ].map((feature, index) => (
                 <motion.div
                   key={index}
-                  className="bg-gradient-to-br from-purple-50 to-blue-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  className="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                    <feature.icon className="w-8 h-8 text-purple-600" />
+                  <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                    <feature.icon className="w-8 h-8 text-green-600" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
                   <p className="text-gray-600 leading-relaxed">{feature.description}</p>
@@ -282,11 +282,11 @@ const MedSeniorPage: React.FC = () => {
 
       {/* Plans Section */}
       <AnimatedSection>
-        <section className="py-20 bg-gradient-to-br from-purple-50 to-blue-50">
+        <section className="py-20 bg-gradient-to-br from-green-50 to-emerald-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Rede de Hospitais <span className="text-purple-600">Categoria BLACK</span>
+                Rede de Hospitais <span className="text-green-600">Categoria BLACK</span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Acesso aos melhores hospitais de São Paulo e interior com estrutura moderna e equipe qualificada
@@ -322,8 +322,8 @@ const MedSeniorPage: React.FC = () => {
                   key={index}
                   className={`p-8 rounded-2xl shadow-xl transition-all duration-300 transform hover:scale-105 ${
                     region.highlight 
-                      ? 'bg-gradient-to-br from-purple-600 to-blue-600 text-white' 
-                      : 'bg-white border-2 border-purple-100'
+                      ? 'bg-gradient-to-br from-green-600 to-emerald-600 text-white' 
+                      : 'bg-white border-2 border-green-100'
                   }`}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -331,9 +331,9 @@ const MedSeniorPage: React.FC = () => {
                   viewport={{ once: true }}
                 >
                   <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 ${
-                    region.highlight ? 'bg-white/20' : 'bg-purple-100'
+                    region.highlight ? 'bg-white/20' : 'bg-green-100'
                   }`}>
-                    <region.icon className={`w-8 h-8 ${region.highlight ? 'text-white' : 'text-purple-600'}`} />
+                    <region.icon className={`w-8 h-8 ${region.highlight ? 'text-white' : 'text-green-600'}`} />
                   </div>
                   
                   <h3 className={`text-2xl font-bold mb-6 ${region.highlight ? 'text-white' : 'text-gray-900'}`}>
@@ -343,8 +343,8 @@ const MedSeniorPage: React.FC = () => {
                   <ul className="space-y-3">
                     {region.hospitals.map((hospital, hospitalIndex) => (
                       <li key={hospitalIndex} className="flex items-center gap-3">
-                        <CheckCircle className={`w-5 h-5 ${region.highlight ? 'text-purple-300' : 'text-purple-500'}`} />
-                        <span className={region.highlight ? 'text-purple-100' : 'text-gray-700'}>
+                        <CheckCircle className={`w-5 h-5 ${region.highlight ? 'text-green-300' : 'text-green-500'}`} />
+                        <span className={region.highlight ? 'text-green-100' : 'text-gray-700'}>
                           {hospital}
                         </span>
                       </li>
@@ -377,14 +377,14 @@ const MedSeniorPage: React.FC = () => {
                 ].map((estado, index) => (
                   <motion.div
                     key={index}
-                    className="bg-gradient-to-br from-purple-500 to-blue-500 text-white p-4 rounded-xl text-center"
+                    className="bg-gradient-to-br from-green-500 to-emerald-500 text-white p-4 rounded-xl text-center"
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
                     viewport={{ once: true }}
                   >
                     <div className="text-2xl font-bold mb-1">{estado.estado}</div>
-                    <div className="text-sm text-purple-200">{estado.nome}</div>
+                    <div className="text-sm text-green-200">{estado.nome}</div>
                   </motion.div>
                 ))}
               </div>
@@ -399,7 +399,7 @@ const MedSeniorPage: React.FC = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Para quem o <span className="text-purple-600">MedSênior</span> é ideal?
+                Para quem o <span className="text-green-600">MedSênior</span> é ideal?
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Perfil ideal e vantagens exclusivas para profissionais que valorizam simplicidade e qualidade
@@ -445,8 +445,8 @@ const MedSeniorPage: React.FC = () => {
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       viewport={{ once: true }}
                     >
-                      <div className="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                        <benefit.icon className="w-6 h-6 text-purple-600" />
+                      <div className="bg-green-100 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+                        <benefit.icon className="w-6 h-6 text-green-600" />
                       </div>
                       <div>
                         <h4 className="text-xl font-bold text-gray-900 mb-2">{benefit.title}</h4>
@@ -464,23 +464,23 @@ const MedSeniorPage: React.FC = () => {
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                <div className="bg-gradient-to-br from-purple-500 to-blue-500 rounded-3xl p-8 text-white shadow-2xl">
+                <div className="bg-gradient-to-br from-green-500 to-emerald-500 rounded-3xl p-8 text-white shadow-2xl">
                   <div className="text-center">
                     <div className="text-6xl font-bold mb-4">44+</div>
                     <div className="text-xl font-semibold mb-2">Idade Mínima</div>
-                    <div className="text-purple-100 mb-6">Para contratação individual</div>
+                    <div className="text-green-100 mb-6">Para contratação individual</div>
                     <div className="grid grid-cols-1 gap-4 text-center">
                       <div className="bg-white/20 rounded-xl p-4">
                         <div className="text-2xl font-bold">BLACK</div>
-                        <div className="text-sm text-purple-200">Categoria Premium</div>
+                        <div className="text-sm text-green-200">Categoria Premium</div>
                       </div>
                       <div className="bg-white/20 rounded-xl p-4">
                         <div className="text-2xl font-bold">ANS</div>
-                        <div className="text-sm text-purple-200">Reajuste Controlado</div>
+                        <div className="text-sm text-green-200">Reajuste Controlado</div>
                       </div>
                       <div className="bg-white/20 rounded-xl p-4">
                         <div className="text-2xl font-bold">7</div>
-                        <div className="text-sm text-purple-200">Estados Cobertura</div>
+                        <div className="text-sm text-green-200">Estados Cobertura</div>
                       </div>
                     </div>
                   </div>
@@ -492,12 +492,12 @@ const MedSeniorPage: React.FC = () => {
       </AnimatedSection>
 
       {/* Contact Form Section */}
-      <section id="formulario" className="py-20 bg-gradient-to-br from-purple-50 to-blue-50">
+      <section id="formulario" className="py-20 bg-gradient-to-br from-green-50 to-emerald-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Solicite sua <span className="text-purple-600">Cotação</span>
+                Solicite sua <span className="text-green-600">Cotação</span>
               </h2>
               <p className="text-xl text-gray-600">
                 Preencha o formulário abaixo e nossa equipe entrará em contato
@@ -519,7 +519,7 @@ const MedSeniorPage: React.FC = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors ${
+                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors ${
                         errors.name ? 'border-red-500' : 'border-gray-300'
                       }`}
                       placeholder="Seu nome completo"
@@ -542,7 +542,7 @@ const MedSeniorPage: React.FC = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors ${
+                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors ${
                         errors.email ? 'border-red-500' : 'border-gray-300'
                       }`}
                       placeholder="seu@email.com"
@@ -565,7 +565,7 @@ const MedSeniorPage: React.FC = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors ${
+                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors ${
                         errors.phone ? 'border-red-500' : 'border-gray-300'
                       }`}
                       placeholder="(11) 99999-9999"
@@ -587,7 +587,7 @@ const MedSeniorPage: React.FC = () => {
                       name="subject"
                       value={formData.subject}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors ${
+                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors ${
                         errors.subject ? 'border-red-500' : 'border-gray-300'
                       }`}
                     >
@@ -616,7 +616,7 @@ const MedSeniorPage: React.FC = () => {
                     rows={4}
                     value={formData.message}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
                     placeholder="Conte-nos mais sobre suas necessidades..."
                   ></textarea>
                 </div>
@@ -624,7 +624,7 @@ const MedSeniorPage: React.FC = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button
                     type="submit"
-                    className="flex-1 bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+                    className="flex-1 bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
                   >
                     <Send size={20} />
                     Enviar Solicitação
@@ -633,7 +633,7 @@ const MedSeniorPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={handleWhatsAppClick}
-                    className="flex-1 bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+                    className="flex-1 bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
                   >
                     <MessageCircle size={20} />
                     WhatsApp
@@ -647,14 +647,14 @@ const MedSeniorPage: React.FC = () => {
                   <div className="flex flex-col sm:flex-row justify-center gap-6">
                     <a
                       href="tel:+551141165378"
-                      className="flex items-center justify-center gap-2 text-purple-600 hover:text-purple-700 transition-colors"
+                      className="flex items-center justify-center gap-2 text-green-600 hover:text-green-700 transition-colors"
                     >
                       <Phone size={20} />
                       (11) 4116-5378
                     </a>
                     <a
                       href="mailto:contato@webplan.com.br"
-                      className="flex items-center justify-center gap-2 text-purple-600 hover:text-purple-700 transition-colors"
+                      className="flex items-center justify-center gap-2 text-green-600 hover:text-green-700 transition-colors"
                     >
                       <Mail size={20} />
                       contato@webplan.com.br
@@ -682,8 +682,8 @@ const MedSeniorPage: React.FC = () => {
             exit={{ scale: 0.8, opacity: 0 }}
           >
             <div className="text-center">
-              <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="w-8 h-8 text-purple-600" />
+              <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="w-8 h-8 text-green-600" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Solicitação Enviada!</h3>
               <p className="text-gray-600 mb-6">
@@ -691,7 +691,7 @@ const MedSeniorPage: React.FC = () => {
               </p>
               <button
                 onClick={() => setShowSuccessPopup(false)}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
               >
                 Fechar
               </button>
