@@ -39,8 +39,21 @@ const Navbar: React.FC = () => {
       setIsScrolled(scrollTop > 50);
     };
 
+    const handleClickOutside = (event: MouseEvent) => {
+      const navbar = document.getElementById('mobile-navbar');
+      if (navbar && !navbar.contains(event.target as Node)) {
+        setIsOpen(false);
+        setOpenDropdown(null);
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    document.addEventListener('mousedown', handleClickOutside);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
   const handleNavigation = (href: string) => {
@@ -93,6 +106,7 @@ const Navbar: React.FC = () => {
             : 'max-w-6xl'
         }`}>
         <motion.div 
+          id="mobile-navbar"
           className={`relative transition-all duration-500 ease-out ${
             isScrolled
               ? 'bg-white/95 backdrop-blur-xl shadow-2xl border border-gray-200/50'
@@ -287,11 +301,11 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile Navigation */}
-          <div className={`md:hidden overflow-hidden transition-all duration-300 ${
-            isOpen ? 'max-h-80 opacity-100 mt-4' : 'max-h-0 opacity-0'
+          <div className={`md:hidden transition-all duration-300 ${
+            isOpen ? 'max-h-screen opacity-100 mt-4' : 'max-h-0 opacity-0 overflow-hidden'
           }`}>
-            <div className="border-t border-gray-200/50 pt-4">
-              <div className="space-y-2">
+            <div className="border-t border-gray-200/50 pt-4 pb-2 bg-white/95 backdrop-blur-sm rounded-b-xl">
+              <div className="space-y-1 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-transparent">
                 {navItems.map((item, index) => (
                   <div key={item.label}>
                     {item.hasDropdown ? (
@@ -315,23 +329,35 @@ const Navbar: React.FC = () => {
                         
                         {/* Mobile Dropdown Items */}
                         <div className={`overflow-hidden transition-all duration-300 ${
-                          openDropdown === item.label ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+                          openDropdown === item.label ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                         }`}>
-                          <div className="pl-4 space-y-1">
-                            {item.dropdownItems?.map((dropdownItem) => (
-                              <button
+                          <div className="pl-4 space-y-1 max-h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 rounded">
+                            {item.dropdownItems?.map((dropdownItem, dropdownIndex) => (
+                              <motion.button
                                 key={dropdownItem.label}
                                 onClick={() => {
                                   navigate(dropdownItem.href);
                                   setIsOpen(false);
                                   setOpenDropdown(null);
                                 }}
-                                className="flex w-full items-center gap-3 px-4 py-2 text-blue-700 hover:text-blue-600 hover:bg-blue-50/50 rounded-lg font-medium transition-all duration-200"
+                                className="flex w-full items-center gap-3 px-4 py-2.5 text-blue-700 hover:text-blue-600 hover:bg-blue-50/70 rounded-lg font-medium transition-all duration-200 text-sm"
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ 
+                                  opacity: openDropdown === item.label ? 1 : 0,
+                                  x: openDropdown === item.label ? 0 : -10
+                                }}
+                                transition={{ duration: 0.2, delay: dropdownIndex * 0.03 }}
                               >
-                                <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
-                                {dropdownItem.label}
-                              </button>
+                                <div className="w-1.5 h-1.5 bg-blue-400 rounded-full flex-shrink-0"></div>
+                                <span className="truncate">{dropdownItem.label}</span>
+                              </motion.button>
                             ))}
+                            {/* Indicador de scroll se necessário */}
+                            {item.dropdownItems && item.dropdownItems.length > 6 && (
+                              <div className="text-center py-1 text-xs text-blue-400 italic">
+                                ↓ Role para ver mais ↓
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -398,6 +424,38 @@ const Navbar: React.FC = () => {
             opacity: 1;
             transform: translateX(0);
           }
+        }
+        
+        /* Scrollbar para mobile */
+        .scrollbar-thin {
+          scrollbar-width: thin;
+        }
+        
+        .scrollbar-thin::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        .scrollbar-thin::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        
+        .scrollbar-thumb-blue-300::-webkit-scrollbar-thumb {
+          background-color: #93c5fd;
+          border-radius: 3px;
+        }
+        
+        .scrollbar-thumb-blue-200::-webkit-scrollbar-thumb {
+          background-color: #bfdbfe;
+          border-radius: 3px;
+        }
+        
+        .scrollbar-track-blue-50::-webkit-scrollbar-track {
+          background-color: #eff6ff;
+          border-radius: 3px;
+        }
+        
+        .scrollbar-track-transparent::-webkit-scrollbar-track {
+          background: transparent;
         }
       `}</style>
     </>
