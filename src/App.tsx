@@ -13,6 +13,7 @@ import AlicePage from './pages/AlicePage';
 import PortoSeguroPage from './pages/PortoSeguroPage';
 import BradescoPage from './pages/BradescoPage';
 import UnimedPage from './pages/UnimedPage';
+import MedSeniorPage from './pages/MedSeniorPage';
 import { pageTransitions } from './utils/animations';
 
 function AnimatedRoutes() {
@@ -109,6 +110,16 @@ function AnimatedRoutes() {
             transition={pageTransitions.transition}
           >
             <UnimedPage />
+          </motion.div>
+        } />
+        <Route path="/medsenior" element={
+          <motion.div
+            initial={pageTransitions.initial}
+            animate={pageTransitions.animate}
+            exit={pageTransitions.exit}
+            transition={pageTransitions.transition}
+          >
+            <MedSeniorPage />
           </motion.div>
         } />
         <Route path="/sucesso" element={

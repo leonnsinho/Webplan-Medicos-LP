@@ -19,7 +19,8 @@ const navItems: NavItem[] = [
       { label: 'Alice', href: '/alice' },
       { label: 'Porto Seguro', href: '/porto-seguro' },
       { label: 'Bradesco Saúde', href: '/bradesco' },
-      { label: 'Seguros Unimed', href: '/unimed' }
+      { label: 'Seguros Unimed', href: '/unimed' },
+      { label: 'MedSênior', href: '/medsenior' }
     ]
   },
   { label: 'Contato', href: '#contato' }
