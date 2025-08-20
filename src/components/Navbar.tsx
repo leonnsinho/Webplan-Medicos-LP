@@ -16,7 +16,8 @@ const navItems: NavItem[] = [
       { label: 'Amil', href: '/amil' },
       { label: 'SulAmérica', href: '/sulamerica' },
       { label: 'São Camilo', href: '/sao-camilo' },
-      { label: 'Alice', href: '/alice' }
+      { label: 'Alice', href: '/alice' },
+      { label: 'Porto Seguro', href: '/porto-seguro' }
     ]
   },
   { label: 'Contato', href: '#contato' }

@@ -10,6 +10,7 @@ import AmilPage from './pages/AmilPage';
 import SulamericaPage from './pages/SulamericaPage';
 import SaoCamiloPage from './pages/SaoCamiloPage';
 import AlicePage from './pages/AlicePage';
+import PortoSeguroPage from './pages/PortoSeguroPage';
 import { pageTransitions } from './utils/animations';
 
 function AnimatedRoutes() {
@@ -76,6 +77,16 @@ function AnimatedRoutes() {
             transition={pageTransitions.transition}
           >
             <AlicePage />
+          </motion.div>
+        } />
+        <Route path="/porto-seguro" element={
+          <motion.div
+            initial={pageTransitions.initial}
+            animate={pageTransitions.animate}
+            exit={pageTransitions.exit}
+            transition={pageTransitions.transition}
+          >
+            <PortoSeguroPage />
           </motion.div>
         } />
         <Route path="/sucesso" element={
