@@ -8,6 +8,7 @@ import AboutPage from './pages/AboutPage';
 import SuccessPage from './pages/SuccessPage';
 import AmilPage from './pages/AmilPage';
 import SulamericaPage from './pages/SulamericaPage';
+import SaoCamiloPage from './pages/SaoCamiloPage';
 import { pageTransitions } from './utils/animations';
 
 function AnimatedRoutes() {
@@ -54,6 +55,16 @@ function AnimatedRoutes() {
             transition={pageTransitions.transition}
           >
             <SulamericaPage />
+          </motion.div>
+        } />
+        <Route path="/sao-camilo" element={
+          <motion.div
+            initial={pageTransitions.initial}
+            animate={pageTransitions.animate}
+            exit={pageTransitions.exit}
+            transition={pageTransitions.transition}
+          >
+            <SaoCamiloPage />
           </motion.div>
         } />
         <Route path="/sucesso" element={

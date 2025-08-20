@@ -14,7 +14,8 @@ const navItems: NavItem[] = [
     hasDropdown: true,
     dropdownItems: [
       { label: 'Amil', href: '/amil' },
-      { label: 'SulAmérica', href: '/sulamerica' }
+      { label: 'SulAmérica', href: '/sulamerica' },
+      { label: 'São Camilo', href: '/sao-camilo' }
     ]
   },
   { label: 'Contato', href: '#contato' }
