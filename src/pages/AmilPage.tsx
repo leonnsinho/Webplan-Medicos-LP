@@ -10,7 +10,7 @@ const AmilPage: React.FC = () => {
     name: '',
     email: '',
     phone: '',
-    subject: 'amil_enfermeiro_individual',
+    subject: 'amil_adesao_enfermeiros',
     message: ''
   });
 
@@ -18,11 +18,11 @@ const AmilPage: React.FC = () => {
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const subjectOptions = [
-    { value: 'amil_enfermeiro_individual', label: 'Plano AMIL Enfermeiro - Individual' },
-    { value: 'amil_enfermeiro_familiar', label: 'Plano AMIL Enfermeiro - Familiar' },
-    { value: 'amil_enfermeiro_cnpj', label: 'Plano AMIL Enfermeiro - CNPJ' },
-    { value: 'amil_plano_tradicional', label: 'Plano AMIL - Tradicional' },
-    { value: 'amil_informacoes', label: 'Informações Gerais - Desconto COREN' }
+    { value: 'amil_adesao_enfermeiros', label: 'AMIL por Adesão - Enfermeiros' },
+    { value: 'amil_empresarial_cnpj', label: 'AMIL Empresarial - CNPJ' },
+    { value: 'amil_coletivo_enfermagem', label: 'AMIL Coletivo Enfermagem' },
+    { value: 'amil_plano_tradicional', label: 'AMIL - Planos Tradicionais' },
+    { value: 'amil_informacoes', label: 'Informações Gerais - Enfermagem' }
   ];
 
   const validateForm = (): boolean => {
@@ -52,7 +52,7 @@ const AmilPage: React.FC = () => {
           name: '',
           email: '',
           phone: '',
-          subject: 'amil_enfermeiro_individual',
+          subject: 'amil_adesao_enfermeiros',
           message: ''
         });
       }, 1000);
@@ -296,21 +296,21 @@ const AmilPage: React.FC = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                name: "AMIL Enfermeiro Individual",
-                description: "Plano individual com desconto especial COREN",
-                features: ["Desconto exclusivo COREN", "Telemedicina incluída", "Rede credenciada nacional", "Cobertura ambulatorial completa"],
+                name: "AMIL por Adesão - Enfermeiros",
+                description: "Plano coletivo por adesão com condições especiais para enfermagem",
+                features: ["Desconto especial para enfermeiros", "Flexibilidade de dependentes", "Telemedicina incluída", "Rede credenciada nacional"],
                 highlight: false
               },
               {
-                name: "AMIL Enfermeiro Familiar",
-                description: "Proteção para toda a família com condições especiais",
-                features: ["Até 6 dependentes", "Desconto progressivo", "Reembolso conforme categoria", "Atendimento 24h"],
+                name: "AMIL Empresarial - CNPJ",
+                description: "Soluções corporativas para enfermeiros com empresa própria",
+                features: ["A partir de 2 vidas", "Flexibilidade familiar completa", "Gestão online facilitada", "Suporte comercial dedicado"],
                 highlight: true
               },
               {
-                name: "AMIL Enfermeiro CNPJ",
-                description: "Condições especiais para enfermeiros com empresa própria",
-                features: ["Vantagens CNPJ", "Gestão simplificada", "Cobertura empresarial", "Suporte dedicado"],
+                name: "AMIL Coletivo Enfermagem",
+                description: "Planos coletivos especiais com máxima flexibilidade",
+                features: ["Até 6 dependentes por titular", "Cobertura nacional completa", "Reembolso conforme categoria", "Atendimento 24h"],
                 highlight: false
               }
             ].map((plan, index) => (
