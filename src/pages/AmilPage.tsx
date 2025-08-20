@@ -524,7 +524,7 @@ const AmilPage: React.FC = () => {
                     transition={{ duration: 0.5, delay: 0.7 }}
                   >
                     <label htmlFor="subject" className="block text-sm font-medium text-emerald-700 mb-2">
-                      Tipo de Plano *
+                      Tipo de Plano * <span className="text-emerald-600 font-normal">(Descontos para enfermeiros inscritos no COREN e estudantes)</span>
                     </label>
                     <select
                       id="subject"
