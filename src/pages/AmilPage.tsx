@@ -116,7 +116,7 @@ const AmilPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-sky-50">
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -130,14 +130,14 @@ const AmilPage: React.FC = () => {
                   transition={{ duration: 0.6 }}
                 >
                   <img src={amilLogo} alt="Amil Logo" className="h-16 w-auto" />
-                  <div className="h-12 w-px bg-emerald-300"></div>
-                  <h1 className="text-4xl sm:text-5xl font-bold text-emerald-800">
+                  <div className="h-12 w-px bg-blue-300"></div>
+                  <h1 className="text-4xl sm:text-5xl font-bold text-blue-800">
                     Amil
                   </h1>
                 </motion.div>
                 
                 <motion.h2 
-                  className="text-2xl sm:text-3xl font-semibold text-emerald-700 mb-6"
+                  className="text-2xl sm:text-3xl font-semibold text-blue-700 mb-6"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
@@ -146,7 +146,7 @@ const AmilPage: React.FC = () => {
                 </motion.h2>
                 
                 <motion.p 
-                  className="text-lg text-emerald-600 mb-8 leading-relaxed"
+                  className="text-lg text-blue-600 mb-8 leading-relaxed"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
@@ -162,13 +162,13 @@ const AmilPage: React.FC = () => {
                 >
                   <button
                     onClick={() => document.getElementById('formulario')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                   >
                     Solicitar Cotação
                   </button>
                   <button
                     onClick={handleWhatsAppClick}
-                    className="bg-transparent border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
+                    className="bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
                   >
                     Falar com Consultor
                   </button>
@@ -183,24 +183,24 @@ const AmilPage: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
-                <div className="bg-white rounded-3xl shadow-2xl p-8 border-4 border-emerald-100">
+                <div className="bg-white rounded-3xl shadow-2xl p-8 border-4 border-blue-100">
                   <img src={amilLogo} alt="Amil Logo" className="w-full h-64 object-contain" />
                   <div className="mt-6 text-center">
-                    <h3 className="text-xl font-bold text-emerald-800 mb-2">Mais de 40 anos de tradição</h3>
-                    <p className="text-emerald-600">Líder em planos de saúde no Brasil</p>
+                    <h3 className="text-xl font-bold text-blue-800 mb-2">Mais de 40 anos de tradição</h3>
+                    <p className="text-blue-600">Líder em planos de saúde no Brasil</p>
                   </div>
                 </div>
                 
                 {/* Floating elements */}
                 <motion.div 
-                  className="absolute -top-4 -right-4 bg-emerald-500 text-white p-3 rounded-full"
+                  className="absolute -top-4 -right-4 bg-blue-500 text-white p-3 rounded-full"
                   animate={{ y: [-10, 10, -10] }}
                   transition={{ repeat: Infinity, duration: 3 }}
                 >
                   <Shield size={24} />
                 </motion.div>
                 <motion.div 
-                  className="absolute -bottom-4 -left-4 bg-teal-500 text-white p-3 rounded-full"
+                  className="absolute -bottom-4 -left-4 bg-sky-500 text-white p-3 rounded-full"
                   animate={{ y: [10, -10, 10] }}
                   transition={{ repeat: Infinity, duration: 3, delay: 1.5 }}
                 >
@@ -216,10 +216,10 @@ const AmilPage: React.FC = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection direction="up" className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-emerald-800 mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-blue-800 mb-4">
               Vantagens Exclusivas para Enfermeiros
             </h2>
-            <p className="text-lg text-emerald-600 max-w-3xl mx-auto">
+            <p className="text-lg text-blue-600 max-w-3xl mx-auto">
               Condições especiais para enfermeiros inscritos no COREN, estudantes e formados
             </p>
           </AnimatedSection>
@@ -230,50 +230,50 @@ const AmilPage: React.FC = () => {
                 icon: Users,
                 title: "Descontos Exclusivos para Enfermagem",
                 description: "Condições especiais para enfermeiros inscritos no COREN, estudantes e formados",
-                color: "emerald"
+                color: "blue"
               },
               {
                 icon: Shield,
                 title: "Maior Rede Credenciada",
                 description: "Acesso aos melhores hospitais e clínicas em todo o Brasil",
-                color: "teal"
+                color: "sky"
               },
               {
                 icon: Award,
                 title: "Telemedicina Incluída",
                 description: "Consultas médicas à distância com qualidade profissional",
-                color: "emerald"
+                color: "blue"
               },
               {
                 icon: Clock,
                 title: "Cobertura de Reembolso",
                 description: "Flexibilidade para atendimento fora da rede credenciada",
-                color: "teal"
+                color: "sky"
               },
               {
                 icon: Heart,
                 title: "Condições Especiais CNPJ",
                 description: "Vantagens adicionais para enfermeiros com empresa própria",
-                color: "emerald"
+                color: "blue"
               },
               {
                 icon: Star,
                 title: "Mais de 40 Categorias",
                 description: "Ampla variedade de planos para atender todas as necessidades",
-                color: "teal"
+                color: "sky"
               }
             ].map((feature, index) => (
               <AnimatedSection key={feature.title} direction="up" delay={0.1 * index}>
                 <motion.div 
-                  className={`bg-gradient-to-br from-emerald-50 to-teal-100 rounded-2xl p-6 text-center transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-emerald-200`}
+                  className={`bg-gradient-to-br from-blue-50 to-sky-100 rounded-2xl p-6 text-center transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-blue-200`}
                   whileHover={{ y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className={`bg-emerald-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4`}>
+                  <div className={`bg-blue-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4`}>
                     <feature.icon className="text-white" size={32} />
                   </div>
-                  <h3 className={`text-xl font-bold text-emerald-800 mb-3`}>{feature.title}</h3>
-                  <p className={`text-emerald-600 leading-relaxed`}>{feature.description}</p>
+                  <h3 className={`text-xl font-bold text-blue-800 mb-3`}>{feature.title}</h3>
+                  <p className={`text-blue-600 leading-relaxed`}>{feature.description}</p>
                 </motion.div>
               </AnimatedSection>
             ))}
@@ -282,13 +282,13 @@ const AmilPage: React.FC = () => {
       </section>
 
       {/* Plans Section */}
-      <section className="py-20 bg-gradient-to-br from-emerald-50 to-teal-50">
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-sky-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection direction="up" className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-emerald-800 mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-blue-800 mb-4">
               Planos AMIL para Enfermeiros
             </h2>
-            <p className="text-lg text-emerald-600 max-w-3xl mx-auto">
+            <p className="text-lg text-blue-600 max-w-3xl mx-auto">
               Opções especiais para enfermeiros inscritos no COREN, estudantes e formados
             </p>
           </AnimatedSection>
@@ -318,29 +318,29 @@ const AmilPage: React.FC = () => {
                 <motion.div 
                   className={`rounded-2xl p-8 text-center transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${
                     plan.highlight 
-                      ? 'bg-emerald-600 text-white border-4 border-emerald-400' 
-                      : 'bg-white text-emerald-800 border-2 border-emerald-200'
+                      ? 'bg-blue-600 text-white border-4 border-blue-400' 
+                      : 'bg-white text-blue-800 border-2 border-blue-200'
                   }`}
                   whileHover={{ y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
                   {plan.highlight && (
-                    <div className="bg-teal-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">
+                    <div className="bg-sky-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">
                       Mais Popular
                     </div>
                   )}
                   
-                  <h3 className={`text-2xl font-bold mb-4 ${plan.highlight ? 'text-white' : 'text-emerald-800'}`}>
+                  <h3 className={`text-2xl font-bold mb-4 ${plan.highlight ? 'text-white' : 'text-blue-800'}`}>
                     {plan.name}
                   </h3>
-                  <p className={`mb-6 ${plan.highlight ? 'text-emerald-100' : 'text-emerald-600'}`}>
+                  <p className={`mb-6 ${plan.highlight ? 'text-blue-100' : 'text-blue-600'}`}>
                     {plan.description}
                   </p>
                   
                   <ul className="space-y-3 mb-8">
                     {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className={`flex items-center justify-center gap-2 ${plan.highlight ? 'text-emerald-100' : 'text-emerald-700'}`}>
-                        <CheckCircle size={20} className={plan.highlight ? 'text-teal-300' : 'text-emerald-500'} />
+                      <li key={featureIndex} className={`flex items-center justify-center gap-2 ${plan.highlight ? 'text-blue-100' : 'text-blue-700'}`}>
+                        <CheckCircle size={20} className={plan.highlight ? 'text-sky-300' : 'text-blue-500'} />
                         {feature}
                       </li>
                     ))}
@@ -350,8 +350,8 @@ const AmilPage: React.FC = () => {
                     onClick={() => document.getElementById('formulario')?.scrollIntoView({ behavior: 'smooth' })}
                     className={`w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 ${
                       plan.highlight 
-                        ? 'bg-white text-emerald-600 hover:bg-emerald-50' 
-                        : 'bg-emerald-600 text-white hover:bg-emerald-700'
+                        ? 'bg-white text-blue-600 hover:bg-blue-50' 
+                        : 'bg-blue-600 text-white hover:bg-blue-700'
                     }`}
                   >
                     Solicitar Cotação
@@ -367,10 +367,10 @@ const AmilPage: React.FC = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection direction="up" className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-emerald-800 mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-blue-800 mb-4">
               Benefícios Detalhados para Enfermeiros
             </h2>
-            <p className="text-lg text-emerald-600 max-w-3xl mx-auto">
+            <p className="text-lg text-blue-600 max-w-3xl mx-auto">
               Entenda como funciona cada vantagem exclusiva desenvolvida para profissionais da enfermagem
             </p>
           </AnimatedSection>
@@ -382,42 +382,42 @@ const AmilPage: React.FC = () => {
                 description: "A AMIL oferece condições diferenciadas de preços para profissionais da enfermagem: enfermeiros inscritos no COREN, estudantes de enfermagem e recém-formados. Isso significa acesso a planos de saúde de qualidade premium pagando menos por toda essa proteção e benefícios.",
                 features: ["Desconto especial para inscritos no COREN", "Condições facilitadas para estudantes", "Preços diferenciados para recém-formados", "Desconto progressivo para familiares"],
                 icon: Users,
-                color: "emerald"
+                color: "blue"
               },
               {
                 title: "Cobertura Abrangente e Acesso aos Melhores Hospitais",
                 description: "Os planos AMIL garantem cobertura em uma extensa rede de hospitais e clínicas, incluindo alguns dos melhores e mais renomados do país. Isso proporciona segurança total e tranquilidade no atendimento.",
                 features: ["Rede credenciada com mais de 30.000 prestadores", "Hospitais de referência nacional", "Clínicas especializadas", "Laboratórios de alta qualidade"],
                 icon: Shield,
-                color: "teal"
+                color: "sky"
               },
               {
                 title: "Telemedicina: Facilite o Atendimento Médico",
                 description: "A AMIL oferece o benefício completo de telemedicina, permitindo consultas médicas à distância com a mesma qualidade e profissionalismo de um atendimento presencial. Especialmente útil para profissionais com rotina agitada.",
                 features: ["Consultas médicas online 24h", "Especialistas disponíveis", "Prescrições digitais válidas", "Atendimento psicológico virtual"],
                 icon: Clock,
-                color: "emerald"
+                color: "blue"
               },
               {
                 title: "Cobertura de Reembolso Conforme a Categoria",
                 description: "Dependendo da categoria do seu plano, você tem direito a reembolso por consultas e procedimentos realizados fora da rede credenciada. Isso garante total flexibilidade para escolher os profissionais que melhor atendem suas necessidades.",
                 features: ["Reembolso de consultas particulares", "Procedimentos fora da rede", "Tabela de reembolso transparente", "Processo simplificado"],
                 icon: Award,
-                color: "teal"
+                color: "sky"
               },
               {
                 title: "Condições Especiais para CNPJ",
                 description: "Se você é enfermeiro que possui empresa própria ou trabalha com CNPJ, pode contar com condições ainda mais vantajosas para contratação do plano de saúde, facilitando o acesso a benefícios exclusivos para você e sua equipe.",
                 features: ["Descontos adicionais para CNPJ", "Planos empresariais especiais", "Gestão online facilitada", "Suporte comercial dedicado"],
                 icon: Heart,
-                color: "emerald"
+                color: "blue"
               }
             ].map((benefit, index) => (
               <AnimatedSection key={benefit.title} direction={index % 2 === 0 ? "left" : "right"} delay={0.2 * index}>
                 <div className={`flex flex-col lg:flex-row items-center gap-8 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                   <div className="lg:w-1/3">
                     <motion.div 
-                      className={`bg-gradient-to-br from-emerald-100 to-teal-100 rounded-3xl p-8 text-center shadow-lg`}
+                      className={`bg-gradient-to-br from-blue-100 to-sky-100 rounded-3xl p-8 text-center shadow-lg`}
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.3 }}
                     >
@@ -459,10 +459,10 @@ const AmilPage: React.FC = () => {
       <section id="formulario" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection direction="up" className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-emerald-800 mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-blue-800 mb-4">
               Solicite seu Plano AMIL com Desconto COREN
             </h2>
-            <p className="text-lg sm:text-xl text-emerald-600 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-blue-600 max-w-3xl mx-auto">
               Preencha o formulário e receba uma proposta personalizada com condições especiais para enfermeiros
             </p>
           </AnimatedSection>
@@ -470,9 +470,9 @@ const AmilPage: React.FC = () => {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
             {/* Form */}
             <AnimatedSection direction="left" delay={0.2}>
-              <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl shadow-xl p-6 sm:p-8 border-2 border-emerald-200">
-                <h3 className="text-xl sm:text-2xl font-bold text-emerald-800 mb-6 flex items-center gap-3">
-                  <Mail className="text-emerald-600" size={24} />
+              <div className="bg-gradient-to-br from-blue-50 to-sky-50 rounded-2xl shadow-xl p-6 sm:p-8 border-2 border-blue-200">
+                <h3 className="text-xl sm:text-2xl font-bold text-blue-800 mb-6 flex items-center gap-3">
+                  <Mail className="text-blue-600" size={24} />
                   Formulário para Enfermeiros - Desconto COREN
                 </h3>
                 
@@ -489,7 +489,7 @@ const AmilPage: React.FC = () => {
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: 0.4 + (index * 0.1) }}
                     >
-                      <label htmlFor={field.name} className="block text-sm font-medium text-emerald-700 mb-2">
+                      <label htmlFor={field.name} className="block text-sm font-medium text-blue-700 mb-2">
                         {field.label}
                       </label>
                       <input
@@ -498,8 +498,8 @@ const AmilPage: React.FC = () => {
                         name={field.name}
                         value={formData[field.name as keyof ContactFormData]}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 ${
-                          errors[field.name as keyof ContactFormData] ? 'border-red-500' : 'border-emerald-300'
+                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
+                          errors[field.name as keyof ContactFormData] ? 'border-red-500' : 'border-blue-300'
                         }`}
                         placeholder={field.placeholder}
                       />
@@ -523,16 +523,16 @@ const AmilPage: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.7 }}
                   >
-                    <label htmlFor="subject" className="block text-sm font-medium text-emerald-700 mb-2">
-                      Tipo de Plano * <span className="text-emerald-600 font-normal">(Descontos para enfermeiros inscritos no COREN e estudantes)</span>
+                    <label htmlFor="subject" className="block text-sm font-medium text-blue-700 mb-2">
+                      Tipo de Plano * <span className="text-blue-600 font-normal">(Descontos para enfermeiros inscritos no COREN e estudantes)</span>
                     </label>
                     <select
                       id="subject"
                       name="subject"
                       value={formData.subject}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 ${
-                        errors.subject ? 'border-red-500' : 'border-emerald-300'
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
+                        errors.subject ? 'border-red-500' : 'border-blue-300'
                       }`}
                     >
                       {subjectOptions.map((option) => (
@@ -560,7 +560,7 @@ const AmilPage: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.8 }}
                   >
-                    <label htmlFor="message" className="block text-sm font-medium text-emerald-700 mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-blue-700 mb-2">
                       Mensagem Adicional
                     </label>
                     <textarea
@@ -569,14 +569,14 @@ const AmilPage: React.FC = () => {
                       rows={4}
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-emerald-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 resize-none"
+                      className="w-full px-4 py-3 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
                       placeholder="Conte-nos mais sobre suas necessidades..."
                     />
                   </motion.div>
 
                   <motion.button
                     type="submit"
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -606,7 +606,7 @@ const AmilPage: React.FC = () => {
                   </motion.div>
                   
                   <motion.h3 
-                    className="text-2xl font-bold text-emerald-800 mb-4"
+                    className="text-2xl font-bold text-blue-800 mb-4"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -616,7 +616,7 @@ const AmilPage: React.FC = () => {
                   </motion.h3>
                   
                   <motion.p 
-                    className="text-lg text-emerald-600 mb-8 leading-relaxed"
+                    className="text-lg text-blue-600 mb-8 leading-relaxed"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -627,13 +627,13 @@ const AmilPage: React.FC = () => {
                   
                   <div className="space-y-4 mb-8">
                     {[
-                      { icon: Phone, text: "Consultoria especializada em enfermeiros", color: "emerald" },
-                      { icon: CheckCircle, text: "Informações sobre desconto COREN", color: "teal" },
-                      { icon: CheckCircle, text: "Especialistas AMIL dedicados", color: "emerald" }
+                      { icon: Phone, text: "Consultoria especializada em enfermeiros", color: "blue" },
+                      { icon: CheckCircle, text: "Informações sobre desconto COREN", color: "sky" },
+                      { icon: CheckCircle, text: "Especialistas AMIL dedicados", color: "blue" }
                     ].map((feature, index) => (
                       <motion.div 
                         key={feature.text}
-                        className="flex items-center justify-center gap-3 text-emerald-700"
+                        className="flex items-center justify-center gap-3 text-blue-700"
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
@@ -683,16 +683,16 @@ const AmilPage: React.FC = () => {
           >
             <div className="text-center">
               <motion.div 
-                className="bg-emerald-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
+                className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
                 initial={{ scale: 0, rotate: -180 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <CheckCircle className="text-emerald-600" size={40} />
+                <CheckCircle className="text-blue-600" size={40} />
               </motion.div>
 
               <motion.h3 
-                className="text-2xl font-bold text-emerald-800 mb-4"
+                className="text-2xl font-bold text-blue-800 mb-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
@@ -701,7 +701,7 @@ const AmilPage: React.FC = () => {
               </motion.h3>
               
               <motion.p 
-                className="text-emerald-600 mb-6 leading-relaxed"
+                className="text-blue-600 mb-6 leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.4 }}
@@ -729,7 +729,7 @@ const AmilPage: React.FC = () => {
                     setShowSuccessPopup(false);
                     handleWhatsAppClick();
                   }}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
