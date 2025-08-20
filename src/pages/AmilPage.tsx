@@ -109,7 +109,7 @@ const AmilPage: React.FC = () => {
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
-      'Olá! Sou enfermeiro(a) com COREN ativo e gostaria de saber mais sobre os planos AMIL com descontos exclusivos para nossa categoria.'
+      'Olá! Sou da área de enfermagem e gostaria de saber mais sobre os planos AMIL com descontos exclusivos para nossa categoria (COREN ativo, estudantes ou formados).'
     );
     const whatsappUrl = `https://wa.me/5511959305175?text=${message}`;
     window.open(whatsappUrl, '_blank');
@@ -142,7 +142,7 @@ const AmilPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  Planos Especiais para Enfermeiros com COREN Ativo
+                  Planos Especiais para Profissionais da Enfermagem
                 </motion.h2>
                 
                 <motion.p 
@@ -151,8 +151,7 @@ const AmilPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  Benefícios exclusivos e condições especiais para profissionais da enfermagem. 
-                  Com mais de 40 categorias de planos, a AMIL oferece vantagens únicas para quem tem COREN ativo.
+                   vantagens únicas para enfermeiros inscritos no coren e também para estudantes e formados.
                 </motion.p>
 
                 <motion.div 
@@ -221,7 +220,7 @@ const AmilPage: React.FC = () => {
               Vantagens Exclusivas para Enfermeiros
             </h2>
             <p className="text-lg text-emerald-600 max-w-3xl mx-auto">
-              Condições especiais desenvolvidas para profissionais da enfermagem com COREN ativo
+              Condições especiais para enfermeiros inscritos no COREN, estudantes e formados
             </p>
           </AnimatedSection>
 
@@ -229,8 +228,8 @@ const AmilPage: React.FC = () => {
             {[
               {
                 icon: Users,
-                title: "Descontos Exclusivos COREN",
-                description: "Condições diferenciadas de preços para enfermeiros com COREN ativo",
+                title: "Descontos Exclusivos para Enfermagem",
+                description: "Condições especiais para enfermeiros inscritos no COREN, estudantes e formados",
                 color: "emerald"
               },
               {
@@ -290,7 +289,7 @@ const AmilPage: React.FC = () => {
               Planos AMIL para Enfermeiros
             </h2>
             <p className="text-lg text-emerald-600 max-w-3xl mx-auto">
-              Opções especiais com descontos exclusivos para profissionais com COREN ativo
+              Opções especiais para enfermeiros inscritos no COREN, estudantes e formados
             </p>
           </AnimatedSection>
 
@@ -379,9 +378,9 @@ const AmilPage: React.FC = () => {
           <div className="space-y-12">
             {[
               {
-                title: "Descontos Exclusivos para Enfermeiros com COREN Ativo",
-                description: "A AMIL oferece condições diferenciadas de preços especificamente para enfermeiros(as) com COREN ativo. Isso significa que, além de ter acesso a planos de saúde de qualidade premium, você paga menos por toda essa proteção e benefícios.",
-                features: ["Desconto especial na mensalidade", "Condições de pagamento facilitadas", "Sem taxa de adesão", "Desconto progressivo para familiares"],
+                title: "Descontos Exclusivos para Profissionais da Enfermagem",
+                description: "A AMIL oferece condições diferenciadas de preços para profissionais da enfermagem: enfermeiros inscritos no COREN, estudantes de enfermagem e recém-formados. Isso significa acesso a planos de saúde de qualidade premium pagando menos por toda essa proteção e benefícios.",
+                features: ["Desconto especial para inscritos no COREN", "Condições facilitadas para estudantes", "Preços diferenciados para recém-formados", "Desconto progressivo para familiares"],
                 icon: Users,
                 color: "emerald"
               },
@@ -623,7 +622,7 @@ const AmilPage: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.8 }}
                   >
-                    Tire suas dúvidas sobre os descontos especiais AMIL para enfermeiros com COREN ativo diretamente com nossos consultores especializados.
+                    Tire suas dúvidas sobre os descontos especiais AMIL para profissionais da enfermagem (COREN ativo, estudantes e formados) diretamente com nossos consultores especializados.
                   </motion.p>
                   
                   <div className="space-y-4 mb-8">
