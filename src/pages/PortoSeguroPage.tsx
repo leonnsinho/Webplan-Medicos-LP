@@ -3,9 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Send, MessageCircle, Phone, Mail, CheckCircle, AlertCircle, Shield, Users, Heart, Award, Clock, Star } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import { FormData as ContactFormData } from '../types';
+import { useLeadSubmission } from '../hooks/useLeadSubmission';
 import portoLogo from '../assets/images/porto-seguro.png';
 
 const PortoSeguroPage: React.FC = () => {
+  const { submitLead, isSubmitting } = useLeadSubmission();
+  
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -49,130 +52,49 @@ const PortoSeguroPage: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('🟢 [Porto Seguro] Função handleSubmit foi chamada!');
-    console.log('🟢 [Porto Seguro] Event:', e);
-    console.log('🟢 [Porto Seguro] FormData atual:', formData);
-    
-    // Teste básico primeiro
-    alert('Formulário Porto Seguro acionado! Verifique o console.');
-    
-    console.log('🚀 [Porto Seguro] Iniciando processo de envio do formulário...');
     
     if (validateForm()) {
       console.log('✅ [Porto Seguro] Validação do formulário aprovada');
       console.log('📋 [Porto Seguro] Dados do formulário:', formData);
       
-      // Show success popup immediately
-      setShowSuccessPopup(true);
-      console.log('✨ [Porto Seguro] Popup de sucesso ativado');
-      
-      // Reset form data in state
-      setTimeout(() => {
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: 'porto_cnpj_enfermeiros',
-          message: ''
-        });
-        console.log('🔄 [Porto Seguro] Formulário resetado');
-      }, 1000);
-
       try {
-        // Create iframe to handle the submission without redirect
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.name = 'formsubmit-frame';
-        
-        // Add event listeners to iframe for debugging
-        iframe.onload = () => {
-          console.log('🎉 [Porto Seguro] Iframe carregado - Formulário enviado com sucesso!');
-          // Verificar se há conteúdo no iframe para debug
-          try {
-            const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-            if (iframeDoc) {
-              console.log('📄 [Porto Seguro] Conteúdo da resposta do FormSubmit:', iframeDoc.body?.innerHTML);
-            }
-          } catch (error) {
-            console.warn('⚠️ [Porto Seguro] Não foi possível acessar o conteúdo do iframe (CORS):', error);
-          }
+        // Criar objeto lead para Supabase
+        const leadData = {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message || `Linha de interesse: ${formData.subject}`,
+          operadora: 'Porto Seguro',
+          subject: formData.subject,
+          source_page: 'porto-seguro-page',
+          utm_source: 'website'
         };
         
-        iframe.onerror = (error) => {
-          console.error('❌ [Porto Seguro] Erro no iframe:', error);
-          console.error('🔍 [Porto Seguro] Possíveis causas: Email não ativado, endpoint incorreto, ou bloqueio CORS');
-        };
+        const result = await submitLead(leadData);
         
-        document.body.appendChild(iframe);
-        console.log('📦 [Porto Seguro] Iframe criado e adicionado ao DOM');
-
-        // Create form that targets the iframe
-        const form = document.createElement('form');
-        const endpoint = 'https://formsubmit.co/ana.acfl@gmail.com';
-        form.action = endpoint;
-        form.method = 'POST';
-        form.target = 'formsubmit-frame';
-        form.style.display = 'none';
-        
-        console.log('🎯 [Porto Seguro] Endpoint configurado:', endpoint);
-
-        // Add all form fields
-        const fields = {
-          'name': formData.name,
-          'email': formData.email,
-          'phone': formData.phone,
-          'subject': formData.subject,
-          'message': formData.message,
-          '_subject': 'Nova solicitação - Plano Porto Seguro para Enfermeiro com CNPJ - WebPlan Seguros',
-          '_captcha': 'false',
-          '_template': 'table'
-        };
-
-        console.log('📝 [Porto Seguro] Campos que serão enviados:', fields);
-
-        Object.entries(fields).forEach(([key, value]) => {
-          const input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = key;
-          input.value = value;
-          form.appendChild(input);
-          console.log(`➕ [Porto Seguro] Campo adicionado: ${key} = ${value}`);
-        });
-
-        document.body.appendChild(form);
-        console.log('📋 [Porto Seguro] Formulário criado e adicionado ao DOM');
-        console.log('🚀 [Porto Seguro] Enviando formulário para FormSubmit...');
-        
-        // Adicionar timeout para verificar se a submissão aconteceu
-        const submitStartTime = Date.now();
-        form.submit();
-        
-        console.log('⏱️ [Porto Seguro] Formulário submetido em:', new Date().toISOString());
-        
-        // Verificar se o email foi ativado no FormSubmit
-        console.log('🔔 [Porto Seguro] IMPORTANTE: Email ana.acfl@gmail.com já foi ativado no FormSubmit!');
-        console.log('📧 [Porto Seguro] Email deve chegar em 1-2 minutos.');
-
-        // Clean up after submission
-        setTimeout(() => {
-          const submitDuration = Date.now() - submitStartTime;
-          console.log(`⏰ [Porto Seguro] Tempo decorrido desde o envio: ${submitDuration}ms`);
+        if (result.success) {
+          console.log('✨ [Porto Seguro] Lead enviado com sucesso para Supabase');
+          setShowSuccessPopup(true);
           
-          if (document.body.contains(form)) {
-            document.body.removeChild(form);
-            console.log('🧹 [Porto Seguro] Formulário removido do DOM.');
-          }
-          if (document.body.contains(iframe)) {
-            document.body.removeChild(iframe);
-            console.log('🧹 [Porto Seguro] Iframe removido do DOM.');
-          }
-          
-          console.log('✨ [Porto Seguro] Limpeza concluída.');
-        }, 5000);
+          // Reset form after success
+          setTimeout(() => {
+            setFormData({
+              name: '',
+              email: '',
+              phone: '',
+              subject: 'porto_cnpj_enfermeiros',
+              message: ''
+            });
+            console.log('🔄 [Porto Seguro] Formulário resetado');
+          }, 1000);
+        } else {
+          console.error('❌ [Porto Seguro] Erro retornado pelo hook:', result.error);
+        }
       } catch (error) {
-        console.error('💥 [Porto Seguro] Erro durante criação do formulário:', error);
+        console.error('💥 [Porto Seguro] Erro ao enviar formulário:', error);
       }
     } else {
       console.log('❌ [Porto Seguro] Validação do formulário falhou');
@@ -180,27 +102,7 @@ const PortoSeguroPage: React.FC = () => {
     }
   };
 
-  // Botão de teste debug
-  const handleDebugTest = () => {
-    console.log('🧪 [Porto Seguro] TESTE MANUAL INICIADO');
-    console.log('🧪 [Porto Seguro] FormData atual no teste:', formData);
-    
-    setFormData({
-      name: 'Teste Porto Seguro Debug',
-      email: 'teste@portoseguro.com',
-      phone: '(11) 99999-9999',
-      subject: 'porto_cnpj_enfermeiros',
-      message: 'Esta é uma mensagem de teste para debug da página Porto Seguro.'
-    });
-    
-    console.log('🧪 [Porto Seguro] Dados de teste definidos no estado');
-    
-    setTimeout(() => {
-      console.log('🧪 [Porto Seguro] Simulando envio do formulário com dados de teste...');
-      const fakeEvent = { preventDefault: () => {} } as React.FormEvent;
-      handleSubmit(fakeEvent);
-    }, 500);
-  };
+  // Função de debug removida - agora usamos Supabase
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -727,23 +629,14 @@ const PortoSeguroPage: React.FC = () => {
                   ></textarea>
                 </div>
 
-                <div className="text-center mb-4">
-                  <button
-                    type="button"
-                    onClick={handleDebugTest}
-                    className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors text-sm"
-                  >
-                    🧪 Teste Debug Porto Seguro
-                  </button>
-                </div>
-
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button
                     type="submit"
-                    className="flex-1 bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+                    disabled={isSubmitting}
+                    className="flex-1 bg-orange-600 hover:bg-orange-700 disabled:bg-orange-400 disabled:cursor-not-allowed text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
                   >
                     <Send size={20} />
-                    Enviar Solicitação
+                    {isSubmitting ? 'Enviando...' : 'Enviar Solicitação'}
                   </button>
                   
                   <button

@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, MessageCircle, Phone, Mail, CheckCircle, AlertCircle, Shield, Users, Heart, Award, Clock, Star } from 'lucide-react';
+import { Send, MessageCircle, Phone, Mail, CheckCircle, AlertCircle, Shield, Users, Heart, Award, Clock } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import { FormData as ContactFormData } from '../types';
+import { useLeadSubmission } from '../hooks/useLeadSubmission';
 import saoCamiloLogo from '../assets/images/Logo-Plano-Sao-Camilo.png';
 
 const SaoCamiloPage: React.FC = () => {
   console.log('🟢 [São Camilo] Componente SaoCamiloPage renderizando...');
+  
+  // Hook do Supabase
+  const { isSubmitting, submitLead } = useLeadSubmission();
   
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
@@ -50,134 +54,55 @@ const SaoCamiloPage: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('🟢 [São Camilo] Função handleSubmit foi chamada!');
-    console.log('🟢 [São Camilo] Event:', e);
-    console.log('🟢 [São Camilo] FormData atual:', formData);
-    
-    // Teste básico primeiro
-    alert('Formulário São Camilo acionado! Verifique o console.');
-    
-    console.log('🚀 [São Camilo] Iniciando processo de envio do formulário...');
+    console.log('� [São Camilo] Iniciando envio via Supabase...');
     
     if (validateForm()) {
-      console.log('✅ [São Camilo] Validação do formulário aprovada');
-      console.log('📋 [São Camilo] Dados do formulário:', formData);
+      console.log('✅ [São Camilo] Validação aprovada');
+      console.log('📋 [São Camilo] Dados:', formData);
       
-      // Show success popup immediately
-      setShowSuccessPopup(true);
-      console.log('✨ [São Camilo] Popup de sucesso ativado');
-      
-      // Reset form data in state
-      setTimeout(() => {
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: 'sao_camilo_coren_enfermeiros',
-          message: ''
-        });
-        console.log('🔄 [São Camilo] Formulário resetado');
-      }, 1000);
+      // Preparar dados para o Supabase
+      const leadData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        operadora: 'São Camilo', // Nome da operadora
+        subject: `São Camilo - ${formData.subject}`,
+        message: formData.message || 'Cliente interessado em plano São Camilo para enfermeiros'
+      };
 
       try {
-        // Create iframe to handle the submission without redirect
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.name = 'formsubmit-frame';
+        console.log('� [São Camilo] Enviando para Supabase...');
+        const result = await submitLead(leadData);
         
-        // Add event listeners to iframe for debugging
-        iframe.onload = () => {
-          console.log('🎉 [São Camilo] Iframe carregado - Formulário enviado com sucesso!');
-          // Verificar se há conteúdo no iframe para debug
-          try {
-            const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-            if (iframeDoc) {
-              console.log('📄 [São Camilo] Conteúdo da resposta do FormSubmit:', iframeDoc.body?.innerHTML);
-            }
-          } catch (error) {
-            console.warn('⚠️ [São Camilo] Não foi possível acessar o conteúdo do iframe (CORS):', error);
-          }
-        };
-        
-        iframe.onerror = (error) => {
-          console.error('❌ [São Camilo] Erro no iframe:', error);
-          console.error('🔍 [São Camilo] Possíveis causas: Email não ativado, endpoint incorreto, ou bloqueio CORS');
-        };
-        
-        document.body.appendChild(iframe);
-        console.log('📦 [São Camilo] Iframe criado e adicionado ao DOM');
-
-        // Create form that targets the iframe
-        const form = document.createElement('form');
-        const endpoint = 'https://formsubmit.co/ana.acfl@gmail.com';
-        form.action = endpoint;
-        form.method = 'POST';
-        form.target = 'formsubmit-frame';
-        form.style.display = 'none';
-        
-        console.log('🎯 [São Camilo] Endpoint configurado:', endpoint);
-
-        // Add all form fields
-        const fields = {
-          'name': formData.name,
-          'email': formData.email,
-          'phone': formData.phone,
-          'subject': formData.subject,
-          'message': formData.message,
-          '_subject': 'Nova solicitação - São Camilo para Enfermeiro COREN - WebPlan Seguros',
-          '_captcha': 'false',
-          '_template': 'table'
-        };
-
-        console.log('📝 [São Camilo] Campos que serão enviados:', fields);
-
-        Object.entries(fields).forEach(([key, value]) => {
-          const input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = key;
-          input.value = value;
-          form.appendChild(input);
-          console.log(`➕ [São Camilo] Campo adicionado: ${key} = ${value}`);
-        });
-
-        document.body.appendChild(form);
-        console.log('📋 [São Camilo] Formulário criado e adicionado ao DOM');
-        console.log('🚀 [São Camilo] Enviando formulário para FormSubmit...');
-        
-        // Adicionar timeout para verificar se a submissão aconteceu
-        const submitStartTime = Date.now();
-        form.submit();
-        
-        console.log('⏱️ [São Camilo] Formulário submetido em:', new Date().toISOString());
-        
-        // Verificar se o email foi ativado no FormSubmit
-        console.log('🔔 [São Camilo] IMPORTANTE: Email ana.acfl@gmail.com já foi ativado no FormSubmit!');
-        console.log('📧 [São Camilo] Email deve chegar em 1-2 minutos.');
-
-        // Clean up after submission
-        setTimeout(() => {
-          const submitDuration = Date.now() - submitStartTime;
-          console.log(`⏰ [São Camilo] Tempo decorrido desde o envio: ${submitDuration}ms`);
+        if (result.success) {
+          console.log('✅ [São Camilo] Lead enviado com sucesso!');
           
-          if (document.body.contains(form)) {
-            document.body.removeChild(form);
-            console.log('🧹 [São Camilo] Formulário removido do DOM.');
-          }
-          if (document.body.contains(iframe)) {
-            document.body.removeChild(iframe);
-            console.log('🧹 [São Camilo] Iframe removido do DOM.');
-          }
+          // Mostrar popup de sucesso
+          setShowSuccessPopup(true);
           
-          console.log('✨ [São Camilo] Limpeza concluída.');
-        }, 5000);
+          // Limpar formulário
+          setTimeout(() => {
+            setFormData({
+              name: '',
+              email: '',
+              phone: '',
+              subject: 'sao_camilo_coren_enfermeiros',
+              message: ''
+            });
+          }, 1000);
+          
+        } else {
+          console.error('❌ [São Camilo] Erro ao enviar:', result.error);
+          alert(`Erro ao enviar: ${result.error}`);
+        }
       } catch (error) {
-        console.error('💥 [São Camilo] Erro durante criação do formulário:', error);
+        console.error('💥 [São Camilo] Erro inesperado:', error);
+        alert('Erro inesperado ao enviar formulário. Tente novamente.');
       }
     } else {
-      console.log('❌ [São Camilo] Validação do formulário falhou');
-      console.log('🔍 [São Camilo] Erros encontrados:', errors);
+      console.log('❌ [São Camilo] Validação falhou:', errors);
     }
   };
 
@@ -343,7 +268,7 @@ const SaoCamiloPage: React.FC = () => {
                   description: "Sem filas de espera, com agendamento facilitado e atendimento prioritário para beneficiários."
                 },
                 {
-                  icon: Star,
+                  icon: Award,
                   title: "Tradição e Confiança",
                   description: "Mais de 100 anos de tradição em saúde, sendo referência em qualidade hospitalar no Brasil."
                 }
@@ -588,17 +513,6 @@ const SaoCamiloPage: React.FC = () => {
           <AnimatedSection delay={0.2}>
             <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-12">
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Botão de teste */}
-                <button 
-                  type="button" 
-                  onClick={() => {
-                    console.log('🔴 [TESTE São Camilo] Botão de teste clicado!');
-                    alert('Teste São Camilo funcionando!');
-                  }}
-                  style={{background: 'orange', color: 'white', padding: '10px', marginBottom: '20px'}}
-                >
-                  🔴 TESTE - Clique aqui para verificar se JavaScript funciona
-                </button>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -715,10 +629,11 @@ const SaoCamiloPage: React.FC = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button
                     type="submit"
-                    className="flex-1 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+                    disabled={isSubmitting}
+                    className="flex-1 bg-red-600 hover:bg-red-700 disabled:bg-red-400 disabled:cursor-not-allowed text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
                   >
                     <Send size={20} />
-                    Enviar Solicitação
+                    {isSubmitting ? 'Enviando...' : 'Enviar Solicitação'}
                   </button>
                   
                   <button
