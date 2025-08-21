@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Send, MessageCircle, Phone, Mail, CheckCircle, AlertCircle, Shield, Users, Heart, Award, Star, Globe, Building2, Stethoscope } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Send, MessageCircle, Phone, Mail, CheckCircle, AlertCircle, Shield, Heart, Award, Globe, Building2, Stethoscope } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import { FormData as ContactFormData } from '../types';
+import { useLeadSubmission } from '../hooks/useLeadSubmission';
 import sulamericaLogo from '../assets/images/planos_de_saúde_sulamérica_apcd.webp';
 
 const SulamericaPage: React.FC = () => {
+  console.log('🟢 [SulAmérica] Componente SulamericaPage renderizando...');
+  
+  // Hook do Supabase
+  const { isSubmitting, submitLead } = useLeadSubmission();
+  
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -16,6 +22,13 @@ const SulamericaPage: React.FC = () => {
 
   const [errors, setErrors] = useState<Partial<ContactFormData>>({});
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
+  console.log('🟢 [SulAmérica] Estado inicial configurado:', { formData, errors, showSuccessPopup });
+  console.log('🟢 [SulAmérica] Supabase isSubmitting:', isSubmitting);
+
+  useEffect(() => {
+    console.log('🟢 [SulAmérica] Componente montado! useEffect executado.');
+  }, []);
 
   const subjectOptions = [
     { value: 'sulamerica_adesao_enfermeiros', label: 'SulAmérica por Adesão - Enfermeiros' },
@@ -41,69 +54,70 @@ const SulamericaPage: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('🚀 [SulAmérica] Iniciando envio via Supabase...');
     
     if (validateForm()) {
-      setShowSuccessPopup(true);
+      console.log('✅ [SulAmérica] Validação aprovada');
+      console.log('📋 [SulAmérica] Dados:', formData);
       
-      setTimeout(() => {
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: 'sulamerica_adesao_enfermeiros',
-          message: ''
-        });
-      }, 1000);
-
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.name = 'formsubmit-frame';
-      document.body.appendChild(iframe);
-
-      const form = document.createElement('form');
-      const endpoint = 'https://formsubmit.co/ana.acfl@gmail.com';
-      form.action = endpoint;
-      form.method = 'POST';
-      form.target = 'formsubmit-frame';
-      form.style.display = 'none';
-
-      const fields = {
-        'name': formData.name,
-        'email': formData.email,
-        'phone': formData.phone,
-        'subject': formData.subject,
-        'message': formData.message,
-        '_subject': 'Nova solicitação - Plano SulAmérica para Enfermeiro COREN - WebPlan Seguros',
-        '_captcha': 'false',
-        '_template': 'table'
+      // Preparar dados para o Supabase
+      const leadData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        operadora: 'SulAmérica', // Nome da operadora
+        subject: `SulAmérica - ${formData.subject}`,
+        message: formData.message || 'Cliente interessado em plano SulAmérica para enfermeiros'
       };
 
-      Object.entries(fields).forEach(([key, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = value;
-        form.appendChild(input);
-      });
-
-      document.body.appendChild(form);
-      form.submit();
-
-      setTimeout(() => {
-        if (document.body.contains(form)) document.body.removeChild(form);
-        if (document.body.contains(iframe)) document.body.removeChild(iframe);
-      }, 5000);
+      try {
+        console.log('📤 [SulAmérica] Enviando para Supabase...');
+        const result = await submitLead(leadData);
+        
+        if (result.success) {
+          console.log('✅ [SulAmérica] Lead enviado com sucesso!');
+          
+          // Mostrar popup de sucesso
+          setShowSuccessPopup(true);
+          
+          // Limpar formulário
+          setTimeout(() => {
+            setFormData({
+              name: '',
+              email: '',
+              phone: '',
+              subject: 'sulamerica_adesao_enfermeiros',
+              message: ''
+            });
+          }, 1000);
+          
+        } else {
+          console.error('❌ [SulAmérica] Erro ao enviar:', result.error);
+          alert(`Erro ao enviar: ${result.error}`);
+        }
+      } catch (error) {
+        console.error('💥 [SulAmérica] Erro inesperado:', error);
+        alert('Erro inesperado ao enviar formulário. Tente novamente.');
+      }
+    } else {
+      console.log('❌ [SulAmérica] Validação falhou:', errors);
     }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    console.log('🟢 [SulAmérica] Input alterado:', e.target.name, '=', e.target.value);
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => {
+      const newData = { ...prev, [name]: value };
+      console.log('🟢 [SulAmérica] FormData atualizado:', newData);
+      return newData;
+    });
     
     if (errors[name as keyof ContactFormData]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
+      console.log('🟢 [SulAmérica] Erro limpo para campo:', name);
     }
   };
 
@@ -364,98 +378,6 @@ const SulamericaPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Detailed Benefits Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection direction="up" className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-red-800 mb-4">
-              Benefícios Detalhados por Categoria
-            </h2>
-            <p className="text-lg text-red-600 max-w-3xl mx-auto">
-              Conheça todas as coberturas e vantagens incluídas em cada categoria de plano
-            </p>
-          </AnimatedSection>
-
-          <div className="space-y-12">
-            {[
-              {
-                title: "Coberturas Básicas Incluídas em Todos os Planos",
-                description: "Todos os planos SulAmérica para enfermeiros incluem as coberturas essenciais conforme regulamentação da ANS, além de benefícios exclusivos como orientação médica telefônica e telemedicina.",
-                features: ["Atendimento conforme Rol ANS", "Orientação Médica Telefônica", "Médico na Tela (telemedicina)", "Rede credenciada nacional"],
-                icon: Shield,
-                color: "red"
-              },
-              {
-                title: "Categorias Intermediárias: Exato, Clássico e Especial",
-                description: "As categorias intermediárias oferecem benefícios ampliados incluindo transplantes de órgãos, tratamentos especializados e assistência 24h completa no Brasil.",
-                features: ["Transplantes: coração, pâncreas, pulmão, fígado", "Escleroterapia até 30 sessões/ano", "Assistência 24h no Brasil", "Remoção e hospedagem de acompanhantes"],
-                icon: Award,
-                color: "orange"
-              },
-              {
-                title: "Reembolso Internacional: Clássico, Especial e Executivo",
-                description: "As categorias superiores incluem reembolso de despesas médicas no exterior, proporcionando tranquilidade para viagens internacionais.",
-                features: ["Reembolso conforme tabela SulAmérica", "Câmbio oficial", "Cobertura em viagens", "Atendimento internacional"],
-                icon: Globe,
-                color: "red"
-              },
-              {
-                title: "Plano Executivo: Cobertura Internacional Completa",
-                description: "O plano mais completo oferece todos os serviços de assistência 24h válidos também fora do Brasil, além de serviços VIP exclusivos.",
-                features: ["Assistência 24h mundial", "Retorno de filhos menores", "Adiantamento despesas médicas exterior", "Orientação perda documentos"],
-                icon: Star,
-                color: "orange"
-              },
-              {
-                title: "Modalidade de Contratação por Adesão Coletiva",
-                description: "Os planos são oferecidos através do SEESP ENF - Sindicato dos Enfermeiros do Estado de São Paulo, garantindo condições especiais para associados.",
-                features: ["Contratação via SEESP ENF", "Condições especiais para associados", "Benefícios exclusivos sindicato", "Administradoras de Benefícios credenciadas"],
-                icon: Users,
-                color: "red"
-              }
-            ].map((benefit, index) => (
-              <AnimatedSection key={benefit.title} direction={index % 2 === 0 ? "left" : "right"} delay={0.2 * index}>
-                <div className={`flex flex-col lg:flex-row items-center gap-8 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                  <div className="lg:w-1/3">
-                    <motion.div 
-                      className={`bg-gradient-to-br from-red-100 to-orange-100 rounded-3xl p-8 text-center shadow-lg`}
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div className={`bg-${benefit.color}-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4`}>
-                        <benefit.icon className="text-white" size={40} />
-                      </div>
-                      <h3 className={`text-xl font-bold text-${benefit.color}-800`}>{benefit.title}</h3>
-                    </motion.div>
-                  </div>
-                  
-                  <div className="lg:w-2/3">
-                    <h3 className={`text-2xl font-bold text-${benefit.color}-800 mb-4`}>{benefit.title}</h3>
-                    <p className={`text-lg text-${benefit.color}-600 mb-6 leading-relaxed`}>{benefit.description}</p>
-                    
-                    <ul className="grid md:grid-cols-2 gap-3">
-                      {benefit.features.map((feature, featureIndex) => (
-                        <motion.li 
-                          key={featureIndex}
-                          className={`flex items-center gap-3 text-${benefit.color}-700`}
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.4, delay: 0.1 * featureIndex }}
-                        >
-                          <CheckCircle size={20} className={`text-${benefit.color}-500 flex-shrink-0`} />
-                          <span className="font-medium">{feature}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Contact Form Section */}
       <section id="formulario" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -577,16 +499,17 @@ const SulamericaPage: React.FC = () => {
 
                   <motion.button
                     type="submit"
-                    className="w-full bg-red-600 hover:bg-red-700 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                    disabled={isSubmitting}
+                    className="w-full bg-red-600 hover:bg-red-700 disabled:bg-red-400 disabled:cursor-not-allowed text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.9 }}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                    whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                   >
                     <Send size={20} />
-                    Solicitar Plano SulAmérica - SEESP ENF
+                    {isSubmitting ? 'Enviando...' : 'Solicitar Plano SulAmérica - SEESP ENF'}
                   </motion.button>
                 </form>
               </div>
@@ -667,14 +590,15 @@ const SulamericaPage: React.FC = () => {
       </section>
 
       {/* Success Popup */}
-      {showSuccessPopup && (
-        <motion.div 
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
+      <AnimatePresence>
+        {showSuccessPopup && (
+          <motion.div 
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
           <motion.div 
             className="bg-white rounded-3xl shadow-2xl p-8 max-w-md mx-auto"
             initial={{ scale: 0.7, opacity: 0, y: 50 }}
@@ -741,7 +665,8 @@ const SulamericaPage: React.FC = () => {
             </div>
           </motion.div>
         </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </div>
   );
 };

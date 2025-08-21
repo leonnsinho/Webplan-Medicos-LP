@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Send, MessageCircle, Phone, Mail, CheckCircle, AlertCircle, Shield, Users, Heart, Award, Clock, Star } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import { FormData as ContactFormData } from '../types';
@@ -16,6 +16,13 @@ const BradescoPage: React.FC = () => {
 
   const [errors, setErrors] = useState<Partial<ContactFormData>>({});
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
+  console.log('🟢 [Bradesco] Componente renderizado');
+  console.log('🟢 [Bradesco] Estado inicial configurado:', { formData, errors, showSuccessPopup });
+
+  useEffect(() => {
+    console.log('🚀 [Bradesco] useEffect - Componente montado');
+  }, []);
 
   const subjectOptions = [
     { value: 'bradesco_cnpj_enfermeiros', label: 'Bradesco Saúde - Enfermeiros CNPJ' },
@@ -44,10 +51,24 @@ const BradescoPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('🟢 [Bradesco] Função handleSubmit foi chamada!');
+    console.log('🟢 [Bradesco] Event:', e);
+    console.log('🟢 [Bradesco] FormData atual:', formData);
+    
+    // Teste básico primeiro
+    alert('Formulário Bradesco acionado! Verifique o console.');
+    
+    console.log('🚀 [Bradesco] Iniciando processo de envio do formulário...');
     
     if (validateForm()) {
-      setShowSuccessPopup(true);
+      console.log('✅ [Bradesco] Validação do formulário aprovada');
+      console.log('📋 [Bradesco] Dados do formulário:', formData);
       
+      // Show success popup immediately
+      setShowSuccessPopup(true);
+      console.log('✨ [Bradesco] Popup de sucesso ativado');
+      
+      // Reset form data in state
       setTimeout(() => {
         setFormData({
           name: '',
@@ -56,47 +77,129 @@ const BradescoPage: React.FC = () => {
           subject: 'bradesco_cnpj_enfermeiros',
           message: ''
         });
+        console.log('🔄 [Bradesco] Formulário resetado');
       }, 1000);
 
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.name = 'formsubmit-frame';
-      document.body.appendChild(iframe);
+      try {
+        // Create iframe to handle the submission without redirect
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.name = 'formsubmit-frame';
+        
+        // Add event listeners to iframe for debugging
+        iframe.onload = () => {
+          console.log('🎉 [Bradesco] Iframe carregado - Formulário enviado com sucesso!');
+          // Verificar se há conteúdo no iframe para debug
+          try {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+            if (iframeDoc) {
+              console.log('📄 [Bradesco] Conteúdo da resposta do FormSubmit:', iframeDoc.body?.innerHTML);
+            }
+          } catch (error) {
+            console.warn('⚠️ [Bradesco] Não foi possível acessar o conteúdo do iframe (CORS):', error);
+          }
+        };
+        
+        iframe.onerror = (error) => {
+          console.error('❌ [Bradesco] Erro no iframe:', error);
+          console.error('🔍 [Bradesco] Possíveis causas: Email não ativado, endpoint incorreto, ou bloqueio CORS');
+        };
+        
+        document.body.appendChild(iframe);
+        console.log('📦 [Bradesco] Iframe criado e adicionado ao DOM');
 
-      const form = document.createElement('form');
-      const endpoint = 'https://formsubmit.co/ana.acfl@gmail.com';
-      form.action = endpoint;
-      form.method = 'POST';
-      form.target = 'formsubmit-frame';
-      form.style.display = 'none';
+        // Create form that targets the iframe
+        const form = document.createElement('form');
+        const endpoint = 'https://formsubmit.co/ana.acfl@gmail.com';
+        form.action = endpoint;
+        form.method = 'POST';
+        form.target = 'formsubmit-frame';
+        form.style.display = 'none';
+        
+        console.log('🎯 [Bradesco] Endpoint configurado:', endpoint);
 
-      const fields = {
-        'name': formData.name,
-        'email': formData.email,
-        'phone': formData.phone,
-        'subject': formData.subject,
-        'message': formData.message,
-        '_subject': 'Nova solicitação - Plano Bradesco Saúde para Enfermeiro com CNPJ - WebPlan Seguros',
-        '_captcha': 'false',
-        '_template': 'table'
-      };
+        // Add all form fields
+        const fields = {
+          'name': formData.name,
+          'email': formData.email,
+          'phone': formData.phone,
+          'subject': formData.subject,
+          'message': formData.message,
+          '_subject': 'Nova solicitação - Plano Bradesco Saúde para Enfermeiro com CNPJ - WebPlan Seguros',
+          '_captcha': 'false',
+          '_template': 'table'
+        };
 
-      Object.entries(fields).forEach(([key, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = value;
-        form.appendChild(input);
-      });
+        console.log('📝 [Bradesco] Campos que serão enviados:', fields);
 
-      document.body.appendChild(form);
-      form.submit();
+        Object.entries(fields).forEach(([key, value]) => {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = value;
+          form.appendChild(input);
+          console.log(`➕ [Bradesco] Campo adicionado: ${key} = ${value}`);
+        });
 
-      setTimeout(() => {
-        if (document.body.contains(form)) document.body.removeChild(form);
-        if (document.body.contains(iframe)) document.body.removeChild(iframe);
-      }, 5000);
+        document.body.appendChild(form);
+        console.log('📋 [Bradesco] Formulário criado e adicionado ao DOM');
+        console.log('🚀 [Bradesco] Enviando formulário para FormSubmit...');
+        
+        // Adicionar timeout para verificar se a submissão aconteceu
+        const submitStartTime = Date.now();
+        form.submit();
+        
+        console.log('⏱️ [Bradesco] Formulário submetido em:', new Date().toISOString());
+        
+        // Verificar se o email foi ativado no FormSubmit
+        console.log('🔔 [Bradesco] IMPORTANTE: Email ana.acfl@gmail.com já foi ativado no FormSubmit!');
+        console.log('📧 [Bradesco] Email deve chegar em 1-2 minutos.');
+
+        // Clean up after submission
+        setTimeout(() => {
+          const submitDuration = Date.now() - submitStartTime;
+          console.log(`⏰ [Bradesco] Tempo decorrido desde o envio: ${submitDuration}ms`);
+          
+          if (document.body.contains(form)) {
+            document.body.removeChild(form);
+            console.log('🧹 [Bradesco] Formulário removido do DOM.');
+          }
+          if (document.body.contains(iframe)) {
+            document.body.removeChild(iframe);
+            console.log('🧹 [Bradesco] Iframe removido do DOM.');
+          }
+          
+          console.log('✨ [Bradesco] Limpeza concluída.');
+        }, 5000);
+      } catch (error) {
+        console.error('💥 [Bradesco] Erro durante criação do formulário:', error);
+      }
+    } else {
+      console.log('❌ [Bradesco] Validação do formulário falhou');
+      console.log('🔍 [Bradesco] Erros encontrados:', errors);
     }
+  };
+
+  // Botão de teste debug
+  const handleDebugTest = () => {
+    console.log('🧪 [Bradesco] TESTE MANUAL INICIADO');
+    console.log('🧪 [Bradesco] FormData atual no teste:', formData);
+    
+    setFormData({
+      name: 'Teste Bradesco Debug',
+      email: 'teste@bradesco.com',
+      phone: '(11) 99999-9999',
+      subject: 'bradesco_cnpj_enfermeiros',
+      message: 'Esta é uma mensagem de teste para debug da página Bradesco.'
+    });
+    
+    console.log('🧪 [Bradesco] Dados de teste definidos no estado');
+    
+    setTimeout(() => {
+      console.log('🧪 [Bradesco] Simulando envio do formulário com dados de teste...');
+      const fakeEvent = { preventDefault: () => {} } as React.FormEvent;
+      handleSubmit(fakeEvent);
+    }, 500);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -607,6 +710,16 @@ const BradescoPage: React.FC = () => {
                   ></textarea>
                 </div>
 
+                <div className="text-center mb-4">
+                  <button
+                    type="button"
+                    onClick={handleDebugTest}
+                    className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors text-sm"
+                  >
+                    🧪 Teste Debug Bradesco
+                  </button>
+                </div>
+
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button
                     type="submit"
@@ -654,37 +767,41 @@ const BradescoPage: React.FC = () => {
       </section>
 
       {/* Success Popup */}
-      {showSuccessPopup && (
-        <motion.div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
+      <AnimatePresence>
+        {showSuccessPopup && (
           <motion.div
-            className="bg-white p-8 rounded-2xl shadow-2xl max-w-md mx-4"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            <div className="text-center">
-              <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="w-8 h-8 text-green-600" />
+            <motion.div
+              className="bg-white p-8 rounded-2xl shadow-2xl max-w-md mx-4"
+              initial={{ scale: 0.7, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.7, opacity: 0, y: -20 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <div className="text-center">
+                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8 text-green-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Solicitação Enviada!</h3>
+                <p className="text-gray-600 mb-6">
+                  Nossa equipe entrará em contato em breve com as melhores condições para você.
+                </p>
+                <button
+                  onClick={() => setShowSuccessPopup(false)}
+                  className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                >
+                  Fechar
+                </button>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Solicitação Enviada!</h3>
-              <p className="text-gray-600 mb-6">
-                Nossa equipe entrará em contato em breve com as melhores condições para você.
-              </p>
-              <button
-                onClick={() => setShowSuccessPopup(false)}
-                className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
-              >
-                Fechar
-              </button>
-            </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </div>
   );
 };

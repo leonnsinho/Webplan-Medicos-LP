@@ -14,6 +14,7 @@ import PortoSeguroPage from './pages/PortoSeguroPage';
 import BradescoPage from './pages/BradescoPage';
 import UnimedPage from './pages/UnimedPage';
 import MedSeniorPage from './pages/MedSeniorPage';
+import SupabaseTestPage from './pages/SupabaseTestPage';
 import { pageTransitions } from './utils/animations';
 
 function AnimatedRoutes() {
@@ -130,6 +131,16 @@ function AnimatedRoutes() {
             transition={pageTransitions.transition}
           >
             <SuccessPage />
+          </motion.div>
+        } />
+        <Route path="/teste-supabase" element={
+          <motion.div
+            initial={pageTransitions.initial}
+            animate={pageTransitions.animate}
+            exit={pageTransitions.exit}
+            transition={pageTransitions.transition}
+          >
+            <SupabaseTestPage />
           </motion.div>
         } />
       </Routes>

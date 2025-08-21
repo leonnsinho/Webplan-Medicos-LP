@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { Send, MessageCircle, Phone, Mail, CheckCircle, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import AnimatedSection from './AnimatedSection';
+import { useLeadSubmission } from '../hooks/useLeadSubmission';
 import { FormData as ContactFormData } from '../types';
 
 const ContactForm: React.FC = () => {
+  const navigate = useNavigate();
+  const { submitLead, isSubmitting } = useLeadSubmission();
+  
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -40,121 +45,55 @@ const ContactForm: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('🚀 Iniciando processo de envio do formulário...');
+    console.log('🚀 [ContactForm] Iniciando envio via Supabase...');
     
     if (validateForm()) {
-      console.log('✅ Validação do formulário aprovada');
-      console.log('📋 Dados do formulário:', formData);
+      console.log('✅ [ContactForm] Validação aprovada');
+      console.log('📋 [ContactForm] Dados:', formData);
       
-      // Show success popup immediately
-      setShowSuccessPopup(true);
-      
-      // Reset form data in state
-      setTimeout(() => {
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: '',
-          message: ''
-        });
-      }, 1000);
-
-      // Create iframe to handle the submission without redirect
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.name = 'formsubmit-frame';
-      
-      // Add event listeners to iframe for debugging
-      iframe.onload = () => {
-        console.log('🎉 Iframe carregado - Formulário enviado com sucesso!');
-        // Verificar se há conteúdo no iframe para debug
-        try {
-          const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-          if (iframeDoc) {
-            console.log('📄 Conteúdo da resposta do FormSubmit:', iframeDoc.body?.innerHTML);
-          }
-        } catch (error) {
-          console.warn('⚠️ Não foi possível acessar o conteúdo do iframe (CORS):', error);
-        }
-      };
-      
-      iframe.onerror = (error) => {
-        console.error('❌ Erro no iframe:', error);
-        console.error('🔍 Possíveis causas: Email não ativado, endpoint incorreto, ou bloqueio CORS');
-      };
-      
-      document.body.appendChild(iframe);
-      console.log('📦 Iframe criado e adicionado ao DOM');
-
-      // Create form that targets the iframe
-      const form = document.createElement('form');
-      const endpoint = 'https://formsubmit.co/ana.acfl@gmail.com';
-      form.action = endpoint;
-      form.method = 'POST';
-      form.target = 'formsubmit-frame';
-      form.style.display = 'none';
-      
-      console.log('🎯 Endpoint configurado:', endpoint);
-
-      // Add all form fields
-      const fields = {
-        'name': formData.name,
-        'email': formData.email,
-        'phone': formData.phone,
-        'subject': formData.subject,
-        'message': formData.message,
-        '_subject': 'Nova solicitação de cotação - WebPlan Seguros',
-        '_captcha': 'false',
-        '_template': 'table'
+      // Preparar dados para o Supabase
+      const leadData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        operadora: 'main', // Formulário principal
+        subject: `Formulário Principal - ${formData.subject}`,
+        message: formData.message || 'Cliente interessado em cotação via formulário principal'
       };
 
-      console.log('📝 Campos que serão enviados:', fields);
-
-      Object.entries(fields).forEach(([key, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = value;
-        form.appendChild(input);
-        console.log(`➕ Campo adicionado: ${key} = ${value}`);
-      });
-
-      document.body.appendChild(form);
-      console.log('📋 Formulário criado e adicionado ao DOM');
-      console.log('🚀 Enviando formulário para FormSubmit...');
-      
-      // Adicionar timeout para verificar se a submissão aconteceu
-      const submitStartTime = Date.now();
-      form.submit();
-      
-      console.log('⏱️ Formulário submetido em:', new Date().toISOString());
-      
-      // Verificar se o email foi ativado no FormSubmit
-      console.log('🔔 IMPORTANTE: Verifique se o email stormcoreoficial@gmail.com foi ativado no FormSubmit!');
-      console.log('📧 Acesse a caixa de entrada e clique no link de ativação se ainda não fez isso.');
-
-      // Clean up after submission
-      setTimeout(() => {
-        const submitDuration = Date.now() - submitStartTime;
-        console.log(`⏰ Tempo decorrido desde o envio: ${submitDuration}ms`);
+      try {
+        console.log('� [ContactForm] Enviando para Supabase...');
+        const result = await submitLead(leadData);
         
-        if (document.body.contains(form)) {
-          document.body.removeChild(form);
-          console.log('🧹 Formulário removido do DOM.');
+        if (result.success) {
+          console.log('✅ [ContactForm] Lead enviado com sucesso!');
+          
+          // Mostrar popup de sucesso
+          setShowSuccessPopup(true);
+          
+          // Limpar formulário
+          setTimeout(() => {
+            setFormData({
+              name: '',
+              email: '',
+              phone: '',
+              subject: '',
+              message: ''
+            });
+          }, 1000);
+          
+        } else {
+          console.error('❌ [ContactForm] Erro ao enviar:', result.error);
+          alert(`Erro ao enviar: ${result.error}`);
         }
-        if (document.body.contains(iframe)) {
-          document.body.removeChild(iframe);
-          console.log('🧹 Iframe removido do DOM.');
-        }
-        
-        console.log('✨ Limpeza concluída.');
-      }, 5000);
+      } catch (error) {
+        console.error('� [ContactForm] Erro inesperado:', error);
+        alert('Erro inesperado ao enviar formulário. Tente novamente.');
+      }
     } else {
-      console.log('❌ Validação do formulário falhou');
-      console.log('🔍 Erros encontrados:', errors);
+      console.log('❌ [ContactForm] Validação falhou:', errors);
     }
   };
 
@@ -314,16 +253,17 @@ const ContactForm: React.FC = () => {
 
                 <motion.button
                   type="submit"
-                  className="w-full bg-blue-700 hover:bg-blue-800 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                  disabled={isSubmitting}
+                  className="w-full bg-blue-700 hover:bg-blue-800 disabled:bg-blue-400 disabled:cursor-not-allowed text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.9 }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                  whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                 >
                   <Send size={20} />
-                  Enviar Solicitação
+                  {isSubmitting ? 'Enviando...' : 'Enviar Solicitação'}
                 </motion.button>
               </form>
             </div>

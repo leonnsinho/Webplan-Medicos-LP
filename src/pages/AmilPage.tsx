@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, MessageCircle, Phone, Mail, CheckCircle, AlertCircle, Shield, Users, Heart, Award, Clock, Star } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import AnimatedSection from '../components/AnimatedSection';
+import { useLeadSubmission } from '../hooks/useLeadSubmission';
 import { FormData as ContactFormData } from '../types';
 import amilLogo from '../assets/images/amil_saúde_apcd.webp';
 
 const AmilPage: React.FC = () => {
+  const navigate = useNavigate();
+  const { submitLead, isSubmitting } = useLeadSubmission();
+  
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -41,60 +46,55 @@ const AmilPage: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('🚀 [AmilPage] Iniciando envio via Supabase...');
     
     if (validateForm()) {
-      setShowSuccessPopup(true);
+      console.log('✅ [AmilPage] Validação aprovada');
+      console.log('📋 [AmilPage] Dados:', formData);
       
-      setTimeout(() => {
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: 'amil_adesao_enfermeiros',
-          message: ''
-        });
-      }, 1000);
-
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.name = 'formsubmit-frame';
-      document.body.appendChild(iframe);
-
-      const form = document.createElement('form');
-      const endpoint = 'https://formsubmit.co/ana.acfl@gmail.com';
-      form.action = endpoint;
-      form.method = 'POST';
-      form.target = 'formsubmit-frame';
-      form.style.display = 'none';
-
-      const fields = {
-        'name': formData.name,
-        'email': formData.email,
-        'phone': formData.phone,
-        'subject': formData.subject,
-        'message': formData.message,
-        '_subject': 'Nova solicitação - Plano AMIL para Enfermeiro com COREN - WebPlan Seguros',
-        '_captcha': 'false',
-        '_template': 'table'
+      // Preparar dados para o Supabase
+      const leadData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        operadora: 'Amil', // Nome da operadora
+        subject: `Amil - ${formData.subject}`,
+        message: formData.message || 'Cliente interessado em plano Amil para enfermeiros'
       };
 
-      Object.entries(fields).forEach(([key, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = value;
-        form.appendChild(input);
-      });
-
-      document.body.appendChild(form);
-      form.submit();
-
-      setTimeout(() => {
-        if (document.body.contains(form)) document.body.removeChild(form);
-        if (document.body.contains(iframe)) document.body.removeChild(iframe);
-      }, 5000);
+      try {
+        console.log('📤 [AmilPage] Enviando para Supabase...');
+        const result = await submitLead(leadData);
+        
+        if (result.success) {
+          console.log('✅ [AmilPage] Lead enviado com sucesso!');
+          
+          // Mostrar popup de sucesso
+          setShowSuccessPopup(true);
+          
+          // Limpar formulário
+          setTimeout(() => {
+            setFormData({
+              name: '',
+              email: '',
+              phone: '',
+              subject: 'amil_adesao_enfermeiros',
+              message: ''
+            });
+          }, 1000);
+          
+        } else {
+          console.error('❌ [AmilPage] Erro ao enviar:', result.error);
+          alert(`Erro ao enviar: ${result.error}`);
+        }
+      } catch (error) {
+        console.error('💥 [AmilPage] Erro inesperado:', error);
+        alert('Erro inesperado ao enviar formulário. Tente novamente.');
+      }
+    } else {
+      console.log('❌ [AmilPage] Validação falhou:', errors);
     }
   };
 
@@ -576,16 +576,17 @@ const AmilPage: React.FC = () => {
 
                   <motion.button
                     type="submit"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                    disabled={isSubmitting}
+                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.9 }}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                    whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                   >
                     <Send size={20} />
-                    Solicitar Plano AMIL - Desconto COREN
+                    {isSubmitting ? 'Enviando...' : 'Solicitar Plano AMIL - Desconto COREN'}
                   </motion.button>
                 </form>
               </div>

@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Send, MessageCircle, Phone, Mail, CheckCircle, AlertCircle, Shield, Users, Heart, Award, Clock, Star } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import { FormData as ContactFormData } from '../types';
 import saoCamiloLogo from '../assets/images/Logo-Plano-Sao-Camilo.png';
 
 const SaoCamiloPage: React.FC = () => {
+  console.log('🟢 [São Camilo] Componente SaoCamiloPage renderizando...');
+  
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -16,6 +18,12 @@ const SaoCamiloPage: React.FC = () => {
 
   const [errors, setErrors] = useState<Partial<ContactFormData>>({});
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
+  console.log('🟢 [São Camilo] Estado inicial configurado:', { formData, errors, showSuccessPopup });
+
+  useEffect(() => {
+    console.log('🟢 [São Camilo] Componente montado! useEffect executado.');
+  }, []);
 
   const subjectOptions = [
     { value: 'sao_camilo_coren_enfermeiros', label: 'São Camilo - Enfermeiros COREN' },
@@ -44,10 +52,24 @@ const SaoCamiloPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('🟢 [São Camilo] Função handleSubmit foi chamada!');
+    console.log('🟢 [São Camilo] Event:', e);
+    console.log('🟢 [São Camilo] FormData atual:', formData);
+    
+    // Teste básico primeiro
+    alert('Formulário São Camilo acionado! Verifique o console.');
+    
+    console.log('🚀 [São Camilo] Iniciando processo de envio do formulário...');
     
     if (validateForm()) {
-      setShowSuccessPopup(true);
+      console.log('✅ [São Camilo] Validação do formulário aprovada');
+      console.log('📋 [São Camilo] Dados do formulário:', formData);
       
+      // Show success popup immediately
+      setShowSuccessPopup(true);
+      console.log('✨ [São Camilo] Popup de sucesso ativado');
+      
+      // Reset form data in state
       setTimeout(() => {
         setFormData({
           name: '',
@@ -56,55 +78,121 @@ const SaoCamiloPage: React.FC = () => {
           subject: 'sao_camilo_coren_enfermeiros',
           message: ''
         });
+        console.log('🔄 [São Camilo] Formulário resetado');
       }, 1000);
 
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.name = 'formsubmit-frame';
-      document.body.appendChild(iframe);
+      try {
+        // Create iframe to handle the submission without redirect
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.name = 'formsubmit-frame';
+        
+        // Add event listeners to iframe for debugging
+        iframe.onload = () => {
+          console.log('🎉 [São Camilo] Iframe carregado - Formulário enviado com sucesso!');
+          // Verificar se há conteúdo no iframe para debug
+          try {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+            if (iframeDoc) {
+              console.log('📄 [São Camilo] Conteúdo da resposta do FormSubmit:', iframeDoc.body?.innerHTML);
+            }
+          } catch (error) {
+            console.warn('⚠️ [São Camilo] Não foi possível acessar o conteúdo do iframe (CORS):', error);
+          }
+        };
+        
+        iframe.onerror = (error) => {
+          console.error('❌ [São Camilo] Erro no iframe:', error);
+          console.error('🔍 [São Camilo] Possíveis causas: Email não ativado, endpoint incorreto, ou bloqueio CORS');
+        };
+        
+        document.body.appendChild(iframe);
+        console.log('📦 [São Camilo] Iframe criado e adicionado ao DOM');
 
-      const form = document.createElement('form');
-      const endpoint = 'https://formsubmit.co/ana.acfl@gmail.com';
-      form.action = endpoint;
-      form.method = 'POST';
-      form.target = 'formsubmit-frame';
-      form.style.display = 'none';
+        // Create form that targets the iframe
+        const form = document.createElement('form');
+        const endpoint = 'https://formsubmit.co/ana.acfl@gmail.com';
+        form.action = endpoint;
+        form.method = 'POST';
+        form.target = 'formsubmit-frame';
+        form.style.display = 'none';
+        
+        console.log('🎯 [São Camilo] Endpoint configurado:', endpoint);
 
-      const fields = {
-        'name': formData.name,
-        'email': formData.email,
-        'phone': formData.phone,
-        'subject': formData.subject,
-        'message': formData.message,
-        '_subject': 'Nova solicitação - São Camilo para Enfermeiro COREN - WebPlan Seguros',
-        '_captcha': 'false',
-        '_template': 'table'
-      };
+        // Add all form fields
+        const fields = {
+          'name': formData.name,
+          'email': formData.email,
+          'phone': formData.phone,
+          'subject': formData.subject,
+          'message': formData.message,
+          '_subject': 'Nova solicitação - São Camilo para Enfermeiro COREN - WebPlan Seguros',
+          '_captcha': 'false',
+          '_template': 'table'
+        };
 
-      Object.entries(fields).forEach(([key, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = value;
-        form.appendChild(input);
-      });
+        console.log('📝 [São Camilo] Campos que serão enviados:', fields);
 
-      document.body.appendChild(form);
-      form.submit();
+        Object.entries(fields).forEach(([key, value]) => {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = value;
+          form.appendChild(input);
+          console.log(`➕ [São Camilo] Campo adicionado: ${key} = ${value}`);
+        });
 
-      setTimeout(() => {
-        if (document.body.contains(form)) document.body.removeChild(form);
-        if (document.body.contains(iframe)) document.body.removeChild(iframe);
-      }, 5000);
+        document.body.appendChild(form);
+        console.log('📋 [São Camilo] Formulário criado e adicionado ao DOM');
+        console.log('🚀 [São Camilo] Enviando formulário para FormSubmit...');
+        
+        // Adicionar timeout para verificar se a submissão aconteceu
+        const submitStartTime = Date.now();
+        form.submit();
+        
+        console.log('⏱️ [São Camilo] Formulário submetido em:', new Date().toISOString());
+        
+        // Verificar se o email foi ativado no FormSubmit
+        console.log('🔔 [São Camilo] IMPORTANTE: Email ana.acfl@gmail.com já foi ativado no FormSubmit!');
+        console.log('📧 [São Camilo] Email deve chegar em 1-2 minutos.');
+
+        // Clean up after submission
+        setTimeout(() => {
+          const submitDuration = Date.now() - submitStartTime;
+          console.log(`⏰ [São Camilo] Tempo decorrido desde o envio: ${submitDuration}ms`);
+          
+          if (document.body.contains(form)) {
+            document.body.removeChild(form);
+            console.log('🧹 [São Camilo] Formulário removido do DOM.');
+          }
+          if (document.body.contains(iframe)) {
+            document.body.removeChild(iframe);
+            console.log('🧹 [São Camilo] Iframe removido do DOM.');
+          }
+          
+          console.log('✨ [São Camilo] Limpeza concluída.');
+        }, 5000);
+      } catch (error) {
+        console.error('💥 [São Camilo] Erro durante criação do formulário:', error);
+      }
+    } else {
+      console.log('❌ [São Camilo] Validação do formulário falhou');
+      console.log('🔍 [São Camilo] Erros encontrados:', errors);
     }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    console.log('🟢 [São Camilo] Input alterado:', e.target.name, '=', e.target.value);
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => {
+      const newData = { ...prev, [name]: value };
+      console.log('🟢 [São Camilo] FormData atualizado:', newData);
+      return newData;
+    });
     
     if (errors[name as keyof ContactFormData]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
+      console.log('🟢 [São Camilo] Erro limpo para campo:', name);
     }
   };
 
@@ -500,6 +588,17 @@ const SaoCamiloPage: React.FC = () => {
           <AnimatedSection delay={0.2}>
             <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-12">
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Botão de teste */}
+                <button 
+                  type="button" 
+                  onClick={() => {
+                    console.log('🔴 [TESTE São Camilo] Botão de teste clicado!');
+                    alert('Teste São Camilo funcionando!');
+                  }}
+                  style={{background: 'orange', color: 'white', padding: '10px', marginBottom: '20px'}}
+                >
+                  🔴 TESTE - Clique aqui para verificar se JavaScript funciona
+                </button>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -660,13 +759,14 @@ const SaoCamiloPage: React.FC = () => {
       </section>
 
       {/* Success Popup */}
-      {showSuccessPopup && (
-        <motion.div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
+      <AnimatePresence>
+        {showSuccessPopup && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
           <motion.div
             className="bg-white p-8 rounded-2xl shadow-2xl max-w-md mx-4"
             initial={{ scale: 0.8, opacity: 0 }}
@@ -690,9 +790,8 @@ const SaoCamiloPage: React.FC = () => {
             </div>
           </motion.div>
         </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </div>
   );
-};
-
-export default SaoCamiloPage;
+};export default SaoCamiloPage;

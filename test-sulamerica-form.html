@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATIVAR EMAIL - FormSubmit</title>
+</head>
+<body>
+    <h1>🔑 ATIVAR EMAIL FormSubmit - ana.acfl@gmail.com</h1>
+    
+    <div style="background: #ff9999; padding: 20px; margin: 20px 0; border-radius: 10px;">
+        <h2>⚠️ IMPORTANTE: Este formulário vai ATIVAR o email no FormSubmit</h2>
+        <p><strong>Primeiro uso:</strong> FormSubmit enviará um email para <code>ana.acfl@gmail.com</code> com link para ATIVAR o serviço.</p>
+        <p><strong>Depois de ativar:</strong> Todos os formulários do site funcionarão normalmente.</p>
+    </div>
+    
+    <form action="https://formsubmit.co/ana.acfl@gmail.com" method="POST" style="background: #f0f0f0; padding: 20px; border-radius: 10px;">
+        <h3>🧪 Teste de Ativação do Email</h3>
+        
+        <label for="name">Nome:</label><br>
+        <input type="text" name="name" id="name" value="Teste Ativação WebPlan" required style="width: 300px; padding: 10px; margin: 10px 0;"><br>
+        
+        <label for="email">Email Remetente:</label><br>
+        <input type="email" name="email" id="email" value="webplan.teste@gmail.com" required style="width: 300px; padding: 10px; margin: 10px 0;"><br>
+        
+        <label for="message">Mensagem:</label><br>
+        <textarea name="message" id="message" style="width: 300px; height: 100px; padding: 10px; margin: 10px 0;">
+🔑 TESTE DE ATIVAÇÃO - WebPlan Seguros
+
+Este é um teste para ativar o email ana.acfl@gmail.com no FormSubmit.
+
+Após este envio, você deve receber um email para ATIVAR o serviço.
+
+CLIQUE NO LINK DE ATIVAÇÃO para que todos os formulários do site funcionem.
+
+Data: 20/08/2025
+Hora: 22:54
+        </textarea><br>
+        
+        <!-- FormSubmit Config -->
+        <input type="hidden" name="_subject" value="🔑 ATIVAÇÃO OBRIGATÓRIA - WebPlan FormSubmit - CLIQUE NO LINK!">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        
+        <button type="submit" style="background: #ff6666; color: white; padding: 15px 30px; font-size: 18px; border: none; border-radius: 10px; cursor: pointer;">
+            🔑 ATIVAR EMAIL FormSubmit
+        </button>
+    </form>
+    
+    <div style="background: #99ff99; padding: 20px; margin: 20px 0; border-radius: 10px;">
+        <h3>✅ Após clicar no botão acima:</h3>
+        <ol>
+            <li><strong>Aguarde 1-2 minutos</strong></li>
+            <li><strong>Verifique o email</strong> ana.acfl@gmail.com</li>
+            <li><strong>Procure email do FormSubmit</strong> (pode estar no spam)</li>
+            <li><strong>CLIQUE NO LINK de ativação</strong></li>
+            <li><strong>Teste o formulário</strong> da SulAmérica novamente</li>
+        </ol>
+    </div>
+    
+    <script>
+        console.log('🔑 Página de ativação FormSubmit carregada');
+        
+        document.querySelector('form').addEventListener('submit', function(e) {
+            console.log('� ATIVAÇÃO: Enviando para FormSubmit...');
+            console.log('📧 Email destino: ana.acfl@gmail.com');
+            alert('� Ativação enviada! Verifique o email ana.acfl@gmail.com em 1-2 minutos.');
+        });
+    </script>
+</body>
+</html>
