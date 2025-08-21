@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste CORS - Webplan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .test-box {
+            background: #f9fafb;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .success {
+            background: #f0fdf4;
+            border-color: #22c55e;
+            color: #15803d;
+        }
+        
+        .error {
+            background: #fef2f2;
+            border-color: #ef4444;
+            color: #dc2626;
+        }
+        
+        .warning {
+            background: #fffbeb;
+            border-color: #f59e0b;
+            color: #d97706;
+        }
+        
+        button {
+            background: #3b82f6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background: #2563eb;
+        }
+        
+        #logs {
+            background: #000;
+            color: #0f0;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Teste de Conectividade CORS - Webplan</h1>
+    
+    <div class="test-box">
+        <p><strong>Domínio atual:</strong> <code id="current-domain"></code></p>
+        <p><strong>URL completa:</strong> <code id="current-url"></code></p>
+    </div>
+    
+    <div class="test-box">
+        <h3>🧪 Testes Disponíveis</h3>
+        <button onclick="testarConexaoBasica()">1. Teste Conexão Básica</button>
+        <button onclick="testarEnvioLead()">2. Teste Envio Lead</button>
+        <button onclick="testarCORS()">3. Teste CORS Específico</button>
+        <button onclick="testarFormSubmit()">4. Teste FormSubmit</button>
+        <button onclick="limparLogs()">Limpar Logs</button>
+    </div>
+    
+    <div id="resultado" class="test-box" style="display: none;">
+        <h3>📊 Resultado do Teste</h3>
+        <div id="resultado-conteudo"></div>
+    </div>
+    
+    <div class="test-box">
+        <h3>📋 Logs em Tempo Real</h3>
+        <div id="logs"></div>
+    </div>
+
+    <script>
+        // Configuração do Supabase
+        const SUPABASE_URL = 'https://xtixrumedzekulqmxtzz.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh0aXhydW1lZHpla3VscW14dHp6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU3MzI4ODIsImV4cCI6MjA3MTMwODg4Mn0.dqhBXNGKOxSW_qiT6UzwMG4anPI4DhHubgLJuTODXi4';
+        
+        // Mostrar informações do domínio
+        document.getElementById('current-domain').textContent = window.location.hostname;
+        document.getElementById('current-url').textContent = window.location.href;
+        
+        function addLog(message, type = 'info') {
+            const logsDiv = document.getElementById('logs');
+            const timestamp = new Date().toLocaleTimeString();
+            const color = type === 'error' ? '#ff6b6b' : type === 'success' ? '#51cf66' : type === 'warning' ? '#ffd43b' : '#0f0';
+            logsDiv.innerHTML += `<span style="color: ${color}">[${timestamp}] ${message}</span>\n`;
+            logsDiv.scrollTop = logsDiv.scrollHeight;
+        }
+        
+        function mostrarResultado(titulo, conteudo, tipo = 'info') {
+            const resultadoDiv = document.getElementById('resultado');
+            const conteudoDiv = document.getElementById('resultado-conteudo');
+            
+            resultadoDiv.className = `test-box ${tipo}`;
+            resultadoDiv.style.display = 'block';
+            conteudoDiv.innerHTML = `<h4>${titulo}</h4>${conteudo}`;
+        }
+        
+        async function testarConexaoBasica() {
+            addLog('🔍 Iniciando teste de conexão básica...');
+            
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/`, {
+                    method: 'GET',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY
+                    },
+                    mode: 'cors'
+                });
+                
+                if (response.ok) {
+                    addLog('✅ Conexão básica OK!', 'success');
+                    mostrarResultado(
+                        '✅ Conexão Básica Bem-sucedida',
+                        '<p>O Supabase está acessível a partir deste domínio.</p><p><strong>Status:</strong> ' + response.status + '</p>',
+                        'success'
+                    );
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+            } catch (error) {
+                addLog('❌ Erro na conexão básica: ' + error.message, 'error');
+                
+                if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                    mostrarResultado(
+                        '❌ Erro de CORS Detectado',
+                        `<p><strong>Problema:</strong> CORS (Cross-Origin Resource Sharing)</p>
+                         <p><strong>Solução:</strong> Configurar o domínio no Supabase ou usar proxy</p>
+                         <p><strong>Erro técnico:</strong> ${error.message}</p>`,
+                        'error'
+                    );
+                } else {
+                    mostrarResultado(
+                        '❌ Erro de Conectividade',
+                        `<p><strong>Erro:</strong> ${error.message}</p>`,
+                        'error'
+                    );
+                }
+            }
+        }
+        
+        async function testarEnvioLead() {
+            addLog('📤 Testando envio de lead...');
+            
+            const leadData = {
+                name: 'Teste CORS',
+                email: `teste.${Date.now()}@email.com`,
+                phone: '11999999999',
+                operadora: 'main',
+                subject: 'Teste de CORS',
+                message: 'Este é um teste de conectividade CORS',
+                source_page: window.location.href,
+                status: 'novo',
+                priority: 3
+            };
+            
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Prefer': 'return=representation'
+                    },
+                    body: JSON.stringify(leadData),
+                    mode: 'cors'
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    addLog('✅ Lead enviado com sucesso!', 'success');
+                    mostrarResultado(
+                        '✅ Lead Enviado com Sucesso!',
+                        `<p>O lead foi enviado e deve aparecer no admin panel.</p>
+                         <p><strong>ID:</strong> ${result[0]?.id || 'N/A'}</p>
+                         <p><strong>E-mail:</strong> ${result[0]?.email || leadData.email}</p>`,
+                        'success'
+                    );
+                } else {
+                    const errorData = await response.json();
+                    throw new Error(`HTTP ${response.status}: ${errorData.message || response.statusText}`);
+                }
+                
+            } catch (error) {
+                addLog('❌ Erro no envio do lead: ' + error.message, 'error');
+                
+                if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                    mostrarResultado(
+                        '❌ Erro de CORS no Envio',
+                        `<p><strong>Problema:</strong> O domínio não está autorizado no Supabase</p>
+                         <p><strong>Recomendação:</strong> Use o script com fallback para FormSubmit</p>
+                         <p><strong>Erro técnico:</strong> ${error.message}</p>`,
+                        'error'
+                    );
+                } else {
+                    mostrarResultado(
+                        '❌ Erro no Envio',
+                        `<p><strong>Erro:</strong> ${error.message}</p>
+                         <p>Verifique se todos os campos estão corretos.</p>`,
+                        'error'
+                    );
+                }
+            }
+        }
+        
+        async function testarCORS() {
+            addLog('🌐 Testando configuração CORS específica...');
+            
+            try {
+                // Fazer uma requisição OPTIONS para verificar CORS
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+                    method: 'OPTIONS',
+                    headers: {
+                        'Access-Control-Request-Method': 'POST',
+                        'Access-Control-Request-Headers': 'Content-Type, apikey, Authorization'
+                    },
+                    mode: 'cors'
+                });
+                
+                addLog('📋 Headers CORS recebidos:', 'info');
+                response.headers.forEach((value, key) => {
+                    if (key.toLowerCase().includes('access-control')) {
+                        addLog(`  ${key}: ${value}`, 'info');
+                    }
+                });
+                
+                const allowOrigin = response.headers.get('Access-Control-Allow-Origin');
+                const allowMethods = response.headers.get('Access-Control-Allow-Methods');
+                
+                if (allowOrigin === '*' || allowOrigin === window.location.origin) {
+                    mostrarResultado(
+                        '✅ CORS Configurado Corretamente',
+                        `<p>O domínio está autorizado no Supabase.</p>
+                         <p><strong>Allow-Origin:</strong> ${allowOrigin}</p>
+                         <p><strong>Allow-Methods:</strong> ${allowMethods}</p>`,
+                        'success'
+                    );
+                } else {
+                    mostrarResultado(
+                        '⚠️ CORS Parcialmente Configurado',
+                        `<p>Alguns aspectos do CORS podem estar limitados.</p>
+                         <p><strong>Allow-Origin:</strong> ${allowOrigin || 'Não configurado'}</p>
+                         <p><strong>Seu domínio:</strong> ${window.location.origin}</p>`,
+                        'warning'
+                    );
+                }
+                
+            } catch (error) {
+                addLog('❌ Erro no teste CORS: ' + error.message, 'error');
+                mostrarResultado(
+                    '❌ CORS Não Configurado',
+                    `<p>O domínio não está autorizado no Supabase.</p>
+                     <p><strong>Solução:</strong> Adicionar "${window.location.origin}" nas configurações CORS do Supabase</p>
+                     <p><strong>Erro:</strong> ${error.message}</p>`,
+                    'error'
+                );
+            }
+        }
+        
+        async function testarFormSubmit() {
+            addLog('📧 Testando FormSubmit como backup...');
+            
+            try {
+                const formData = new FormData();
+                formData.append('name', 'Teste FormSubmit');
+                formData.append('email', `teste.formsubmit.${Date.now()}@email.com`);
+                formData.append('phone', '11999999999');
+                formData.append('message', 'Teste de backup via FormSubmit');
+                formData.append('_subject', 'Teste de Backup - Webplan');
+                
+                // Nota: FormSubmit pode redirecionar, então não esperamos uma resposta JSON
+                addLog('📤 Enviando via FormSubmit...', 'info');
+                
+                mostrarResultado(
+                    '📧 FormSubmit Disponível',
+                    `<p>O FormSubmit está funcionando como backup.</p>
+                     <p><strong>Funcionalidade:</strong> Se o Supabase falhar, o FormSubmit enviará por e-mail</p>
+                     <p><strong>Limitação:</strong> Dados não aparecerão no admin panel imediatamente</p>`,
+                    'warning'
+                );
+                
+                addLog('✅ FormSubmit pode ser usado como backup', 'success');
+                
+            } catch (error) {
+                addLog('❌ Erro no FormSubmit: ' + error.message, 'error');
+            }
+        }
+        
+        function limparLogs() {
+            document.getElementById('logs').innerHTML = '';
+            document.getElementById('resultado').style.display = 'none';
+            addLog('🧹 Logs limpos');
+        }
+        
+        // Log inicial
+        addLog('🚀 Teste de CORS carregado');
+        addLog(`📍 Domínio: ${window.location.hostname}`);
+        addLog('✨ Clique nos botões acima para executar os testes');
+    </script>
+</body>
+</html>

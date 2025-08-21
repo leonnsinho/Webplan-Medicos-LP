@@ -140,12 +140,17 @@ class LeadService {
     }
   }
 
-  // Buscar IP do cliente (opcional)
+  // Buscar IP do cliente (opcional) - Desabilitado por CSP
   private async getClientIP(): Promise<string | undefined> {
     try {
-      const response = await fetch('https://api.ipify.org?format=json')
-      const data = await response.json()
-      return data.ip
+      // CSP pode bloquear api.ipify.org, então retornamos undefined
+      console.log('⚠️ [LeadService] getClientIP desabilitado (CSP restriction)');
+      return undefined;
+      
+      // Código original comentado para referência:
+      // const response = await fetch('https://api.ipify.org?format=json')
+      // const data = await response.json()
+      // return data.ip
     } catch {
       return undefined
     }

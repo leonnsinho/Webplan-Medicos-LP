@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Integração - Webplan Forms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            height: 80px;
+            resize: vertical;
+        }
+        
+        button {
+            background-color: #22c55e;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #16a34a;
+        }
+        
+        button:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+        
+        .required {
+            color: red;
+        }
+        
+        .success-message {
+            background-color: #dcfce7;
+            border: 1px solid #22c55e;
+            color: #15803d;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .error-message {
+            background-color: #fef2f2;
+            border: 1px solid #ef4444;
+            color: #dc2626;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .info-box {
+            background-color: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            color: #0369a1;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        
+        .test-buttons {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f9fafb;
+            border-radius: 4px;
+        }
+        
+        .test-buttons button {
+            margin: 5px;
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 Exemplo de Integração Webplan Forms</h1>
+    
+    <div class="info-box">
+        <strong>📋 Como funciona:</strong><br>
+        Este formulário envia dados diretamente para o sistema Supabase do Webplan.
+        Os dados aparecerão no admin panel em tempo real.
+    </div>
+
+    <!-- Mensagens de resultado -->
+    <div id="successMessage" class="success-message">
+        ✅ <strong>Sucesso!</strong> Seu lead foi enviado com sucesso para o sistema Webplan.
+    </div>
+    
+    <div id="errorMessage" class="error-message">
+        ❌ <strong>Erro:</strong> <span id="errorText">Algo deu errado.</span>
+    </div>
+
+    <!-- Formulário de exemplo -->
+    <form id="exemplo-formulario">
+        <div class="form-group">
+            <label for="name">Nome Completo <span class="required">*</span></label>
+            <input type="text" id="name" name="name" required placeholder="Digite seu nome completo">
+        </div>
+        
+        <div class="form-group">
+            <label for="email">E-mail <span class="required">*</span></label>
+            <input type="email" id="email" name="email" required placeholder="seu@email.com">
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">Telefone/WhatsApp <span class="required">*</span></label>
+            <input type="tel" id="phone" name="phone" required placeholder="(11) 99999-9999">
+        </div>
+        
+        <div class="form-group">
+            <label for="operadora">Operadora de Interesse <span class="required">*</span></label>
+            <select id="operadora" name="operadora" required>
+                <option value="">Selecione uma operadora</option>
+                <option value="Amil">Amil</option>
+                <option value="Bradesco">Bradesco Saúde</option>
+                <option value="SulAmérica">SulAmérica</option>
+                <option value="Porto Seguro">Porto Seguro</option>
+                <option value="Alice">Alice</option>
+                <option value="Unimed">Unimed</option>
+                <option value="MedSenior">MedSenior</option>
+                <option value="São Camilo">São Camilo</option>
+                <option value="NotreDame">NotreDame Intermédica</option>
+                <option value="OneHealth">OneHealth</option>
+                <option value="Prevent Senior">Prevent Senior</option>
+                <option value="Qualicorp">Qualicorp</option>
+                <option value="Blue Med">Blue Med</option>
+                <option value="main">Outros</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="subject">Assunto</label>
+            <input type="text" id="subject" name="subject" placeholder="Ex: Cotação para pessoa física">
+        </div>
+        
+        <div class="form-group">
+            <label for="message">Mensagem</label>
+            <textarea id="message" name="message" placeholder="Conte-nos mais sobre suas necessidades..."></textarea>
+        </div>
+        
+        <button type="submit" id="submitBtn">Enviar Solicitação</button>
+    </form>
+
+    <!-- Botões de teste -->
+    <div class="test-buttons">
+        <h3>🧪 Testes e Debug</h3>
+        <button type="button" onclick="testarConexao()">Testar Conexão</button>
+        <button type="button" onclick="preencherFormularioTeste()">Preencher Dados de Teste</button>
+        <button type="button" onclick="limparFormulario()">Limpar Formulário</button>
+        <button type="button" onclick="abrirAdminPanel()">Abrir Admin Panel</button>
+    </div>
+
+    <!-- Logs em tempo real -->
+    <div class="test-buttons">
+        <h3>📊 Logs (Abra o Console F12 para mais detalhes)</h3>
+        <div id="logs" style="max-height: 200px; overflow-y: auto; background: #000; color: #0f0; padding: 10px; font-family: monospace; font-size: 12px;"></div>
+    </div>
+
+    <!-- Incluir biblioteca Webplan -->
+    <script src="formulario-webplan.js"></script>
+    
+    <script>
+        // Configurar formulário com callbacks personalizados
+        WebplanForms.configurarFormulario('#exemplo-formulario', {
+            subject: 'Lead do Site de Exemplo',
+            
+            onSuccess: function(result, form) {
+                // Mostrar mensagem de sucesso
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('errorMessage').style.display = 'none';
+                
+                // Limpar formulário após sucesso
+                form.reset();
+                
+                // Log personalizado
+                addLog('✅ Lead enviado! ID: ' + (result.data?.id || 'N/A'));
+                
+                // Opcional: redirecionar após 3 segundos
+                // setTimeout(() => {
+                //     window.location.href = '/obrigado.html';
+                // }, 3000);
+            },
+            
+            onError: function(result, form) {
+                // Mostrar mensagem de erro
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+                document.getElementById('errorText').textContent = result.message;
+                
+                // Log personalizado
+                addLog('❌ Erro: ' + result.message);
+            },
+            
+            loadingText: 'Enviando...',
+            successMessage: 'Obrigado! Recebemos sua solicitação.',
+            errorMessage: 'Ops! '
+        });
+        
+        // Função para adicionar logs visuais
+        function addLog(message) {
+            const logsDiv = document.getElementById('logs');
+            const timestamp = new Date().toLocaleTimeString();
+            logsDiv.innerHTML += `[${timestamp}] ${message}\n`;
+            logsDiv.scrollTop = logsDiv.scrollHeight;
+        }
+        
+        // Função para testar conexão
+        async function testarConexao() {
+            addLog('🔍 Testando conexão...');
+            
+            try {
+                const result = await WebplanForms.testarConexao();
+                
+                if (result.success) {
+                    addLog('✅ ' + result.message);
+                    alert('Conexão OK! ✅');
+                } else {
+                    addLog('❌ ' + result.message);
+                    alert('Erro de conexão: ' + result.message);
+                }
+            } catch (error) {
+                addLog('💥 Erro inesperado: ' + error.message);
+                alert('Erro inesperado: ' + error.message);
+            }
+        }
+        
+        // Função para preencher dados de teste
+        function preencherFormularioTeste() {
+            const timestamp = Date.now();
+            document.getElementById('name').value = 'João Silva Teste';
+            document.getElementById('email').value = `teste.${timestamp}@email.com`;
+            document.getElementById('phone').value = '(11) 99999-9999';
+            document.getElementById('operadora').value = 'Amil';
+            document.getElementById('subject').value = 'Teste de integração';
+            document.getElementById('message').value = `Este é um teste de integração realizado em ${new Date().toLocaleString()}`;
+            
+            addLog('📝 Formulário preenchido com dados de teste');
+        }
+        
+        // Função para limpar formulário
+        function limparFormulario() {
+            document.getElementById('exemplo-formulario').reset();
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            
+            addLog('🧹 Formulário limpo');
+        }
+        
+        // Função para abrir admin panel
+        function abrirAdminPanel() {
+            window.open('http://localhost:3005', '_blank');
+            addLog('🔗 Admin panel aberto em nova aba');
+        }
+        
+        // Log inicial
+        addLog('🚀 Página carregada, biblioteca Webplan Forms ativa');
+        
+        // Console logging para debug
+        console.log('🎯 Exemplo Webplan Forms carregado!');
+        console.log('📚 Funções disponíveis:', Object.keys(WebplanForms));
+        console.log('🔧 Para testar manualmente, use: WebplanForms.enviarLead({...})');
+    </script>
+</body>
+</html>
