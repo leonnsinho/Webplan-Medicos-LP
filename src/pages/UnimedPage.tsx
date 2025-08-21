@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Send, MessageCircle, Phone, Mail, CheckCircle, AlertCircle, Shield, Users, Heart, Award, Clock, Star } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import { FormData as ContactFormData } from '../types';
+import { useLeadSubmission } from '../hooks/useLeadSubmission';
 import unimedLogo from '../assets/images/seguros-unimed.png';
 
 const UnimedPage: React.FC = () => {
+  const { submitLead, isSubmitting } = useLeadSubmission();
+  
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -42,60 +45,45 @@ const UnimedPage: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (validateForm()) {
-      setShowSuccessPopup(true);
-      
-      setTimeout(() => {
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: 'unimed_coren_enfermeiros',
-          message: ''
-        });
-      }, 1000);
-
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.name = 'formsubmit-frame';
-      document.body.appendChild(iframe);
-
-      const form = document.createElement('form');
-      const endpoint = 'https://formsubmit.co/ana.acfl@gmail.com';
-      form.action = endpoint;
-      form.method = 'POST';
-      form.target = 'formsubmit-frame';
-      form.style.display = 'none';
-
-      const fields = {
-        'name': formData.name,
-        'email': formData.email,
-        'phone': formData.phone,
-        'subject': formData.subject,
-        'message': formData.message,
-        '_subject': 'Nova solicitação - Seguros Unimed para Enfermeiro com COREN - WebPlan Seguros',
-        '_captcha': 'false',
-        '_template': 'table'
-      };
-
-      Object.entries(fields).forEach(([key, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = value;
-        form.appendChild(input);
-      });
-
-      document.body.appendChild(form);
-      form.submit();
-
-      setTimeout(() => {
-        if (document.body.contains(form)) document.body.removeChild(form);
-        if (document.body.contains(iframe)) document.body.removeChild(iframe);
-      }, 5000);
+      try {
+        // Criar objeto lead para Supabase
+        const leadData = {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message || `Modalidade: ${formData.subject}`,
+          operadora: 'Unimed',
+          subject: formData.subject,
+          source_page: 'unimed-page',
+          utm_source: 'website'
+        };
+        
+        const result = await submitLead(leadData);
+        
+        if (result.success) {
+          console.log('✨ [Unimed] Lead enviado com sucesso para Supabase');
+          setShowSuccessPopup(true);
+          
+          // Reset form after success
+          setTimeout(() => {
+            setFormData({
+              name: '',
+              email: '',
+              phone: '',
+              subject: 'unimed_coren_enfermeiros',
+              message: ''
+            });
+          }, 1000);
+        } else {
+          console.error('❌ [Unimed] Erro retornado pelo hook:', result.error);
+        }
+      } catch (error) {
+        console.error('💥 [Unimed] Erro ao enviar formulário:', error);
+      }
     }
   };
 
@@ -616,10 +604,11 @@ const UnimedPage: React.FC = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button
                     type="submit"
-                    className="flex-1 bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+                    disabled={isSubmitting}
+                    className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-green-400 disabled:cursor-not-allowed text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
                   >
                     <Send size={20} />
-                    Enviar Solicitação
+                    {isSubmitting ? 'Enviando...' : 'Enviar Solicitação'}
                   </button>
                   
                   <button
@@ -660,37 +649,41 @@ const UnimedPage: React.FC = () => {
       </section>
 
       {/* Success Popup */}
-      {showSuccessPopup && (
-        <motion.div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
+      <AnimatePresence>
+        {showSuccessPopup && (
           <motion.div
-            className="bg-white p-8 rounded-2xl shadow-2xl max-w-md mx-4"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            <div className="text-center">
-              <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="w-8 h-8 text-green-600" />
+            <motion.div
+              className="bg-white p-8 rounded-2xl shadow-2xl max-w-md mx-4"
+              initial={{ scale: 0.7, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.7, opacity: 0, y: -20 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <div className="text-center">
+                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8 text-green-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Solicitação Enviada!</h3>
+                <p className="text-gray-600 mb-6">
+                  Nossa equipe entrará em contato em breve com as melhores condições para você.
+                </p>
+                <button
+                  onClick={() => setShowSuccessPopup(false)}
+                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                >
+                  Fechar
+                </button>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Solicitação Enviada!</h3>
-              <p className="text-gray-600 mb-6">
-                Nossa equipe entrará em contato em breve com as melhores condições para você.
-              </p>
-              <button
-                onClick={() => setShowSuccessPopup(false)}
-                className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
-              >
-                Fechar
-              </button>
-            </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </div>
   );
 };
