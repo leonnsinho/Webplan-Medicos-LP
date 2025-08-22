@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, MessageCircle, Phone, Mail, CheckCircle, AlertCircle, Shield, Users, Heart, Award, Clock, Star } from 'lucide-react';
+import { Send, MessageCircle, Phone, CheckCircle, AlertCircle, Shield, Users, Heart, Award, Clock, Star } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import { FormData as ContactFormData } from '../types';
 import { useLeadSubmission } from '../hooks/useLeadSubmission';
@@ -661,13 +661,7 @@ const PortoSeguroPage: React.FC = () => {
                       <Phone size={20} />
                       (11) 4116-5378
                     </a>
-                    <a
-                      href="mailto:contato@webplan.com.br"
-                      className="flex items-center justify-center gap-2 text-orange-600 hover:text-orange-700 transition-colors"
-                    >
-                      <Mail size={20} />
-                      contato@webplan.com.br
-                    </a>
+
                   </div>
                 </div>
               </div>
