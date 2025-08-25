@@ -15,6 +15,13 @@ import BradescoPage from './pages/BradescoPage';
 import UnimedPage from './pages/UnimedPage';
 import MedSeniorPage from './pages/MedSeniorPage';
 import SupabaseTestPage from './pages/SupabaseTestPage';
+import { BlogIndexPage } from './pages/BlogIndexPage';
+import { BlogPostPage } from './pages/BlogPostPage';
+import { BlogCategoryPage } from './pages/BlogCategoryPage';
+import { BlogTestPage } from './pages/BlogTestPage';
+import { BlogDebugPage } from './pages/BlogDebugPage';
+import { BlogQuickTestPage } from './pages/BlogQuickTestPage';
+import { BlogIndexPageTemp } from './pages/BlogIndexPageTemp';
 import { pageTransitions } from './utils/animations';
 
 function AnimatedRoutes() {
@@ -131,6 +138,76 @@ function AnimatedRoutes() {
             transition={pageTransitions.transition}
           >
             <SuccessPage />
+          </motion.div>
+        } />
+        <Route path="/blog" element={
+          <motion.div
+            initial={pageTransitions.initial}
+            animate={pageTransitions.animate}
+            exit={pageTransitions.exit}
+            transition={pageTransitions.transition}
+          >
+            <BlogIndexPage />
+          </motion.div>
+        } />
+        <Route path="/blog/:slug" element={
+          <motion.div
+            initial={pageTransitions.initial}
+            animate={pageTransitions.animate}
+            exit={pageTransitions.exit}
+            transition={pageTransitions.transition}
+          >
+            <BlogPostPage />
+          </motion.div>
+        } />
+        <Route path="/blog/categoria/:category" element={
+          <motion.div
+            initial={pageTransitions.initial}
+            animate={pageTransitions.animate}
+            exit={pageTransitions.exit}
+            transition={pageTransitions.transition}
+          >
+            <BlogCategoryPage />
+          </motion.div>
+        } />
+        <Route path="/blog/teste" element={
+          <motion.div
+            initial={pageTransitions.initial}
+            animate={pageTransitions.animate}
+            exit={pageTransitions.exit}
+            transition={pageTransitions.transition}
+          >
+            <BlogTestPage />
+          </motion.div>
+        } />
+        <Route path="/blog/debug" element={
+          <motion.div
+            initial={pageTransitions.initial}
+            animate={pageTransitions.animate}
+            exit={pageTransitions.exit}
+            transition={pageTransitions.transition}
+          >
+            <BlogDebugPage />
+          </motion.div>
+        } />
+        <Route path="/blog/quick-test" element={
+          <motion.div
+            initial={pageTransitions.initial}
+            animate={pageTransitions.animate}
+            exit={pageTransitions.exit}
+            transition={pageTransitions.transition}
+          >
+            <BlogQuickTestPage />
+          </motion.div>
+        } />
+        <Route path="/blog/temp" element={
+          <motion.div
+            initial={pageTransitions.initial}
+            animate={pageTransitions.animate}
+            exit={pageTransitions.exit}
+            transition={pageTransitions.transition}
+          >
+            <BlogIndexPageTemp />
           </motion.div>
         } />
         <Route path="/teste-supabase" element={

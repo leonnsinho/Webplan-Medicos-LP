@@ -23,6 +23,7 @@ const navItems: NavItem[] = [
       { label: 'MedSênior', href: '/medsenior' }
     ]
   },
+  { label: 'Blog', href: '/blog' },
   { label: 'Contato', href: '#contato' }
 ];
 
