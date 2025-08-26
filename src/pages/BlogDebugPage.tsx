@@ -146,7 +146,7 @@ export const BlogDebugPage: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="bg-white rounded-lg shadow-md p-6">
           <h1 className="text-3xl font-bold text-gray-900 mb-6">
-            🔍 Debug do Blog - Enfermeiros
+            🔍 Debug do Blog - Médicos
           </h1>
 
           <div className="mb-6 flex gap-3">
@@ -211,7 +211,7 @@ export const BlogDebugPage: React.FC = () => {
 
               {/* Posts do Site */}
               <div className="bg-gray-50 p-4 rounded-lg">
-                <h2 className="text-lg font-semibold mb-2">🎯 Posts do site Enfermeiros:</h2>
+                <h2 className="text-lg font-semibold mb-2">🎯 Posts do site Médicos:</h2>
                 <p className="text-2xl font-bold">{results.sitePosts?.count || 0}</p>
                 {results.sitePosts?.posts && results.sitePosts.posts.length > 0 && (
                   <div className="mt-4 space-y-2">

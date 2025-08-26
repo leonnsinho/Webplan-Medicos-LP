@@ -15,7 +15,7 @@ const PortoSeguroPage: React.FC = () => {
     phone: '',
     idade: '',
     tem_cnpj: false,
-    subject: 'porto_cnpj_enfermeiros',
+    subject: 'porto_cnpj_medicos',
     message: ''
   });
 
@@ -30,7 +30,7 @@ const PortoSeguroPage: React.FC = () => {
   }, []);
 
   const subjectOptions = [
-    { value: 'porto_cnpj_enfermeiros', label: 'Porto Seguro - Enfermeiros CNPJ' },
+    { value: 'porto_cnpj_medicos', label: 'Porto Seguro - Médicos CNPJ' },
     { value: 'porto_bairro', label: 'Porto Seguro - Porto Bairro' },
     { value: 'porto_pro', label: 'Porto Seguro - Linha PRÓ' },
     { value: 'porto_p', label: 'Porto Seguro - Linha P' },
@@ -91,7 +91,7 @@ const PortoSeguroPage: React.FC = () => {
               phone: '',
               idade: '',
               tem_cnpj: false,
-              subject: 'porto_cnpj_enfermeiros',
+              subject: 'porto_cnpj_medicos',
               message: ''
             });
             console.log('🔄 [Porto Seguro] Formulário resetado');
@@ -126,7 +126,7 @@ const PortoSeguroPage: React.FC = () => {
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
-      'Olá! Sou enfermeiro(a) com CNPJ e gostaria de saber mais sobre os planos Porto Seguro Saúde Empresarial com pelo menos 3 vidas.'
+      'Olá! Sou médico(a) com CNPJ e gostaria de saber mais sobre os planos Porto Seguro Saúde Empresarial com pelo menos 3 vidas.'
     );
     const whatsappUrl = `https://wa.me/5511959305175?text=${message}`;
     window.open(whatsappUrl, '_blank');
@@ -159,7 +159,7 @@ const PortoSeguroPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  Qualidade, Flexibilidade e Excelência para Enfermeiros
+                  Qualidade, Flexibilidade e Excelência para Médicos
                 </motion.h2>
                 
                 <motion.p 
@@ -168,7 +168,7 @@ const PortoSeguroPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  Planos empresariais para enfermeiros com CNPJ ativo. Soluções completas com pelo menos 3 vidas para adesão e rede de excelência.
+                  Planos empresariais para médicos com CNPJ ativo. Soluções completas com pelo menos 3 vidas para adesão e rede de excelência.
                 </motion.p>
 
                 <motion.div 

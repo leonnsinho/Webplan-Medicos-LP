@@ -10,8 +10,8 @@ export const BlogIndexPageTemp: React.FC = () => {
 
   useEffect(() => {
     generateBlogListSEO(
-      'Blog | Webplan Enfermeiros (TESTE)',
-      'Fique por dentro das últimas novidades sobre planos de saúde para enfermeiros e profissionais de saúde. Dicas, análises e muito mais!'
+      'Blog | Webplan Médicos (TESTE)',
+      'Fique por dentro das últimas novidades sobre planos de saúde para médicos e profissionais de saúde. Dicas, análises e muito mais!'
     );
 
     const fetchPosts = async () => {
@@ -36,7 +36,7 @@ export const BlogIndexPageTemp: React.FC = () => {
       <AnimatedSection className="bg-gradient-to-r from-red-600 to-red-700 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Blog Webplan Enfermeiros (TESTE)
+            Blog Webplan Médicos (TESTE)
           </h1>
           <p className="text-xl md:text-2xl text-red-100 max-w-3xl mx-auto">
             Versão de teste - ignorando status do site

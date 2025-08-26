@@ -15,7 +15,7 @@ const BradescoPage: React.FC = () => {
     phone: '',
     idade: '',
     tem_cnpj: false,
-    subject: 'bradesco_cnpj_enfermeiros',
+    subject: 'bradesco_cnpj_medicos',
     message: ''
   });
 
@@ -30,7 +30,7 @@ const BradescoPage: React.FC = () => {
   }, []);
 
   const subjectOptions = [
-    { value: 'bradesco_cnpj_enfermeiros', label: 'Bradesco Saúde - Enfermeiros CNPJ' },
+    { value: 'bradesco_cnpj_medicos', label: 'Bradesco Saúde - Médicos CNPJ' },
     { value: 'bradesco_autonomo', label: 'Bradesco Saúde - Profissional Autônomo' },
     { value: 'bradesco_empresarial', label: 'Bradesco Saúde - Empresarial' },
     { value: 'bradesco_dependente_cnpj', label: 'Bradesco Saúde - Dependente CNPJ' },
@@ -91,7 +91,7 @@ const BradescoPage: React.FC = () => {
               phone: '',
               idade: '',
               tem_cnpj: false,
-              subject: 'bradesco_cnpj_enfermeiros',
+              subject: 'bradesco_cnpj_medicos',
               message: ''
             });
             console.log('🔄 [Bradesco] Formulário resetado');
@@ -126,7 +126,7 @@ const BradescoPage: React.FC = () => {
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
-      'Olá! Sou enfermeiro(a) com CNPJ e gostaria de saber mais sobre os planos Bradesco Saúde Empresarial com pelo menos 3 vidas.'
+      'Olá! Sou médico(a) com CNPJ e gostaria de saber mais sobre os planos Bradesco Saúde Empresarial com pelo menos 3 vidas.'
     );
     const whatsappUrl = `https://wa.me/5511959305175?text=${message}`;
     window.open(whatsappUrl, '_blank');
@@ -168,7 +168,7 @@ const BradescoPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  Nota máxima ANS por 10 anos consecutivos. Tradição, solidez e uma das melhores redes de atendimento do Brasil para enfermeiros com CNPJ.
+                  Nota máxima ANS por 10 anos consecutivos. Tradição, solidez e uma das melhores redes de atendimento do Brasil para médicos com CNPJ.
                 </motion.p>
 
                 <motion.div 
@@ -312,7 +312,7 @@ const BradescoPage: React.FC = () => {
             <div className="grid lg:grid-cols-3 gap-8">
               {[
                 {
-                  title: "Enfermeiro Autônomo",
+                  title: "Médico Autônomo",
                   description: "Profissional com empresa aberta e CNPJ ativo",
                   features: [
                     "CNPJ como profissional autônomo",
@@ -406,7 +406,7 @@ const BradescoPage: React.FC = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Principais Vantagens para <span className="text-red-600">Enfermeiros</span>
+                Principais Vantagens para <span className="text-red-600">Médicos</span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Flexibilidade, qualidade comprovada e atendimento diferenciado para quem busca proteção total

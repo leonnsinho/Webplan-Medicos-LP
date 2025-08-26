@@ -27,7 +27,7 @@ const MedSeniorPage: React.FC = () => {
     { value: 'medsenior_categoria_black', label: 'MedSênior - Categoria BLACK' },
     { value: 'medsenior_rede_hospitais', label: 'MedSênior - Rede de Hospitais' },
     { value: 'medsenior_reajuste_ans', label: 'MedSênior - Reajuste ANS' },
-    { value: 'medsenior_7_estados', label: 'MedSênior - Cobertura 7 Estados' },
+    { value: 'medsenior_8_estados', label: 'MedSênior - Cobertura 8 Estados' },
     { value: 'medsenior_informacoes', label: 'Informações Gerais - MedSênior' }
   ];
 
@@ -151,7 +151,7 @@ const MedSeniorPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  Plano individual para enfermeiros 44+. Sem CNPJ, sem entidade de classe. Só documentos pessoais e qualidade garantida.
+                  Plano individual para médicos 44+. Sem CNPJ, sem entidade de classe. Só documentos pessoais e qualidade garantida.
                 </motion.p>
 
                 <motion.div 
@@ -240,8 +240,8 @@ const MedSeniorPage: React.FC = () => {
                 },
                 {
                   icon: Shield,
-                  title: "Cobertura 7 Estados",
-                  description: "Presente em SP, RJ, DF, MG, PR, PE e ES. Ideal para quem viaja ou tem familiares em outras regiões."
+                  title: "Cobertura 8 Estados",
+                  description: "Presente em SP, RJ, DF, MG, PR, PE, ES e RS. Ideal para quem viaja ou tem familiares em outras regiões."
                 },
                 {
                   icon: Clock,
@@ -362,9 +362,9 @@ const MedSeniorPage: React.FC = () => {
               viewport={{ once: true }}
             >
               <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                Cobertura em 7 Estados
+                Cobertura em 8 Estados
               </h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
                 {[
                   { estado: 'SP', nome: 'São Paulo' },
                   { estado: 'RJ', nome: 'Rio de Janeiro' },
@@ -372,7 +372,8 @@ const MedSeniorPage: React.FC = () => {
                   { estado: 'MG', nome: 'Minas Gerais' },
                   { estado: 'PR', nome: 'Paraná' },
                   { estado: 'PE', nome: 'Pernambuco' },
-                  { estado: 'ES', nome: 'Espírito Santo' }
+                  { estado: 'ES', nome: 'Espírito Santo' },
+                  { estado: 'RS', nome: 'Rio Grande do Sul' }
                 ].map((estado, index) => (
                   <motion.div
                     key={index}
@@ -412,7 +413,7 @@ const MedSeniorPage: React.FC = () => {
                   {[
                     {
                       icon: Users,
-                      title: "Enfermeiros(as) 44+",
+                      title: "Médicos(as) 44+",
                       description: "Idade mínima de 44 anos completos para contratação individual sem dependência de terceiros."
                     },
                     {

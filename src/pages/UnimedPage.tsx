@@ -15,7 +15,7 @@ const UnimedPage: React.FC = () => {
     phone: '',
     idade: '',
     tem_cnpj: false,
-    subject: 'unimed_coren_enfermeiros',
+    subject: 'unimed_crm_medicos',
     message: ''
   });
 
@@ -23,8 +23,8 @@ const UnimedPage: React.FC = () => {
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const subjectOptions = [
-    { value: 'unimed_coren_enfermeiros', label: 'Seguros Unimed - Enfermeiros COREN' },
-    { value: 'unimed_seesp', label: 'Seguros Unimed - Via SEESP' },
+    { value: 'unimed_crm_medicos', label: 'Seguros Unimed - Médicos CRM' },
+    { value: 'unimed_sindicato_medicos', label: 'Seguros Unimed - Via Sindicato Médicos' },
     { value: 'unimed_cnpj_2vidas', label: 'Seguros Unimed - CNPJ 2+ Vidas' },
     { value: 'unimed_empresarial', label: 'Seguros Unimed - Empresarial' },
     { value: 'unimed_reembolso', label: 'Seguros Unimed - Reembolso' },
@@ -80,7 +80,7 @@ const UnimedPage: React.FC = () => {
               phone: '',
               idade: '',
               tem_cnpj: false,
-              subject: 'unimed_coren_enfermeiros',
+              subject: 'unimed_crm_medicos',
               message: ''
             });
           }, 1000);
@@ -109,7 +109,7 @@ const UnimedPage: React.FC = () => {
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
-      'Olá! Sou enfermeiro(a) com COREN ativo e gostaria de saber mais sobre os Seguros Unimed (via SEESP ou CNPJ 2+ vidas).'
+      'Olá! Sou médico(a) com CRM ativo e gostaria de saber mais sobre os Seguros Unimed (via Sindicato Médico ou CNPJ 2+ vidas).'
     );
     const whatsappUrl = `https://wa.me/5511959305175?text=${message}`;
     window.open(whatsappUrl, '_blank');
@@ -142,7 +142,7 @@ const UnimedPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  Cobertura Nacional com Flexibilidade para Enfermeiros
+                  Cobertura Nacional com Flexibilidade para Médicos
                 </motion.h2>
                 
                 <motion.p 
@@ -151,7 +151,7 @@ const UnimedPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  Seguros Unimed com condições especiais para enfermeiros com COREN ativo. Contratação via SEESP ou CNPJ a partir de 2 vidas.
+                  Seguros Unimed com condições especiais para médicos com CRM ativo. Contratação via Sindicato Médico ou CNPJ a partir de 2 vidas.
                 </motion.p>
 
                 <motion.div 
@@ -255,8 +255,8 @@ const UnimedPage: React.FC = () => {
                 },
                 {
                   icon: Award,
-                  title: "Condições SEESP",
-                  description: "Valores reduzidos e condições exclusivas para enfermeiros associados ao SEESP via contratação coletiva."
+                  title: "Condições Sindicato Médico",
+                  description: "Valores reduzidos e condições exclusivas para médicos associados ao sindicato via contratação coletiva."
                 }
               ].map((feature, index) => (
                 <motion.div
@@ -285,10 +285,10 @@ const UnimedPage: React.FC = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Duas Formas de Contratação para <span className="text-green-600">Enfermeiros</span>
+                Duas Formas de Contratação para <span className="text-green-600">Médicos</span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Flexibilidade total para atender diferentes perfis e necessidades de enfermeiros com COREN ativo
+                Flexibilidade total para atender diferentes perfis e necessidades de médicos com CRM ativo
               </p>
             </div>
 
@@ -296,10 +296,10 @@ const UnimedPage: React.FC = () => {
               {[
                 {
                   title: "Via Entidade de Classe",
-                  subtitle: "SEESP - Sindicato dos Enfermeiros",
-                  description: "Enfermeiros associados ao SEESP podem contratar com valores reduzidos",
+                  subtitle: "Sindicato dos Médicos",
+                  description: "Médicos associados ao sindicato podem contratar com valores reduzidos",
                   features: [
-                    "Associação ao SEESP obrigatória",
+                    "Associação ao sindicato obrigatória",
                     "Valores reduzidos e exclusivos",
                     "Contratação coletiva por adesão",
                     "Condições especiais para categoria"
@@ -395,7 +395,7 @@ const UnimedPage: React.FC = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Por que enfermeiros escolhem a <span className="text-green-600">Seguros Unimed</span>?
+                Por que médicos escolhem a <span className="text-green-600">Seguros Unimed</span>?
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Capilaridade nacional, atendimento ágil e qualidade tanto na capital quanto em outras cidades e estados
@@ -415,12 +415,12 @@ const UnimedPage: React.FC = () => {
                     {
                       icon: Heart,
                       title: "Ideal para Mobilidade",
-                      description: "Escolha perfeita para enfermeiros que atuam em diferentes regiões e precisam de cobertura flexível."
+                      description: "Escolha perfeita para médicos que atuam em diferentes regiões e precisam de cobertura flexível."
                     },
                     {
                       icon: Users,
                       title: "Facilidade de Contratação",
-                      description: "CNPJ com apenas 2 vidas ou condições especiais SEESP tornam o plano acessível e vantajoso."
+                      description: "CNPJ com apenas 2 vidas ou condições especiais via sindicato tornam o plano acessível e vantajoso."
                     },
                     {
                       icon: Award,

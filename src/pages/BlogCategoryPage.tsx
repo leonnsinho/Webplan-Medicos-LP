@@ -28,8 +28,8 @@ export const BlogCategoryPage: React.FC = () => {
       if (foundCategory) {
         setCategory(foundCategory);
         generateBlogListSEO(
-          `${foundCategory.name} | Blog Webplan Enfermeiros`,
-          foundCategory.description || `Posts sobre ${foundCategory.name} - Webplan Enfermeiros`
+          `${foundCategory.name} | Blog Webplan Médicos`,
+          foundCategory.description || `Posts sobre ${foundCategory.name} - Webplan Médicos`
         );
       }
     } catch (error) {

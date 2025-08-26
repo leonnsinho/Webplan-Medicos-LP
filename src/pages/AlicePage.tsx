@@ -17,7 +17,7 @@ const AlicePage: React.FC = () => {
     phone: '',
     idade: '',
     tem_cnpj: false,
-    subject: 'alice_cnpj_enfermeiros',
+    subject: 'alice_cnpj_medicos',
     message: ''
   });
 
@@ -31,7 +31,7 @@ const AlicePage: React.FC = () => {
   }, []);
 
   const subjectOptions = [
-    { value: 'alice_cnpj_enfermeiros', label: 'Alice - Enfermeiros CNPJ' },
+    { value: 'alice_cnpj_medicos', label: 'Alice - Médicos CNPJ' },
     { value: 'alice_autonomo', label: 'Alice - Profissional Autônomo' },
     { value: 'alice_empresa_individual', label: 'Alice - Empresa Individual' },
     { value: 'alice_dependente_cnpj', label: 'Alice - Dependente com CNPJ' },
@@ -91,7 +91,7 @@ const AlicePage: React.FC = () => {
               phone: '',
               idade: '',
               tem_cnpj: false,
-              subject: 'alice_cnpj_enfermeiros',
+              subject: 'alice_cnpj_medicos',
               message: ''
             });
             console.log('🔄 [Alice] Formulário resetado');
@@ -126,7 +126,7 @@ const AlicePage: React.FC = () => {
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
-      'Olá! Sou enfermeiro(a) e possuo CNPJ. Gostaria de saber mais sobre os planos Alice - a healthtech que mais cresce no Brasil.'
+      'Olá! Sou médico(a) e possuo CNPJ. Gostaria de saber mais sobre os planos Alice - a healthtech que mais cresce no Brasil.'
     );
     const whatsappUrl = `https://wa.me/5511959305175?text=${message}`;
     window.open(whatsappUrl, '_blank');
@@ -159,7 +159,7 @@ const AlicePage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  Inovação, Economia e Qualidade para Enfermeiros
+                  Inovação, Economia e Qualidade para Médicos
                 </motion.h2>
                 
                 <motion.p 
@@ -305,7 +305,7 @@ const AlicePage: React.FC = () => {
                 Quem pode contratar a <span className="text-purple-600">Alice</span>?
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Exclusivo para enfermeiros(as) com CNPJ ativo ou dependentes com CNPJ
+                Exclusivo para médicos(as) com CNPJ ativo ou dependentes com CNPJ
               </p>
             </div>
 
@@ -313,7 +313,7 @@ const AlicePage: React.FC = () => {
               {[
                 {
                   title: "Profissional Autônomo",
-                  description: "Enfermeiro(a) com CNPJ como profissional autônomo",
+                  description: "Médico(a) com CNPJ como profissional autônomo",
                   features: [
                     "CNPJ ativo como autônomo",
                     "Atendimento personalizado",
@@ -324,7 +324,7 @@ const AlicePage: React.FC = () => {
                 },
                 {
                   title: "Empresa Individual",
-                  description: "Enfermeiro(a) com empresa individual (MEI ou outros)",
+                  description: "Médico(a) com empresa individual (MEI ou outros)",
                   features: [
                     "CNPJ de empresa individual",
                     "Benefícios empresariais",

@@ -1,11 +1,16 @@
 import { BlogPostWithDetails } from '../lib/blogSupabase';
 
 /**
- * Gera e atualiza tags SEO para o post
+ * Gera   document.title = title || 'Blog | Webplan Médicos';
+  updateMetaTag('description', description || 'Fique por dentro das últimas novidades sobre planos de saúde para médicos e profissionais de saúde.');
+  
+  // Open Graph tags
+  updateMetaTag('og:title', title || 'Blog Webplan Médicos', 'property');
+  updateMetaTag('og:description', description || 'Fique por dentro das últimas novidades sobre planos de saúde para médicos.', 'property');liza tags SEO para o post
  */
 export const generateSEOTags = (post: BlogPostWithDetails): void => {
   // Título
-  document.title = post.meta_title || `${post.title} | Blog Webplan Enfermeiros`;
+  document.title = post.meta_title || `${post.title} | Blog Webplan Médicos`;
 
   // Meta description
   updateMetaTag('description', post.meta_description || post.excerpt);
@@ -84,7 +89,7 @@ export const generateBlogListSEO = (title?: string, description?: string): void 
   
   // Twitter Cards
   updateMetaTag('twitter:card', 'summary', 'name');
-  updateMetaTag('twitter:title', title || 'Blog Webplan Enfermeiros', 'name');
+  updateMetaTag('twitter:title', title || 'Blog Webplan Médicos', 'name');
   updateMetaTag('twitter:description', description || 'Fique por dentro das últimas novidades sobre planos de saúde para enfermeiros.', 'name');
 };
 

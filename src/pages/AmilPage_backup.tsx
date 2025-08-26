@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Send, MessageCircle, Phone, Mail, CheckCircle, AlertCircle, Shield, Users, Heart, Award, Clock, Star } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import AnimatedSection from '../components/AnimatedSection';
@@ -77,11 +77,6 @@ const AmilPage: React.FC = () => {
           
           // Mostrar popup de sucesso
           setShowSuccessPopup(true);
-          
-          // Fechar popup automaticamente após 5 segundos
-          setTimeout(() => {
-            setShowSuccessPopup(false);
-          }, 5000);
           
           // Limpar formulário
           setTimeout(() => {
@@ -538,51 +533,6 @@ const AmilPage: React.FC = () => {
           </AnimatedSection>
         </div>
       </section>
-
-      {/* Success Popup */}
-      <AnimatePresence>
-        {showSuccessPopup && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
-            onClick={() => setShowSuccessPopup(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              className="bg-white rounded-2xl p-8 max-w-md w-full mx-4 text-center shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
-              >
-                <CheckCircle className="w-8 h-8 text-green-600" />
-              </motion.div>
-              
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Solicitação Enviada!
-              </h3>
-              
-              <p className="text-gray-600 mb-6">
-                Recebemos sua solicitação para cotação Amil. Nossa equipe entrará em contato em breve!
-              </p>
-              
-              <button
-                onClick={() => setShowSuccessPopup(false)}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200"
-              >
-                Fechar
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 };

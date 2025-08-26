@@ -6,8 +6,8 @@ import AnimatedSection from '../components/AnimatedSection';
 export const BlogIndexPage: React.FC = () => {
   useEffect(() => {
     generateBlogListSEO(
-      'Blog | Webplan Enfermeiros',
-      'Fique por dentro das últimas novidades sobre planos de saúde para enfermeiros e profissionais de saúde. Dicas, análises e muito mais!'
+      'Blog | Webplan Médicos',
+      'Fique por dentro das últimas novidades sobre planos de saúde para médicos e profissionais de saúde. Dicas, análises e muito mais!'
     );
   }, []);
 
@@ -17,10 +17,10 @@ export const BlogIndexPage: React.FC = () => {
       <AnimatedSection className="bg-gradient-to-r from-red-600 to-red-700 text-white pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Blog Webplan Enfermeiros
+            Blog Webplan Médicos
           </h1>
           <p className="text-xl md:text-2xl text-red-100 max-w-3xl mx-auto">
-            Fique por dentro das últimas novidades sobre planos de saúde para enfermeiros e profissionais de saúde
+            Fique por dentro das últimas novidades sobre planos de saúde para médicos e profissionais de saúde
           </p>
         </div>
       </AnimatedSection>
@@ -33,7 +33,7 @@ export const BlogIndexPage: React.FC = () => {
               Artigos e Novidades
             </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Conteúdo atualizado sobre planos de saúde e benefícios para profissionais da enfermagem
+              Conteúdo atualizado sobre planos de saúde e benefícios para profissionais da medicina
             </p>
           </div>
           

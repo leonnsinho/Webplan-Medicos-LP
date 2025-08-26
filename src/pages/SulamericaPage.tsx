@@ -18,7 +18,7 @@ const SulamericaPage: React.FC = () => {
     phone: '',
     idade: '',
     tem_cnpj: false,
-    subject: 'sulamerica_adesao_enfermeiros',
+    subject: 'sulamerica_adesao_medicos',
     message: ''
   });
 
@@ -33,11 +33,11 @@ const SulamericaPage: React.FC = () => {
   }, []);
 
   const subjectOptions = [
-    { value: 'sulamerica_adesao_enfermeiros', label: 'SulAmérica por Adesão - Enfermeiros' },
+    { value: 'sulamerica_adesao_medicos', label: 'SulAmérica por Adesão - Médicos' },
     { value: 'sulamerica_empresarial', label: 'SulAmérica Empresarial' },
     { value: 'sulamerica_coletivo', label: 'SulAmérica Coletivo' },
     { value: 'sulamerica_categorias', label: 'Informações sobre Categorias' },
-    { value: 'sulamerica_informacoes', label: 'Informações Gerais - SEESP ENF' }
+    { value: 'sulamerica_informacoes', label: 'Informações Gerais - Sindicato Médicos' }
   ];
 
   const validateForm = (): boolean => {
@@ -73,7 +73,7 @@ const SulamericaPage: React.FC = () => {
         tem_cnpj: formData.tem_cnpj,
         operadora: 'SulAmérica', // Nome da operadora
         subject: `SulAmérica - ${formData.subject}`,
-        message: formData.message || 'Cliente interessado em plano SulAmérica para enfermeiros'
+        message: formData.message || 'Cliente interessado em plano SulAmérica para médicos'
       };
 
       try {
@@ -94,7 +94,7 @@ const SulamericaPage: React.FC = () => {
               phone: '',
               idade: '',
               tem_cnpj: false,
-              subject: 'sulamerica_adesao_enfermeiros',
+              subject: 'sulamerica_adesao_medicos',
               message: ''
             });
           }, 1000);
@@ -134,7 +134,7 @@ const SulamericaPage: React.FC = () => {
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
-      'Olá! Sou da área de enfermagem e gostaria de saber mais sobre os planos SulAmérica com benefícios exclusivos para enfermeiros com COREN ativo.'
+      'Olá! Sou da área médica e gostaria de saber mais sobre os planos SulAmérica com benefícios exclusivos para médicos com CRM ativo.'
     );
     const whatsappUrl = `https://wa.me/5511959305175?text=${message}`;
     window.open(whatsappUrl, '_blank');
@@ -167,7 +167,7 @@ const SulamericaPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  Planos Especiais para Enfermeiros com COREN
+                  Planos Especiais para Médicos com CRM
                 </motion.h2>
                 
                 <motion.p 
@@ -176,8 +176,8 @@ const SulamericaPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  Mais de 128 anos de tradição oferecendo benefícios exclusivos para profissionais da enfermagem 
-                  associados ao SEESP ENF com abrangência nacional desde a categoria de entrada.
+                  Mais de 128 anos de tradição oferecendo benefícios exclusivos para profissionais da medicina 
+                  associados ao sindicato médico com abrangência nacional desde a categoria de entrada.
                 </motion.p>
 
                 <motion.div 
@@ -243,10 +243,10 @@ const SulamericaPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection direction="up" className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-red-800 mb-4">
-              Vantagens Exclusivas para Enfermeiros
+              Vantagens Exclusivas para Médicos
             </h2>
             <p className="text-lg text-red-600 max-w-3xl mx-auto">
-              Benefícios especiais para profissionais associados ao SEESP ENF - Sindicato dos Enfermeiros de SP
+              Benefícios especiais para profissionais associados ao Sindicato dos Médicos
             </p>
           </AnimatedSection>
 
@@ -312,7 +312,7 @@ const SulamericaPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection direction="up" className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-red-800 mb-4">
-              Categorias SulAmérica para Enfermeiros
+              Categorias SulAmérica para Médicos
             </h2>
             <p className="text-lg text-red-600 max-w-3xl mx-auto">
               Escolha a categoria ideal conforme sua necessidade e orçamento
@@ -394,10 +394,10 @@ const SulamericaPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection direction="up" className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-red-800 mb-4">
-              Solicite seu Plano SulAmérica - SEESP ENF
+              Solicite seu Plano SulAmérica - Sindicato Médico
             </h2>
             <p className="text-lg sm:text-xl text-red-600 max-w-3xl mx-auto">
-              Preencha o formulário e receba uma proposta personalizada com benefícios exclusivos para enfermeiros
+              Preencha o formulário e receba uma proposta personalizada com benefícios exclusivos para médicos
             </p>
           </AnimatedSection>
 
@@ -578,7 +578,7 @@ const SulamericaPage: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.8 }}
                   >
-                    Tire suas dúvidas sobre os planos SulAmérica para enfermeiros com benefícios exclusivos SEESP ENF diretamente com nossos consultores especializados.
+                    Tire suas dúvidas sobre os planos SulAmérica para médicos com benefícios exclusivos do sindicato médico diretamente com nossos consultores especializados.
                   </motion.p>
                   
                   <div className="space-y-4 mb-8">

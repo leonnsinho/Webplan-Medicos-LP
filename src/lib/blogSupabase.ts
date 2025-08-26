@@ -9,7 +9,7 @@ if (!blogSupabaseUrl || !blogSupabaseAnonKey) {
 
 export const blogSupabase = createClient(blogSupabaseUrl, blogSupabaseAnonKey)
 
-// ID específico do site (Webplan Enfermeiros)
+// ID específico do site (Webplan Médicos)
 export const SITE_ID = import.meta.env.VITE_SITE_ID
 
 if (!SITE_ID) {

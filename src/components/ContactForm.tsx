@@ -118,7 +118,7 @@ const ContactForm: React.FC = () => {
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
-      'Olá! Gostaria de falar com um consultor sobre planos de saúde para enfermeiros.'
+      'Olá! Gostaria de falar com um consultor sobre planos de saúde para médicos.'
     );
     const whatsappUrl = `https://wa.me/5511959305175?text=${message}`;
     window.open(whatsappUrl, '_blank');
@@ -340,7 +340,7 @@ const ContactForm: React.FC = () => {
                   {[
                     { icon: Phone, text: "Atendimento imediato" },
                     { icon: CheckCircle, text: "Consultoria gratuita" },
-                    { icon: CheckCircle, text: "Especialistas em enfermagem" }
+                    { icon: CheckCircle, text: "Especialistas em medicina" }
                   ].map((feature, index) => (
                     <motion.div 
                       key={feature.text}

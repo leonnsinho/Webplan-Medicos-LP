@@ -2,7 +2,6 @@ import React from 'react';
 import { ArrowRight, Shield, Users, Award } from 'lucide-react';
 import { motion } from 'framer-motion';
 import AnimatedSection from './AnimatedSection';
-import medicosImage from '../assets/images/medicos.svg';
 
 const HeroSection: React.FC = () => {
   const scrollToForm = () => {
@@ -29,7 +28,7 @@ const HeroSection: React.FC = () => {
                     transition={{ duration: 0.8, delay: 0.2 }}
                   >
                     Planos de Saúde para{' '}
-                    <span className="text-blue-600">Enfermeiros</span>{' '}
+                    <span className="text-blue-600">Médicos</span>{' '}
                     com até 30% de Desconto
                   </motion.h1>
                 
@@ -40,7 +39,7 @@ const HeroSection: React.FC = () => {
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
                   Com o melhor custo-benefício para você{' '}
-                  <span className="font-semibold text-blue-800">Enfermeiro</span>{' '}
+                  <span className="font-semibold text-blue-800">Médico</span>{' '}
                   e sua família.
                 </motion.p>
               </div>
@@ -57,12 +56,12 @@ const HeroSection: React.FC = () => {
                   
                   <p className="text-lg">
                     Saiba mais com um dos nossos consultores sobre os{' '}
-                    <span className="font-semibold">planos coletivos por adesão para Enfermeiros</span>.
+                    <span className="font-semibold">planos coletivos por adesão para Médicos</span>.
                   </p>
                   
                   <div className="bg-blue-100 p-4 rounded-lg border-l-4 border-blue-600">
                     <p className="text-blue-800 font-medium">
-                      💡 Se você é Enfermeiro e possui CNPJ, dependendo da operadora escolhida,{' '}
+                      💡 Se você é Médico e possui CNPJ, dependendo da operadora escolhida,{' '}
                       <span className="font-bold">seu desconto pode chegar até 30%</span>.
                     </p>
                   </div>
@@ -124,7 +123,7 @@ const HeroSection: React.FC = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <img
-                    src={medicosImage}
+                    src="/medico.jpg"
                     alt="Equipe médica sorridente e profissional"
                     className="rounded-2xl shadow-2xl w-full h-[600px] object-cover"
                   />
