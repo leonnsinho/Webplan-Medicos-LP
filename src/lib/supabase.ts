@@ -18,6 +18,8 @@ export interface Lead {
   message?: string
   operadora: string
   subject: string
+  idade?: string
+  tem_cnpj?: boolean
   ip_address?: string
   user_agent?: string
   source_page?: string

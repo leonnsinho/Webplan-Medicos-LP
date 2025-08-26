@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Send, MessageCircle, Phone, Mail, CheckCircle, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import AnimatedSection from './AnimatedSection';
 import { useLeadSubmission } from '../hooks/useLeadSubmission';
 import { FormData as ContactFormData } from '../types';
 
 const ContactForm: React.FC = () => {
-  const navigate = useNavigate();
   const { submitLead, isSubmitting } = useLeadSubmission();
   
   const [formData, setFormData] = useState<ContactFormData>({
@@ -15,7 +13,9 @@ const ContactForm: React.FC = () => {
     email: '',
     phone: '',
     subject: '',
-    message: ''
+    message: '',
+    idade: '',
+    tem_cnpj: false
   });
 
   const [errors, setErrors] = useState<Partial<ContactFormData>>({});
@@ -60,7 +60,9 @@ const ContactForm: React.FC = () => {
         phone: formData.phone,
         operadora: 'main', // Formulário principal
         subject: `Formulário Principal - ${formData.subject}`,
-        message: formData.message || 'Cliente interessado em cotação via formulário principal'
+        message: formData.message || 'Cliente interessado em cotação via formulário principal',
+        idade: formData.idade,
+        tem_cnpj: formData.tem_cnpj
       };
 
       try {
@@ -80,7 +82,9 @@ const ContactForm: React.FC = () => {
               email: '',
               phone: '',
               subject: '',
-              message: ''
+              message: '',
+              idade: '',
+              tem_cnpj: false
             });
           }, 1000);
           
@@ -98,8 +102,13 @@ const ContactForm: React.FC = () => {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+    
+    setFormData(prev => ({ 
+      ...prev, 
+      [name]: type === 'checkbox' ? checked : value 
+    }));
     
     // Clear error when user starts typing
     if (errors[name as keyof ContactFormData]) {
@@ -144,7 +153,8 @@ const ContactForm: React.FC = () => {
                 {[
                   { name: 'name', label: 'Nome Completo *', type: 'text', placeholder: 'Digite seu nome completo' },
                   { name: 'email', label: 'E-mail *', type: 'email', placeholder: 'seu.email@exemplo.com' },
-                  { name: 'phone', label: 'Telefone/WhatsApp *', type: 'tel', placeholder: '(11) 99999-9999' }
+                  { name: 'phone', label: 'Telefone/WhatsApp *', type: 'tel', placeholder: '(11) 99999-9999' },
+                  { name: 'idade', label: 'Idade', type: 'text', placeholder: 'Digite sua idade' }
                 ].map((field, index) => (
                   <motion.div
                     key={field.name}
@@ -160,7 +170,7 @@ const ContactForm: React.FC = () => {
                       type={field.type}
                       id={field.name}
                       name={field.name}
-                      value={formData[field.name as keyof ContactFormData]}
+                      value={formData[field.name as keyof Pick<ContactFormData, 'name' | 'email' | 'phone' | 'idade'>] as string}
                       onChange={handleInputChange}
                       className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
                         errors[field.name as keyof ContactFormData] ? 'border-red-500' : 'border-gray-300'
@@ -181,11 +191,33 @@ const ContactForm: React.FC = () => {
                   </motion.div>
                 ))}
 
+                {/* Checkbox para CNPJ */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.7 }}
+                  transition={{ duration: 0.5, delay: 0.8 }}
+                >
+                  <div className="flex items-center space-x-3">
+                    <input
+                      type="checkbox"
+                      id="tem_cnpj"
+                      name="tem_cnpj"
+                      checked={formData.tem_cnpj}
+                      onChange={handleInputChange}
+                      className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                    />
+                    <label htmlFor="tem_cnpj" className="text-sm font-medium text-gray-700">
+                      Tenho CNPJ (Pessoa Jurídica)
+                    </label>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.9 }}
                 >
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
                     Assunto *
@@ -222,7 +254,7 @@ const ContactForm: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.8 }}
+                  transition={{ duration: 0.5, delay: 1.0 }}
                 >
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                     Mensagem
@@ -258,7 +290,7 @@ const ContactForm: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.9 }}
+                  transition={{ duration: 0.5, delay: 1.1 }}
                   whileHover={!isSubmitting ? { scale: 1.02 } : {}}
                   whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                 >

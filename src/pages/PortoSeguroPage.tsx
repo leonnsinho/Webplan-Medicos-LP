@@ -13,6 +13,8 @@ const PortoSeguroPage: React.FC = () => {
     name: '',
     email: '',
     phone: '',
+    idade: '',
+    tem_cnpj: false,
     subject: 'porto_cnpj_enfermeiros',
     message: ''
   });
@@ -85,6 +87,8 @@ const PortoSeguroPage: React.FC = () => {
               name: '',
               email: '',
               phone: '',
+              idade: '',
+              tem_cnpj: false,
               subject: 'porto_cnpj_enfermeiros',
               message: ''
             });
@@ -105,8 +109,13 @@ const PortoSeguroPage: React.FC = () => {
   // Função de debug removida - agora usamos Supabase
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target;
+    const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined;
+    
+    setFormData(prev => ({ 
+      ...prev, 
+      [name]: type === 'checkbox' ? checked : value 
+    }));
     
     if (errors[name as keyof ContactFormData]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
@@ -587,6 +596,29 @@ const PortoSeguroPage: React.FC = () => {
                   </div>
 
                   <div>
+                    <label htmlFor="idade" className="block text-sm font-medium text-gray-700 mb-2">
+                      Idade *
+                    </label>
+                    <input
+                      type="text"
+                      id="idade"
+                      name="idade"
+                      value={formData.idade}
+                      onChange={handleInputChange}
+                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors ${
+                        errors.idade ? 'border-red-500' : 'border-gray-300'
+                      }`}
+                      placeholder="Sua idade"
+                    />
+                    {errors.idade && (
+                      <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                        <AlertCircle size={16} />
+                        {errors.idade}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
                     <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
                       Linha de Interesse
                     </label>
@@ -612,6 +644,20 @@ const PortoSeguroPage: React.FC = () => {
                       </p>
                     )}
                   </div>
+                </div>
+
+                <div className="flex items-center space-x-3">
+                  <input
+                    type="checkbox"
+                    id="tem_cnpj"
+                    name="tem_cnpj"
+                    checked={formData.tem_cnpj}
+                    onChange={handleInputChange}
+                    className="h-5 w-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
+                  />
+                  <label htmlFor="tem_cnpj" className="text-sm font-medium text-gray-700">
+                    Tenho CNPJ
+                  </label>
                 </div>
 
                 <div>

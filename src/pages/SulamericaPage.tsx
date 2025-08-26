@@ -16,6 +16,8 @@ const SulamericaPage: React.FC = () => {
     name: '',
     email: '',
     phone: '',
+    idade: '',
+    tem_cnpj: false,
     subject: 'sulamerica_adesao_enfermeiros',
     message: ''
   });
@@ -88,6 +90,8 @@ const SulamericaPage: React.FC = () => {
               name: '',
               email: '',
               phone: '',
+              idade: '',
+              tem_cnpj: false,
               subject: 'sulamerica_adesao_enfermeiros',
               message: ''
             });
@@ -108,9 +112,14 @@ const SulamericaPage: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     console.log('🟢 [SulAmérica] Input alterado:', e.target.name, '=', e.target.value);
-    const { name, value } = e.target;
+    const { name, value, type } = e.target;
+    const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined;
+    
     setFormData(prev => {
-      const newData = { ...prev, [name]: value };
+      const newData = { 
+        ...prev, 
+        [name]: type === 'checkbox' ? checked : value 
+      };
       console.log('🟢 [SulAmérica] FormData atualizado:', newData);
       return newData;
     });
@@ -403,8 +412,9 @@ const SulamericaPage: React.FC = () => {
                   {[
                     { name: 'name', label: 'Nome Completo *', type: 'text', placeholder: 'Digite seu nome completo' },
                     { name: 'email', label: 'E-mail *', type: 'email', placeholder: 'seu.email@exemplo.com' },
-                    { name: 'phone', label: 'Telefone/WhatsApp *', type: 'tel', placeholder: '(11) 99999-9999' }
-                  ].map((field, index) => (
+                    { name: 'phone', label: 'Telefone/WhatsApp *', type: 'tel', placeholder: '(11) 99999-9999' },
+                    { name: 'idade', label: 'Idade *', type: 'text', placeholder: 'Sua idade' }
+                  ].filter(field => field.name !== 'tem_cnpj').map((field, index) => (
                     <motion.div
                       key={field.name}
                       initial={{ opacity: 0, y: 20 }}
@@ -419,7 +429,7 @@ const SulamericaPage: React.FC = () => {
                         type={field.type}
                         id={field.name}
                         name={field.name}
-                        value={formData[field.name as keyof ContactFormData]}
+                        value={formData[field.name as keyof Pick<ContactFormData, 'name' | 'email' | 'phone' | 'idade'>]}
                         onChange={handleInputChange}
                         className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 ${
                           errors[field.name as keyof ContactFormData] ? 'border-red-500' : 'border-red-300'
@@ -439,6 +449,26 @@ const SulamericaPage: React.FC = () => {
                       )}
                     </motion.div>
                   ))}
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.6 }}
+                    className="flex items-center space-x-3"
+                  >
+                    <input
+                      type="checkbox"
+                      id="tem_cnpj"
+                      name="tem_cnpj"
+                      checked={formData.tem_cnpj}
+                      onChange={handleInputChange}
+                      className="h-5 w-5 text-red-600 focus:ring-red-500 border-gray-300 rounded"
+                    />
+                    <label htmlFor="tem_cnpj" className="text-sm font-medium text-red-700">
+                      Tenho CNPJ
+                    </label>
+                  </motion.div>
 
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}

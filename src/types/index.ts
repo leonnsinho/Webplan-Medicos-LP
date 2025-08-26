@@ -4,6 +4,8 @@ export interface FormData {
   phone: string;
   subject: string;
   message: string;
+  idade: string;
+  tem_cnpj: boolean;
 }
 
 export interface NavItem {
