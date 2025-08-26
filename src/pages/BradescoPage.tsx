@@ -68,6 +68,8 @@ const BradescoPage: React.FC = () => {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
+          idade: formData.idade,
+          tem_cnpj: formData.tem_cnpj,
           message: formData.message || `Interesse: ${formData.subject}`,
           operadora: 'Bradesco',
           subject: formData.subject,

@@ -69,6 +69,8 @@ const SaoCamiloPage: React.FC = () => {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
+        idade: formData.idade,
+        tem_cnpj: formData.tem_cnpj,
         operadora: 'São Camilo', // Nome da operadora
         subject: `São Camilo - ${formData.subject}`,
         message: formData.message || 'Cliente interessado em plano São Camilo para enfermeiros'

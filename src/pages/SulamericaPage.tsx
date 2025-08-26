@@ -69,6 +69,8 @@ const SulamericaPage: React.FC = () => {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
+        idade: formData.idade,
+        tem_cnpj: formData.tem_cnpj,
         operadora: 'SulAmérica', // Nome da operadora
         subject: `SulAmérica - ${formData.subject}`,
         message: formData.message || 'Cliente interessado em plano SulAmérica para enfermeiros'

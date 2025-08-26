@@ -68,6 +68,8 @@ const AlicePage: React.FC = () => {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
+          idade: formData.idade,
+          tem_cnpj: formData.tem_cnpj,
           message: formData.message || `Tipo de CNPJ: ${formData.subject}`,
           operadora: 'Alice',
           subject: formData.subject,

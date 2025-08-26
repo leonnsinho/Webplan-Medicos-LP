@@ -57,6 +57,8 @@ const MedSeniorPage: React.FC = () => {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
+          idade: formData.idade,
+          tem_cnpj: formData.tem_cnpj,
           message: formData.message || `Modalidade: ${formData.subject}`,
           operadora: 'MedSenior',
           subject: formData.subject,
