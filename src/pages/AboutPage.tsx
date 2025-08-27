@@ -9,7 +9,7 @@ const AboutPage: React.FC = () => {
         title="Sobre Nós - WebPlan | 10 Anos de Experiência"
         description="Conheça nossa empresa especializada em planos de saúde com 10 anos de experiência. Corretores capacitados, atendimento diferenciado e soluções inteligentes para sua saúde."
         keywords="sobre seguros saúde sp, empresa planos saúde, corretores saúde, experiência planos saúde, escritório seguros saúde"
-        canonicalUrl="https://www.segurosaudeseesp.com/sobre"
+        canonicalUrl="https://www.simuleplanodesaude.com/sobre"
       />
       
       <main className="relative">

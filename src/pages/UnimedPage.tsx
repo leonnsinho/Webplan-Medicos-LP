@@ -462,7 +462,7 @@ const UnimedPage: React.FC = () => {
                     <div className="text-green-100 mb-6">Para contratação empresarial</div>
                     <div className="grid grid-cols-1 gap-4 text-center">
                       <div className="bg-white/20 rounded-xl p-4">
-                        <div className="text-2xl font-bold">SEESP</div>
+                        <div className="text-2xl font-bold">APM</div>
                         <div className="text-sm text-green-200">Via Sindicato</div>
                       </div>
                       <div className="bg-white/20 rounded-xl p-4">
