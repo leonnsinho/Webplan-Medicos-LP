@@ -120,7 +120,7 @@ const Navbar: React.FC = () => {
         >
           
           {/* Gradient Border Effect */}
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600/20 via-transparent to-blue-600/20 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#00655D]/20 via-transparent to-[#00655D]/20 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
           
           <div className="flex justify-between items-center relative z-10">
             {/* Logo with Animation */}
@@ -136,13 +136,13 @@ const Navbar: React.FC = () => {
               >
                 <img src={logoImage} alt="Logotipo" className="h-8 sm:h-10" />
                 <motion.div 
-                  className="absolute -top-2 -right-2 w-2 h-2 bg-blue-500 rounded-full opacity-0 group-hover:opacity-100"
+                  className="absolute -top-2 -right-2 w-2 h-2 bg-[#00655D] rounded-full opacity-0 group-hover:opacity-100"
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ repeat: Infinity, duration: 2 }}
                 />
               </motion.div>
               <motion.span 
-                className="font-bold text-blue-800 text-sm sm:text-lg md:text-xl group-hover:text-blue-600 transition-all duration-300 truncate"
+                className="font-bold text-[#005A53] text-sm sm:text-lg md:text-xl group-hover:text-[#00655D] transition-all duration-300 truncate"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -165,7 +165,7 @@ const Navbar: React.FC = () => {
                         onMouseLeave={() => setOpenDropdown(null)}
                       >
                         <motion.button
-                          className={`relative group transition-all duration-500 text-blue-800 hover:text-blue-600 font-medium rounded-xl hover:bg-blue-50/50 flex items-center gap-1 ${
+                          className={`relative group transition-all duration-500 text-[#005A53] hover:text-[#00655D] font-medium rounded-xl hover:bg-teal-50/50 flex items-center gap-1 ${
                             isScrolled ? 'px-3 py-1.5' : 'px-4 py-2'
                           }`}
                           initial={{ opacity: 0, y: -20 }}
@@ -183,10 +183,10 @@ const Navbar: React.FC = () => {
                           />
                           
                           {/* Hover Background Effect */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-blue-50 rounded-xl scale-0 group-hover:scale-100 transition-transform duration-300 origin-center" />
+                          <div className="absolute inset-0 bg-gradient-to-r from-teal-100 to-teal-50 rounded-xl scale-0 group-hover:scale-100 transition-transform duration-300 origin-center" />
                           
                           {/* Active Indicator */}
-                          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 group-hover:w-3/4 transition-all duration-300" />
+                          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-[#00655D] group-hover:w-3/4 transition-all duration-300" />
                         </motion.button>
 
                         {/* Dropdown Menu */}
@@ -201,7 +201,7 @@ const Navbar: React.FC = () => {
                                   navigate(dropdownItem.href);
                                   setOpenDropdown(null);
                                 }}
-                                className="w-full text-left px-4 py-3 text-blue-800 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 flex items-center gap-3"
+                                className="w-full text-left px-4 py-3 text-[#005A53] hover:text-[#00655D] hover:bg-teal-50 transition-all duration-200 flex items-center gap-3"
                                 initial={{ opacity: 0, x: -10 }}
                                 animate={{ 
                                   opacity: openDropdown === item.label ? 1 : 0,
@@ -209,7 +209,7 @@ const Navbar: React.FC = () => {
                                 }}
                                 transition={{ duration: 0.2, delay: dropdownIndex * 0.05 }}
                               >
-                                <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                                <div className="w-2 h-2 bg-[#00655D] rounded-full"></div>
                                 {dropdownItem.label}
                               </motion.button>
                             ))}
@@ -219,7 +219,7 @@ const Navbar: React.FC = () => {
                     ) : (
                       <motion.button
                         onClick={() => handleNavigation(item.href)}
-                        className={`relative group transition-all duration-500 text-blue-800 hover:text-blue-600 font-medium rounded-xl hover:bg-blue-50/50 ${
+                        className={`relative group transition-all duration-500 text-[#005A53] hover:text-[#00655D] font-medium rounded-xl hover:bg-teal-50/50 ${
                           isScrolled ? 'px-3 py-1.5' : 'px-4 py-2'
                         }`}
                         initial={{ opacity: 0, y: -20 }}
@@ -231,10 +231,10 @@ const Navbar: React.FC = () => {
                         <span className="relative z-10">{item.label}</span>
                         
                         {/* Hover Background Effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-blue-50 rounded-xl scale-0 group-hover:scale-100 transition-transform duration-300 origin-center" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-teal-100 to-teal-50 rounded-xl scale-0 group-hover:scale-100 transition-transform duration-300 origin-center" />
                         
                         {/* Active Indicator */}
-                        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 group-hover:w-3/4 transition-all duration-300" />
+                        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-[#00655D] group-hover:w-3/4 transition-all duration-300" />
                       </motion.button>
                     )}
                   </div>
@@ -243,7 +243,7 @@ const Navbar: React.FC = () => {
                 {/* Phone Number */}
                 <motion.a
                   href="tel:+551141165378"
-                  className={`ml-3 flex items-center gap-2 text-blue-800 hover:text-blue-600 font-medium transition-all duration-500 rounded-xl hover:bg-blue-50/50 ${
+                  className={`ml-3 flex items-center gap-2 text-[#005A53] hover:text-[#00655D] font-medium transition-all duration-500 rounded-xl hover:bg-teal-50/50 ${
                     isScrolled ? 'px-3 py-2' : 'px-4 py-2.5'
                   }`}
                   initial={{ opacity: 0, x: 10 }}
@@ -253,7 +253,7 @@ const Navbar: React.FC = () => {
                   whileTap={{ scale: 0.95 }}
                   title="(11) 4116-5378"
                 >
-                  <Phone size={18} className="text-blue-600" />
+                  <Phone size={18} className="text-[#00655D]" />
                   <motion.span 
                     className="hidden lg:inline whitespace-nowrap overflow-hidden"
                     animate={{ 
@@ -270,7 +270,7 @@ const Navbar: React.FC = () => {
                 {/* CTA Button */}
                 <motion.button
                   onClick={() => handleNavigation('#contato')}
-                  className={`ml-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-semibold transition-all duration-500 transform hover:scale-105 hover:shadow-lg shadow-blue-200/50 ${
+                  className={`ml-4 bg-gradient-to-r from-[#00655D] to-[#005A53] hover:from-[#005A53] hover:to-[#004B44] text-white rounded-xl font-semibold transition-all duration-500 transform hover:scale-105 hover:shadow-lg shadow-teal-200/50 ${
                     isScrolled ? 'px-4 py-2 text-sm' : 'px-6 py-2.5 text-base'
                   }`}
                   initial={{ opacity: 0, x: 20 }}
@@ -291,9 +291,9 @@ const Navbar: React.FC = () => {
             <div className="md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="relative group p-2 text-blue-800 hover:text-blue-600 transition-colors duration-200"
+                className="relative group p-2 text-[#005A53] hover:text-[#00655D] transition-colors duration-200"
               >
-                <div className="absolute inset-0 bg-blue-100 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-200" />
+                <div className="absolute inset-0 bg-teal-100 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-200" />
                 <div className="relative z-10">
                   {isOpen ? <X size={24} /> : <Menu size={24} />}
                 </div>
@@ -306,14 +306,14 @@ const Navbar: React.FC = () => {
             isOpen ? 'max-h-screen opacity-100 mt-4' : 'max-h-0 opacity-0 overflow-hidden'
           }`}>
             <div className="border-t border-gray-200/50 pt-4 pb-2 bg-white/95 backdrop-blur-sm rounded-b-xl">
-              <div className="space-y-1 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-transparent">
+              <div className="space-y-1 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-teal-200 scrollbar-track-transparent">
                 {navItems.map((item, index) => (
                   <div key={item.label}>
                     {item.hasDropdown ? (
                       <div>
                         <button
                           onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
-                          className="flex w-full items-center justify-between px-4 py-3 text-blue-800 hover:text-blue-600 hover:bg-blue-50/50 rounded-xl font-medium transition-all duration-200"
+                          className="flex w-full items-center justify-between px-4 py-3 text-[#005A53] hover:text-[#00655D] hover:bg-teal-50/50 rounded-xl font-medium transition-all duration-200"
                           style={{ 
                             animationDelay: `${index * 50}ms`,
                             animation: isOpen ? 'slideInFromLeft 0.3s ease-out' : 'none'
@@ -332,7 +332,7 @@ const Navbar: React.FC = () => {
                         <div className={`overflow-hidden transition-all duration-300 ${
                           openDropdown === item.label ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                         }`}>
-                          <div className="pl-4 space-y-1 max-h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 rounded">
+                          <div className="pl-4 space-y-1 max-h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-teal-300 scrollbar-track-teal-50 rounded">
                             {item.dropdownItems?.map((dropdownItem, dropdownIndex) => (
                               <motion.button
                                 key={dropdownItem.label}
@@ -341,7 +341,7 @@ const Navbar: React.FC = () => {
                                   setIsOpen(false);
                                   setOpenDropdown(null);
                                 }}
-                                className="flex w-full items-center gap-3 px-4 py-2.5 text-blue-700 hover:text-blue-600 hover:bg-blue-50/70 rounded-lg font-medium transition-all duration-200 text-sm"
+                                className="flex w-full items-center gap-3 px-4 py-2.5 text-[#00655D] hover:text-[#005A53] hover:bg-teal-50/70 rounded-lg font-medium transition-all duration-200 text-sm"
                                 initial={{ opacity: 0, x: -10 }}
                                 animate={{ 
                                   opacity: openDropdown === item.label ? 1 : 0,
@@ -349,13 +349,13 @@ const Navbar: React.FC = () => {
                                 }}
                                 transition={{ duration: 0.2, delay: dropdownIndex * 0.03 }}
                               >
-                                <div className="w-1.5 h-1.5 bg-blue-400 rounded-full flex-shrink-0"></div>
+                                <div className="w-1.5 h-1.5 bg-[#00655D] rounded-full flex-shrink-0"></div>
                                 <span className="truncate">{dropdownItem.label}</span>
                               </motion.button>
                             ))}
                             {/* Indicador de scroll se necessário */}
                             {item.dropdownItems && item.dropdownItems.length > 6 && (
-                              <div className="text-center py-1 text-xs text-blue-400 italic">
+                              <div className="text-center py-1 text-xs text-[#00655D] italic">
                                 ↓ Role para ver mais ↓
                               </div>
                             )}
@@ -365,7 +365,7 @@ const Navbar: React.FC = () => {
                     ) : (
                       <button
                         onClick={() => handleNavigation(item.href)}
-                        className="block w-full text-left px-4 py-3 text-blue-800 hover:text-blue-600 hover:bg-blue-50/50 rounded-xl font-medium transition-all duration-200"
+                        className="block w-full text-left px-4 py-3 text-[#005A53] hover:text-[#00655D] hover:bg-teal-50/50 rounded-xl font-medium transition-all duration-200"
                         style={{ 
                           animationDelay: `${index * 50}ms`,
                           animation: isOpen ? 'slideInFromLeft 0.3s ease-out' : 'none'
@@ -380,19 +380,19 @@ const Navbar: React.FC = () => {
                 {/* Phone Number Mobile */}
                 <a
                   href="tel:+551141165378"
-                  className="flex items-center gap-3 px-4 py-3 text-blue-800 hover:text-blue-600 hover:bg-blue-50/50 rounded-xl font-medium transition-all duration-200"
+                  className="flex items-center gap-3 px-4 py-3 text-[#005A53] hover:text-[#00655D] hover:bg-teal-50/50 rounded-xl font-medium transition-all duration-200"
                   style={{ 
                     animationDelay: `${navItems.length * 50}ms`,
                     animation: isOpen ? 'slideInFromLeft 0.3s ease-out' : 'none'
                   }}
                 >
-                  <Phone size={20} className="text-blue-600" />
+                  <Phone size={20} className="text-[#00655D]" />
                   <span>(11) 4116-5378</span>
                 </a>
                 
                 <button
                   onClick={() => handleNavigation('#contato')}
-                  className="w-full mt-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-3 rounded-xl font-semibold transition-all duration-200 hover:shadow-lg"
+                  className="w-full mt-3 bg-gradient-to-r from-[#00655D] to-[#005A53] text-white px-4 py-3 rounded-xl font-semibold transition-all duration-200 hover:shadow-lg"
                 >
                   Cotação Grátis
                 </button>

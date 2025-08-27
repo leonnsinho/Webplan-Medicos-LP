@@ -141,7 +141,7 @@ const ContactForm: React.FC = () => {
           <AnimatedSection direction="left" delay={0.2}>
             <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
               <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <Mail className="text-blue-600" size={24} />
+                <Mail className="text-[#00655D]" size={24} />
                 Formulário de Cotação
               </h3>
               
@@ -172,7 +172,7 @@ const ContactForm: React.FC = () => {
                       name={field.name}
                       value={formData[field.name as keyof Pick<ContactFormData, 'name' | 'email' | 'phone' | 'idade'>] as string}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#00655D] focus:border-transparent transition-all duration-200 ${
                         errors[field.name as keyof ContactFormData] ? 'border-red-500' : 'border-gray-300'
                       }`}
                       placeholder={field.placeholder}
@@ -205,7 +205,7 @@ const ContactForm: React.FC = () => {
                       name="tem_cnpj"
                       checked={formData.tem_cnpj}
                       onChange={handleInputChange}
-                      className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                      className="w-5 h-5 text-[#00655D] border-gray-300 rounded focus:ring-[#00655D] focus:ring-2"
                     />
                     <label htmlFor="tem_cnpj" className="text-sm font-medium text-gray-700">
                       Tenho CNPJ (Pessoa Jurídica)
@@ -227,7 +227,7 @@ const ContactForm: React.FC = () => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#00655D] focus:border-transparent transition-all duration-200 ${
                       errors.subject ? 'border-red-500' : 'border-gray-300'
                     }`}
                   >
@@ -265,7 +265,7 @@ const ContactForm: React.FC = () => {
                     rows={5}
                     value={formData.message}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#00655D] focus:border-transparent transition-all duration-200 resize-none ${
                       errors.message ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="Conte-nos mais sobre suas necessidades..."
@@ -286,7 +286,7 @@ const ContactForm: React.FC = () => {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-blue-700 hover:bg-blue-800 disabled:bg-blue-400 disabled:cursor-not-allowed text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                  className="w-full bg-[#00655D] hover:bg-[#005A53] disabled:bg-gray-400 disabled:cursor-not-allowed text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}

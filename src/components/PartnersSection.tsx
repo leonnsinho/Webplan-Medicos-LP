@@ -68,11 +68,11 @@ const PartnersSection: React.FC = () => {
   const duplicatedPartners = [...partners, ...partners];
 
   return (
-    <section id="planos" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50" itemScope itemType="https://schema.org/Organization">
+    <section id="planos" className="py-20 bg-gradient-to-br from-gray-50 to-teal-50" itemScope itemType="https://schema.org/Organization">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection direction="up" className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Nossos <span className="text-blue-600">Parceiros</span> de Confiança
+            Nossos <span className="text-[#00655D]">Parceiros</span> de Confiança
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto" itemProp="description">
             Trabalhamos com as principais operadoras do mercado para oferecer as melhores opções para você
@@ -90,7 +90,7 @@ const PartnersSection: React.FC = () => {
               {duplicatedPartners.map((partner, index) => (
                 <motion.div
                   key={`${partner.name}-${index}`}
-                  className={`flex-none w-48 bg-white hover:bg-blue-50 rounded-2xl p-6 text-center transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-gray-100 group ${
+                  className={`flex-none w-48 bg-white hover:bg-teal-50 rounded-2xl p-6 text-center transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-gray-100 group ${
                     partner.hasPage ? 'cursor-pointer' : ''
                   }`}
                   initial={{ opacity: 0, y: 20 }}
@@ -119,20 +119,20 @@ const PartnersSection: React.FC = () => {
                       />
                     ) : (
                       <motion.div 
-                        className="w-full h-full bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center border-2 border-blue-300 group-hover:from-blue-200 group-hover:to-blue-300 transition-colors duration-300"
+                        className="w-full h-full bg-gradient-to-br from-teal-50 to-teal-100 rounded-xl flex items-center justify-center border-2 border-[#00655D]/20 group-hover:from-teal-100 group-hover:to-teal-200 transition-colors duration-300"
                         whileHover={{ scale: 1.1 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <div className="text-blue-700 font-bold text-xl text-center px-2">
+                        <div className="text-[#005A53] font-bold text-xl text-center px-2">
                           {partner.name.split(' ').map(word => word[0]).join('').toUpperCase()}
                         </div>
                       </motion.div>
                     )}
                   </div>
-                  <h3 className="font-semibold text-gray-800 text-sm leading-tight group-hover:text-blue-600 transition-colors duration-300">
+                  <h3 className="font-semibold text-gray-800 text-sm leading-tight group-hover:text-[#00655D] transition-colors duration-300">
                     {partner.name}
                     {partner.hasPage && (
-                      <span className="block text-xs text-blue-500 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="block text-xs text-[#00655D] mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         Clique para saber mais
                       </span>
                     )}
@@ -143,15 +143,15 @@ const PartnersSection: React.FC = () => {
             
             {/* Gradient overlays for smooth edges */}
             <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-gray-50 to-transparent pointer-events-none z-10"></div>
-            <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-blue-50 to-transparent pointer-events-none z-10"></div>
+            <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-teal-50 to-transparent pointer-events-none z-10"></div>
           </div>
         </AnimatedSection>
 
         <AnimatedSection direction="up" delay={0.6}>
           <div className="text-center mt-16">
-            <div className="bg-blue-50 rounded-2xl p-8 max-w-4xl mx-auto">
+            <div className="bg-teal-50 rounded-2xl p-8 max-w-4xl mx-auto">
               <motion.h3 
-                className="text-2xl font-bold text-blue-900 mb-4"
+                className="text-2xl font-bold text-[#005A53] mb-4"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -174,8 +174,8 @@ const PartnersSection: React.FC = () => {
                     transition={{ duration: 0.4, delay: 1.0 + (index * 0.1) }}
                     whileHover={{ scale: 1.05 }}
                   >
-                    <h4 className="font-semibold text-blue-800">{feature.title}</h4>
-                    <p className="text-blue-700">{feature.desc}</p>
+                    <h4 className="font-semibold text-[#005A53]">{feature.title}</h4>
+                    <p className="text-[#00655D]">{feature.desc}</p>
                   </motion.div>
                 ))}
               </div>
