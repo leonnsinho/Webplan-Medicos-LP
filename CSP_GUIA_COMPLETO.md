@@ -91,7 +91,7 @@ Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; 
 
 **Depois:**
 ```
-Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://formsubmit.co https://wa.me https://xtixrumedzekulqmxtzz.supabase.co; font-src 'self'
+Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://formsubmit.co https://wa.me https://xtixrumedzekulqmxtzz.supabase.co https://enkijdqewoikjczpfgch.supabase.co; font-src 'self'
 ```
 
 ## Teste após atualização

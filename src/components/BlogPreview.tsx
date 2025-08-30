@@ -62,7 +62,7 @@ export const BlogPreview: React.FC = () => {
               </h2>
             </div>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Fique por dentro das últimas novidades sobre planos de saúde para enfermeiros
+              Fique por dentro das últimas novidades sobre planos de saúde para médicos
             </p>
           </div>
         </AnimatedSection>

@@ -1,7 +1,7 @@
 // Script para ativar o site no banco de dados
 // Execute este arquivo diretamente no console do navegador ou como um script
 
-const SITE_ID = 'b915503b-c71b-42bc-813f-f225cb6818c6';
+const SITE_ID = '52857c4f-10ba-4fc3-8730-5054a1e676d1';
 const SUPABASE_URL = 'https://enkijdqewoikjczpfgch.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVua2lqZHFld29pa2pjenBmZ2NoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzUxMzQ2NDUsImV4cCI6MjA1MDcxMDY0NX0.YrjKV8x6oJtPP_ULg9FmzOhRgIIDYgY_l8_09-8QDR8';
 

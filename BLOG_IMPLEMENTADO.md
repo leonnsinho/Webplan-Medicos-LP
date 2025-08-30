@@ -1,8 +1,8 @@
-# 🎉 Blog Webplan Enfermeiros - Implementação Concluída
+# 🎉 Blog Webplan Médicos - Implementação Concluída
 
 ## ✅ Status: IMPLEMENTADO COM SUCESSO
 
-O sistema de blog foi implementado com sucesso no site Webplan Enfermeiros seguindo a documentação fornecida. Todas as funcionalidades estão operacionais e prontas para uso com **banco de dados dedicado** para o blog.
+O sistema de blog foi implementado com sucesso no site Webplan Médicos seguindo a documentação fornecida. Todas as funcionalidades estão operacionais e prontas para uso com **banco de dados dedicado** para o blog.
 
 ## 🔗 Configuração de Banco de Dados
 
@@ -58,8 +58,8 @@ VITE_BLOG_SUPABASE_URL=https://enkijdqewoikjczpfgch.supabase.co
 VITE_BLOG_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3M...
 
 # Blog Configuration
-VITE_SITE_ID=b915503b-c71b-42bc-813f-f225cb6818c6
-VITE_SITE_NAME="Webplan Enfermeiros"
+VITE_SITE_ID=52857c4f-10ba-4fc3-8730-5054a1e676d1
+VITE_SITE_NAME="Webplan Médicos"
 VITE_SITE_THEME_COLOR="#dc2626"
 ```
 
@@ -143,7 +143,7 @@ O sistema utiliza **dois bancos Supabase separados**:
 - **Finalidade**: Sistema de blog multi-site
 - **Tabelas**: `blog_posts`, `blog_authors`, `blog_categories`, `blog_tags`, `blog_post_categories`, `blog_post_tags`, `blog_analytics`
 - **Arquivo de configuração**: `src/lib/blogSupabase.ts`
-- **Site ID**: `b915503b-c71b-42bc-813f-f225cb6818c6`
+- **Site ID**: `52857c4f-10ba-4fc3-8730-5054a1e676d1`
 
 ## 🚦 Como Testar
 

@@ -4,7 +4,7 @@ const FloatingButtons: React.FC = () => {
   const handleWhatsAppClick = () => {
     // Número de WhatsApp da empresa
     const phoneNumber = '5511959305175';
-    const message = 'Olá! Gostaria de saber mais sobre os planos de saúde para enfermeiros.';
+    const message = 'Olá! Gostaria de saber mais sobre os planos de saúde para médicos.';
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };

@@ -95,8 +95,8 @@ export class BlogService {
       const posts: BlogPostWithDetails[] = (data || []).map((post: any) => ({
         ...post,
         author: { 
-          name: 'Webplan Enfermeiros', 
-          bio: 'Especialistas em planos de saúde para enfermeiros', 
+          name: 'Webplan Médicos', 
+          bio: 'Especialistas em planos de saúde para médicos', 
           avatar_url: '/Logotipo.svg' 
         },
         categories: [], // Simplificado por enquanto
@@ -168,8 +168,8 @@ export class BlogService {
       const post: BlogPostWithDetails = {
         ...data,
         author: { 
-          name: 'Webplan Enfermeiros', 
-          bio: 'Especialistas em planos de saúde para enfermeiros', 
+          name: 'Webplan Médicos', 
+          bio: 'Especialistas em planos de saúde para médicos', 
           avatar_url: '/Logotipo.svg' 
         },
         categories: [], // Simplificado por enquanto
