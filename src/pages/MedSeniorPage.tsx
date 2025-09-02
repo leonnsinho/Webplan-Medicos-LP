@@ -580,7 +580,7 @@ const MedSeniorPage: React.FC = () => {
 
                   <div>
                     <label htmlFor="idade" className="block text-sm font-medium text-gray-700 mb-2">
-                      Idade *
+                      Idades *
                     </label>
                     <input
                       type="text"
@@ -591,7 +591,7 @@ const MedSeniorPage: React.FC = () => {
                       className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors ${
                         errors.idade ? 'border-red-500' : 'border-gray-300'
                       }`}
-                      placeholder="Sua idade"
+                      placeholder="Ex: 16, 17, 54"
                     />
                     {errors.idade && (
                       <p className="mt-1 text-sm text-red-600 flex items-center gap-1">

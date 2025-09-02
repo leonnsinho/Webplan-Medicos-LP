@@ -435,7 +435,7 @@ const SaoCamiloPage: React.FC = () => {
 
                   <div>
                     <label htmlFor="idade" className="block text-sm font-medium text-red-800 mb-2">
-                      Idade
+                      Idades
                     </label>
                     <input
                       type="text"
@@ -444,7 +444,7 @@ const SaoCamiloPage: React.FC = () => {
                       value={formData.idade}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-red-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
-                      placeholder="Digite sua idade"
+                      placeholder="Ex: 16, 17, 54"
                     />
                   </div>
                 </div>

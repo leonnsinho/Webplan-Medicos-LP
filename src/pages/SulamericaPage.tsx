@@ -415,7 +415,7 @@ const SulamericaPage: React.FC = () => {
                     { name: 'name', label: 'Nome Completo *', type: 'text', placeholder: 'Digite seu nome completo' },
                     { name: 'email', label: 'E-mail *', type: 'email', placeholder: 'seu.email@exemplo.com' },
                     { name: 'phone', label: 'Telefone/WhatsApp *', type: 'tel', placeholder: '(11) 99999-9999' },
-                    { name: 'idade', label: 'Idade *', type: 'text', placeholder: 'Sua idade' }
+                    { name: 'idade', label: 'Idades *', type: 'text', placeholder: 'Ex: 16, 17, 54' }
                   ].filter(field => field.name !== 'tem_cnpj').map((field, index) => (
                     <motion.div
                       key={field.name}
