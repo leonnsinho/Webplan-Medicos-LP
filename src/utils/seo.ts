@@ -94,6 +94,33 @@ export const generateBlogListSEO = (title?: string, description?: string): void 
 };
 
 /**
+ * Atualiza meta tags para páginas gerais
+ */
+export const updatePageMeta = (
+  title: string,
+  description: string,
+  ogTitle?: string,
+  ogDescription?: string
+): void => {
+  // Título da página
+  document.title = title;
+  
+  // Meta description
+  updateMetaTag('description', description);
+  
+  // Open Graph
+  updateMetaTag('og:title', ogTitle || title, 'property');
+  updateMetaTag('og:description', ogDescription || description, 'property');
+  updateMetaTag('og:type', 'website', 'property');
+  updateMetaTag('og:url', window.location.href, 'property');
+  
+  // Twitter Cards
+  updateMetaTag('twitter:card', 'summary', 'name');
+  updateMetaTag('twitter:title', ogTitle || title, 'name');
+  updateMetaTag('twitter:description', ogDescription || description, 'name');
+};
+
+/**
  * Atualiza ou cria meta tag
  */
 const updateMetaTag = (name: string, content: string | undefined, attribute = 'name'): void => {

@@ -15,6 +15,7 @@ import BradescoPage from './pages/BradescoPage';
 import UnimedPage from './pages/UnimedPage';
 import MedSeniorPage from './pages/MedSeniorPage';
 import SupabaseTestPage from './pages/SupabaseTestPage';
+import PoliticasPrivacidade from './pages/PoliticasPrivacidade';
 import { BlogIndexPage } from './pages/BlogIndexPage';
 import { BlogPostPage } from './pages/BlogPostPage';
 import { BlogCategoryPage } from './pages/BlogCategoryPage';
@@ -138,6 +139,16 @@ function AnimatedRoutes() {
             transition={pageTransitions.transition}
           >
             <SuccessPage />
+          </motion.div>
+        } />
+        <Route path="/politicas-privacidade" element={
+          <motion.div
+            initial={pageTransitions.initial}
+            animate={pageTransitions.animate}
+            exit={pageTransitions.exit}
+            transition={pageTransitions.transition}
+          >
+            <PoliticasPrivacidade />
           </motion.div>
         } />
         <Route path="/blog" element={
