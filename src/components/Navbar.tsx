@@ -141,14 +141,14 @@ const Navbar: React.FC = () => {
                   transition={{ repeat: Infinity, duration: 2 }}
                 />
               </motion.div>
-              <motion.span 
-                className="font-bold text-[#005A53] text-sm sm:text-lg md:text-xl group-hover:text-[#00655D] transition-all duration-300 truncate"
+              <motion.div 
+                className="relative flex-shrink-0"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <span className="font-bold">Web</span><span className="font-light">Plan</span>
-              </motion.span>
+                <img src="/medicina-nav.png" alt="Medicina" className="h-8 sm:h-10" />
+              </motion.div>
             </motion.div>
 
             {/* Desktop Navigation */}
