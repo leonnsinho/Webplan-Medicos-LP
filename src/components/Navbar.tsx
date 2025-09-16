@@ -138,14 +138,6 @@ const Navbar: React.FC = () => {
                   transition={{ repeat: Infinity, duration: 2 }}
                 />
               </motion.div>
-              <motion.div 
-                className="relative flex-shrink-0"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <img src="/medicina-nav.png" alt="Medicina" className="h-8 sm:h-10" />
-              </motion.div>
             </motion.div>
 
             {/* Desktop Navigation */}
