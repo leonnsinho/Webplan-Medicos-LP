@@ -102,12 +102,9 @@ const SupabaseTestPage: React.FC = () => {
                 >
                   <option value="SulAmérica">SulAmérica</option>
                   <option value="Porto Seguro">Porto Seguro</option>
-                  <option value="Bradesco">Bradesco</option>
                   <option value="Amil">Amil</option>
                   <option value="Alice">Alice</option>
-                  <option value="Unimed">Unimed</option>
                   <option value="MedSenior">MedSenior</option>
-                  <option value="São Camilo">São Camilo</option>
                   <option value="NotreDame">NotreDame</option>
                   <option value="OneHealth">OneHealth</option>
                   <option value="Prevent Senior">Prevent Senior</option>

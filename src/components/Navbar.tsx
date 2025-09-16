@@ -15,11 +15,8 @@ const navItems: NavItem[] = [
     dropdownItems: [
       { label: 'Amil', href: '/amil' },
       { label: 'SulAmérica', href: '/sulamerica' },
-      { label: 'São Camilo', href: '/sao-camilo' },
       { label: 'Alice', href: '/alice' },
       { label: 'Porto Seguro', href: '/porto-seguro' },
-      { label: 'Bradesco Saúde', href: '/bradesco' },
-      { label: 'Seguros Unimed', href: '/unimed' },
       { label: 'MedSênior', href: '/medsenior' }
     ]
   },

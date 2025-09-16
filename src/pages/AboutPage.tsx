@@ -293,7 +293,7 @@ const AboutPage: React.FC = () => {
                     <CheckCircle className="text-purple-600 mt-1 flex-shrink-0" size={24} />
                     <div>
                       <strong className="text-gray-900 text-lg">Planos Coletivos por Adesão</strong>
-                      <p className="text-gray-700 mt-2">Acesso a planos com valores reduzidos e ampla cobertura, disponíveis para profissionais vinculados a conselhos, sindicatos ou associações.</p>
+                      <p className="text-gray-700 mt-2">Acesso a planos com valores reduzidos e ampla cobertura, disponíveis para profissionais da área médica e suas associações.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4">

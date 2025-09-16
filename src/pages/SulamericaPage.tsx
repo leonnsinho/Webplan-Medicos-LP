@@ -19,7 +19,8 @@ const SulamericaPage: React.FC = () => {
     idade: '',
     tem_cnpj: false,
     subject: 'sulamerica_adesao_medicos',
-    message: ''
+    message: '',
+    email_consent: false
   });
 
   const [errors, setErrors] = useState<Partial<ContactFormData>>({});
@@ -37,7 +38,7 @@ const SulamericaPage: React.FC = () => {
     { value: 'sulamerica_empresarial', label: 'SulAmérica Empresarial' },
     { value: 'sulamerica_coletivo', label: 'SulAmérica Coletivo' },
     { value: 'sulamerica_categorias', label: 'Informações sobre Categorias' },
-    { value: 'sulamerica_informacoes', label: 'Informações Gerais - Sindicato Médicos' }
+    { value: 'sulamerica_informacoes', label: 'Informações Gerais - Médicos' }
   ];
 
   const validateForm = (): boolean => {
@@ -73,7 +74,8 @@ const SulamericaPage: React.FC = () => {
         tem_cnpj: formData.tem_cnpj,
         operadora: 'SulAmérica', // Nome da operadora
         subject: `SulAmérica - ${formData.subject}`,
-        message: formData.message || 'Cliente interessado em plano SulAmérica para médicos'
+        message: formData.message || 'Cliente interessado em plano SulAmérica para médicos',
+        email_consent: formData.email_consent
       };
 
       try {
@@ -95,7 +97,8 @@ const SulamericaPage: React.FC = () => {
               idade: '',
               tem_cnpj: false,
               subject: 'sulamerica_adesao_medicos',
-              message: ''
+              message: '',
+              email_consent: false
             });
           }, 1000);
           
@@ -134,7 +137,7 @@ const SulamericaPage: React.FC = () => {
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
-      'Olá! Sou da área médica e gostaria de saber mais sobre os planos SulAmérica com benefícios exclusivos para médicos com CRM ativo.'
+      'Olá! Sou da área médica e gostaria de saber mais sobre os planos SulAmérica com benefícios exclusivos para médicos.'
     );
     const whatsappUrl = `https://wa.me/5511959305175?text=${message}`;
     window.open(whatsappUrl, '_blank');
@@ -167,7 +170,7 @@ const SulamericaPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  Planos Especiais para Médicos com CRM
+                  Planos Especiais para Médicos
                 </motion.h2>
                 
                 <motion.p 
@@ -177,7 +180,7 @@ const SulamericaPage: React.FC = () => {
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
                   Mais de 128 anos de tradição oferecendo benefícios exclusivos para profissionais da medicina 
-                  associados ao sindicato médico com abrangência nacional desde a categoria de entrada.
+                  profissionais da área médica com abrangência nacional desde a categoria de entrada.
                 </motion.p>
 
                 <motion.div 
@@ -246,7 +249,7 @@ const SulamericaPage: React.FC = () => {
               Vantagens Exclusivas para Médicos
             </h2>
             <p className="text-lg text-red-600 max-w-3xl mx-auto">
-              Benefícios especiais para profissionais associados ao Sindicato dos Médicos
+              Benefícios especiais para profissionais da área médica
             </p>
           </AnimatedSection>
 
@@ -394,7 +397,7 @@ const SulamericaPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection direction="up" className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-red-800 mb-4">
-              Solicite seu Plano SulAmérica - Sindicato Médico
+              Solicite seu Plano SulAmérica - Médicos
             </h2>
             <p className="text-lg sm:text-xl text-red-600 max-w-3xl mx-auto">
               Preencha o formulário e receba uma proposta personalizada com benefícios exclusivos para médicos
@@ -407,7 +410,7 @@ const SulamericaPage: React.FC = () => {
               <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl shadow-xl p-6 sm:p-8 border-2 border-red-200">
                 <h3 className="text-xl sm:text-2xl font-bold text-red-800 mb-6 flex items-center gap-3">
                   <Mail className="text-red-600" size={24} />
-                  Formulário SulAmérica - APM
+                  Formulário SulAmérica - Médicos
                 </h3>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -472,6 +475,30 @@ const SulamericaPage: React.FC = () => {
                     </label>
                   </motion.div>
 
+                  {/* Checkbox para Consentimento de Email */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.65 }}
+                    className="flex items-start space-x-3"
+                  >
+                    <input
+                      type="checkbox"
+                      id="email_consent"
+                      name="email_consent"
+                      checked={formData.email_consent}
+                      onChange={handleInputChange}
+                      className="h-5 w-5 text-red-600 focus:ring-red-500 border-gray-300 rounded mt-0.5"
+                    />
+                    <label htmlFor="email_consent" className="text-sm text-red-700 leading-relaxed">
+                      Aceito receber informações sobre planos de saúde, novidades e ofertas especiais por email. 
+                      <span className="text-red-600 block mt-1">
+                        Você pode cancelar a qualquer momento.
+                      </span>
+                    </label>
+                  </motion.div>
+
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -479,7 +506,7 @@ const SulamericaPage: React.FC = () => {
                     transition={{ duration: 0.5, delay: 0.7 }}
                   >
                     <label htmlFor="subject" className="block text-sm font-medium text-red-700 mb-2">
-                      Tipo de Plano * <span className="text-red-600 font-normal">(Benefícios exclusivos APM)</span>
+                      Tipo de Plano * <span className="text-red-600 font-normal">(Benefícios exclusivos para médicos)</span>
                     </label>
                     <select
                       id="subject"
@@ -541,7 +568,7 @@ const SulamericaPage: React.FC = () => {
                     whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                   >
                     <Send size={20} />
-                    {isSubmitting ? 'Enviando...' : 'Solicitar Plano SulAmérica - APM'}
+                    {isSubmitting ? 'Enviando...' : 'Solicitar Plano SulAmérica - Médicos'}
                   </motion.button>
                 </form>
               </div>
@@ -578,13 +605,13 @@ const SulamericaPage: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.8 }}
                   >
-                    Tire suas dúvidas sobre os planos SulAmérica para médicos com benefícios exclusivos do sindicato médico diretamente com nossos consultores especializados.
+                    Tire suas dúvidas sobre os planos SulAmérica para médicos com benefícios exclusivos diretamente com nossos consultores especializados.
                   </motion.p>
                   
                   <div className="space-y-4 mb-8">
                     {[
                       { icon: Phone, text: "Consultoria especializada SulAmérica", color: "red" },
-                      { icon: CheckCircle, text: "Informações sobre APM", color: "orange" },
+                      { icon: CheckCircle, text: "Informações especializadas", color: "orange" },
                       { icon: CheckCircle, text: "Especialistas em categorias", color: "red" }
                     ].map((feature, index) => (
                       <motion.div 
@@ -612,7 +639,7 @@ const SulamericaPage: React.FC = () => {
                     whileTap={{ scale: 0.95 }}
                   >
                     <MessageCircle size={24} />
-                    Consultor SulAmérica APM
+                    Consultor SulAmérica - Médicos
                   </motion.button>
                 </div>
               </div>

@@ -6,6 +6,7 @@ export interface FormData {
   message: string;
   idade: string;
   tem_cnpj: boolean;
+  email_consent: boolean;
 }
 
 export interface NavItem {

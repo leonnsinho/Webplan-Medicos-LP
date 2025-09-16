@@ -15,6 +15,7 @@ const PortoSeguroPage: React.FC = () => {
     phone: '',
     idade: '',
     tem_cnpj: false,
+    email_consent: false,
     subject: 'porto_cnpj_medicos',
     message: ''
   });
@@ -70,6 +71,7 @@ const PortoSeguroPage: React.FC = () => {
           phone: formData.phone,
           idade: formData.idade,
           tem_cnpj: formData.tem_cnpj,
+          email_consent: formData.email_consent,
           message: formData.message || `Linha de interesse: ${formData.subject}`,
           operadora: 'Porto Seguro',
           subject: formData.subject,
@@ -91,6 +93,7 @@ const PortoSeguroPage: React.FC = () => {
               phone: '',
               idade: '',
               tem_cnpj: false,
+              email_consent: false,
               subject: 'porto_cnpj_medicos',
               message: ''
             });
@@ -659,6 +662,24 @@ const PortoSeguroPage: React.FC = () => {
                   />
                   <label htmlFor="tem_cnpj" className="text-sm font-medium text-gray-700">
                     Tenho CNPJ
+                  </label>
+                </div>
+
+                {/* Checkbox para Consentimento de Email */}
+                <div className="flex items-start space-x-3">
+                  <input
+                    type="checkbox"
+                    id="email_consent"
+                    name="email_consent"
+                    checked={formData.email_consent}
+                    onChange={handleInputChange}
+                    className="h-5 w-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded mt-0.5"
+                  />
+                  <label htmlFor="email_consent" className="text-sm text-gray-700 leading-relaxed">
+                    Aceito receber informações sobre planos de saúde, novidades e ofertas especiais por email. 
+                    <span className="text-gray-500 block mt-1">
+                      Você pode cancelar a qualquer momento.
+                    </span>
                   </label>
                 </div>
 

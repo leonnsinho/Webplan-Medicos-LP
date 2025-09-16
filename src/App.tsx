@@ -3,16 +3,14 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FloatingButtons from './components/FloatingButtons';
+import CookieBanner from './components/CookieBanner';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import SuccessPage from './pages/SuccessPage';
 import AmilPage from './pages/AmilPage';
 import SulamericaPage from './pages/SulamericaPage';
-import SaoCamiloPage from './pages/SaoCamiloPage';
 import AlicePage from './pages/AlicePage';
 import PortoSeguroPage from './pages/PortoSeguroPage';
-import BradescoPage from './pages/BradescoPage';
-import UnimedPage from './pages/UnimedPage';
 import MedSeniorPage from './pages/MedSeniorPage';
 import SupabaseTestPage from './pages/SupabaseTestPage';
 import PoliticasPrivacidade from './pages/PoliticasPrivacidade';
@@ -71,16 +69,6 @@ function AnimatedRoutes() {
             <SulamericaPage />
           </motion.div>
         } />
-        <Route path="/sao-camilo" element={
-          <motion.div
-            initial={pageTransitions.initial}
-            animate={pageTransitions.animate}
-            exit={pageTransitions.exit}
-            transition={pageTransitions.transition}
-          >
-            <SaoCamiloPage />
-          </motion.div>
-        } />
         <Route path="/alice" element={
           <motion.div
             initial={pageTransitions.initial}
@@ -99,26 +87,6 @@ function AnimatedRoutes() {
             transition={pageTransitions.transition}
           >
             <PortoSeguroPage />
-          </motion.div>
-        } />
-        <Route path="/bradesco" element={
-          <motion.div
-            initial={pageTransitions.initial}
-            animate={pageTransitions.animate}
-            exit={pageTransitions.exit}
-            transition={pageTransitions.transition}
-          >
-            <BradescoPage />
-          </motion.div>
-        } />
-        <Route path="/unimed" element={
-          <motion.div
-            initial={pageTransitions.initial}
-            animate={pageTransitions.animate}
-            exit={pageTransitions.exit}
-            transition={pageTransitions.transition}
-          >
-            <UnimedPage />
           </motion.div>
         } />
         <Route path="/medsenior" element={
@@ -244,6 +212,7 @@ function App() {
         <AnimatedRoutes />
         <Footer />
         <FloatingButtons />
+        <CookieBanner />
       </div>
     </Router>
   );

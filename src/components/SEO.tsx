@@ -11,7 +11,7 @@ interface SEOProps {
 const SEO: React.FC<SEOProps> = ({
   title = "Planos de Saúde para Médicos - WebPlan | Até 30% de Desconto",
   description = "Planos de saúde especiais para médicos com até 30% de desconto. Cobertura nacional, melhores operadoras: Amil, SulAmérica, NotreDame. Cotação gratuita online.",
-  keywords = "planos de saúde médicos, planos saúde CRM, seguro saúde médico, planos saúde coletivo médicos, desconto plano saúde médico, Amil médicos, SulAmérica médicos, NotreDame médicos, planos saúde São Paulo, cotação plano saúde, WebPlan seguros",
+  keywords = "planos de saúde médicos, planos saúde profissional médico, seguro saúde médico, planos saúde coletivo médicos, desconto plano saúde médico, Amil médicos, SulAmérica médicos, NotreDame médicos, planos saúde São Paulo, cotação plano saúde, WebPlan seguros",
   ogImage = "https://simuleplanodesaude.com/og-image.jpg",
   canonicalUrl = "https://simuleplanodesaude.com/"
 }) => {

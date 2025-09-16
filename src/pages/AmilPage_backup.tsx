@@ -18,7 +18,8 @@ const AmilPage: React.FC = () => {
     subject: 'amil_adesao_medicos',
     message: '',
     idade: '',
-    tem_cnpj: false
+    tem_cnpj: false,
+    email_consent: false
   });
 
   const [errors, setErrors] = useState<Partial<ContactFormData>>({});
@@ -87,7 +88,8 @@ const AmilPage: React.FC = () => {
               subject: 'amil_adesao_medicos',
               message: '',
               idade: '',
-              tem_cnpj: false
+              tem_cnpj: false,
+              email_consent: false
             });
           }, 1000);
           
@@ -120,7 +122,7 @@ const AmilPage: React.FC = () => {
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
-      'Olá! Sou da área médica e gostaria de saber mais sobre os planos AMIL com descontos exclusivos para nossa categoria (CRM ativo, estudantes ou formados).'
+      'Olá! Sou da área médica e gostaria de saber mais sobre os planos AMIL com descontos exclusivos para nossa categoria (profissionais ativos, estudantes ou formados).'
     );
     const whatsappUrl = `https://wa.me/5511959305175?text=${message}`;
     window.open(whatsappUrl, '_blank');
@@ -162,7 +164,7 @@ const AmilPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                   Vantagens únicas para médicos inscritos no CRM e também para estudantes e formados.
+                   Vantagens únicas para médicos profissionais e também para estudantes e formados.
                 </motion.p>
 
                 <motion.div 
@@ -215,7 +217,7 @@ const AmilPage: React.FC = () => {
               Vantagens Exclusivas para Médicos
             </h2>
             <p className="text-lg text-blue-600 max-w-3xl mx-auto">
-              Condições especiais para médicos inscritos no CRM, estudantes e formados
+              Condições especiais para médicos, estudantes e formados
             </p>
           </AnimatedSection>
 
@@ -224,7 +226,7 @@ const AmilPage: React.FC = () => {
               {
                 icon: Users,
                 title: "Descontos Exclusivos para Medicina",
-                description: "Condições especiais para médicos inscritos no CRM, estudantes e formados",
+                description: "Condições especiais para médicos, estudantes e formados",
                 color: "blue"
               },
               {
@@ -284,7 +286,7 @@ const AmilPage: React.FC = () => {
               Planos AMIL para Médicos
             </h2>
             <p className="text-lg text-blue-600 max-w-3xl mx-auto">
-              Opções especiais para médicos inscritos no CRM, estudantes e formados
+              Opções especiais para médicos, estudantes e formados
             </p>
           </AnimatedSection>
 
@@ -305,7 +307,7 @@ const AmilPage: React.FC = () => {
               {
                 name: "AMIL Coletivo Medicina",
                 description: "Planos coletivos para grupos de médicos",
-                features: ["Condições especiais CRM", "Gestão simplificada", "Atendimento personalizado", "Flexibilidade contratual"],
+                features: ["Condições especiais", "Gestão simplificada", "Atendimento personalizado", "Flexibilidade contratual"],
                 highlight: false
               }
             ].map((plan, index) => (

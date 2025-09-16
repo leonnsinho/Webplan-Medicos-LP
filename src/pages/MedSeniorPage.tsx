@@ -15,6 +15,7 @@ const MedSeniorPage: React.FC = () => {
     phone: '',
     idade: '',
     tem_cnpj: false,
+    email_consent: false,
     subject: 'medsenior_44anos_individual',
     message: ''
   });
@@ -59,6 +60,7 @@ const MedSeniorPage: React.FC = () => {
           phone: formData.phone,
           idade: formData.idade,
           tem_cnpj: formData.tem_cnpj,
+          email_consent: formData.email_consent,
           message: formData.message || `Modalidade: ${formData.subject}`,
           operadora: 'MedSenior',
           subject: formData.subject,
@@ -80,6 +82,7 @@ const MedSeniorPage: React.FC = () => {
               phone: '',
               idade: '',
               tem_cnpj: false,
+              email_consent: false,
               subject: 'medsenior_44anos_individual',
               message: ''
             });
@@ -231,7 +234,7 @@ const MedSeniorPage: React.FC = () => {
                 {
                   icon: CheckCircle,
                   title: "Contratação Descomplicada",
-                  description: "Apenas 44 anos completos e documentos pessoais. Nada de burocracia com sindicatos ou CNPJ."
+                  description: "Apenas 44 anos completos e documentos pessoais. Nada de burocracia com entidades ou CNPJ."
                 },
                 {
                   icon: Heart,
@@ -640,6 +643,24 @@ const MedSeniorPage: React.FC = () => {
                   />
                   <label htmlFor="tem_cnpj" className="text-sm font-medium text-gray-700">
                     Tenho CNPJ
+                  </label>
+                </div>
+
+                {/* Checkbox para Consentimento de Email */}
+                <div className="flex items-start space-x-3">
+                  <input
+                    type="checkbox"
+                    id="email_consent"
+                    name="email_consent"
+                    checked={formData.email_consent}
+                    onChange={handleInputChange}
+                    className="h-5 w-5 text-green-600 focus:ring-green-500 border-gray-300 rounded mt-0.5"
+                  />
+                  <label htmlFor="email_consent" className="text-sm text-gray-700 leading-relaxed">
+                    Aceito receber informações sobre planos de saúde, novidades e ofertas especiais por email. 
+                    <span className="text-gray-500 block mt-1">
+                      Você pode cancelar a qualquer momento.
+                    </span>
                   </label>
                 </div>
 

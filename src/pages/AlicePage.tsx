@@ -18,7 +18,8 @@ const AlicePage: React.FC = () => {
     idade: '',
     tem_cnpj: false,
     subject: 'alice_cnpj_medicos',
-    message: ''
+    message: '',
+    email_consent: false
   });
 
   const [errors, setErrors] = useState<Partial<ContactFormData>>({});
@@ -74,7 +75,8 @@ const AlicePage: React.FC = () => {
           operadora: 'Alice',
           subject: formData.subject,
           source_page: 'alice-page',
-          utm_source: 'website'
+          utm_source: 'website',
+          email_consent: formData.email_consent
         };
         
         const result = await submitLead(leadData);
@@ -92,7 +94,8 @@ const AlicePage: React.FC = () => {
               idade: '',
               tem_cnpj: false,
               subject: 'alice_cnpj_medicos',
-              message: ''
+              message: '',
+              email_consent: false
             });
             console.log('🔄 [Alice] Formulário resetado');
           }, 1000);
@@ -248,7 +251,7 @@ const AlicePage: React.FC = () => {
                 {
                   icon: Users,
                   title: "Exclusivo para CNPJ",
-                  description: "Não é necessário vínculo com sindicato ou entidade de classe. Ideal para profissionais autônomos e empresas individuais."
+                  description: "Não é necessário vínculo com entidade de classe. Ideal para profissionais autônomos e empresas individuais."
                 },
                 {
                   icon: Shield,
@@ -638,6 +641,24 @@ const AlicePage: React.FC = () => {
                   />
                   <label htmlFor="tem_cnpj" className="text-sm font-medium text-gray-700">
                     Tenho CNPJ
+                  </label>
+                </div>
+
+                {/* Checkbox para Consentimento de Email */}
+                <div className="flex items-start space-x-3">
+                  <input
+                    type="checkbox"
+                    id="email_consent"
+                    name="email_consent"
+                    checked={formData.email_consent}
+                    onChange={handleInputChange}
+                    className="h-5 w-5 text-purple-600 focus:ring-purple-500 border-gray-300 rounded mt-0.5"
+                  />
+                  <label htmlFor="email_consent" className="text-sm text-gray-700 leading-relaxed">
+                    Aceito receber informações sobre planos de saúde, novidades e ofertas especiais por email. 
+                    <span className="text-gray-500 block mt-1">
+                      Você pode cancelar a qualquer momento.
+                    </span>
                   </label>
                 </div>
 
