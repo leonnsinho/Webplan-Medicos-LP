@@ -17,9 +17,9 @@ function PoliticasPrivacidade() {
     return () => {
       updatePageMeta(
         'Planos de Saúde para Médicos - WebPlan | Até 30% de Desconto',
-        'Planos de saúde especiais para médicos com até 30% de desconto. Cobertura nacional, melhores operadoras: Amil, SulAmérica, NotreDame. Cotação gratuita online.',
+        'Planos de saúde especiais para médicos com até 30% de desconto. Cobertura nacional, melhores operadoras: Amil, SulAmérica, NotreDame. Cotação online.',
         'Planos de Saúde para Médicos - WebPlan | Até 30% de Desconto',
-        'Especialistas em planos de saúde para médicos há 12+ anos. Cotação grátis online! Amil, SulAmérica, Porto Seguro, Alice. Atendimento personalizado.'
+        'Especialistas em planos de saúde para médicos há 12+ anos. Cotação online! Amil, SulAmérica, Porto Seguro, Alice. Atendimento personalizado.'
       );
     };
   }, []);
@@ -88,7 +88,7 @@ function PoliticasPrivacidade() {
               </div>
               <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
                 <p className="mb-4">
-                  O site oferece diversos conteúdos gratuitos, porém a utilização de alguns serviços como a cotação gratuita somente poderá ser feita mediante solicitação e submissão de formulário de contato com informações pessoais necessárias.
+                  O site oferece diversos conteúdos, porém a utilização de alguns serviços como a cotação somente poderá ser feita mediante solicitação e submissão de formulário de contato com informações pessoais necessárias.
                 </p>
                 <p className="mb-4">
                   A informação pessoal recolhida pode incluir:

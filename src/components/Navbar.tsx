@@ -122,7 +122,7 @@ const Navbar: React.FC = () => {
           <div className="flex justify-between items-center relative z-10">
             {/* Logo with Animation */}
             <motion.div 
-              className="flex-shrink-0 group flex items-center gap-1 sm:gap-2 overflow-hidden"
+              className="flex-shrink-0 group flex items-center gap-3 overflow-hidden"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             >
@@ -137,6 +137,21 @@ const Navbar: React.FC = () => {
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ repeat: Infinity, duration: 2 }}
                 />
+              </motion.div>
+              
+              {/* Company Name and Description */}
+              <motion.div 
+                className="flex flex-col"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <span className="text-[#005A53] font-bold text-lg sm:text-xl leading-tight">
+                  WebPlan
+                </span>
+                <span className="text-[#00655D] text-xs sm:text-sm font-medium leading-tight">
+                  Corretora de Seguros de Saúde
+                </span>
               </motion.div>
             </motion.div>
 
@@ -269,7 +284,7 @@ const Navbar: React.FC = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <span className="flex items-center gap-2">
-                    {isScrolled ? 'Cotação' : 'Cotação Grátis'}
+                    Cotação
                     <ChevronDown size={16} className="transform rotate-[-90deg]" />
                   </span>
                 </motion.button>
@@ -383,7 +398,7 @@ const Navbar: React.FC = () => {
                   onClick={() => handleNavigation('#contato')}
                   className="w-full mt-3 bg-gradient-to-r from-[#00655D] to-[#005A53] text-white px-4 py-3 rounded-xl font-semibold transition-all duration-200 hover:shadow-lg"
                 >
-                  Cotação Grátis
+                  Cotação
                 </button>
               </div>
             </div>

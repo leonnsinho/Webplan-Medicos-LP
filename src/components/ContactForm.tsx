@@ -360,14 +360,14 @@ const ContactForm: React.FC = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.8 }}
                 >
-                  Clique no botão abaixo para uma consulta gratuita via WhatsApp.
+                  Clique no botão abaixo para uma consulta via WhatsApp.
                   Nossos especialistas estão prontos para ajudar!
                 </motion.p>
                 
                 <div className="space-y-4 mb-8">
                   {[
                     { icon: Phone, text: "Atendimento imediato" },
-                    { icon: CheckCircle, text: "Consultoria gratuita" },
+                    { icon: CheckCircle, text: "Consultoria especializada" },
                     { icon: CheckCircle, text: "Especialistas em medicina" }
                   ].map((feature, index) => (
                     <motion.div 
