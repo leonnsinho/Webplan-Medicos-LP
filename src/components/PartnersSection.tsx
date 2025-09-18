@@ -9,20 +9,16 @@ import amplaLogo from '../assets/images/ampla.png';
 import blueLogo from '../assets/images/blue.webp';
 import aliceLogo from '../assets/images/Alice.svg';
 import portoSeguroLogo from '../assets/images/porto-seguro.png';
-import qualicorpLogo from '../assets/images/quali-corp.png';
 import medSeniorLogo from '../assets/images/LOGO-MED-SENIOR.png';
 import preventSeniorLogo from '../assets/images/Prevent_Senior_logo.png';
-import omintLogo from '../assets/images/omint-logo.png';
 
 const partners: Partner[] = [
   { name: 'Amil', logo: amilLogo, hasPage: true, href: '/amil' },
   { name: 'Alice', logo: aliceLogo },
   { name: 'Porto Seguro', logo: portoSeguroLogo },
-  { name: 'Qualicorp', logo: qualicorpLogo },
   { name: 'MedSênior', logo: medSeniorLogo },
   { name: 'SulAmérica', logo: sulamericaLogo },
   { name: 'Prevent Senior', logo: preventSeniorLogo },
-  { name: 'Omint', logo: omintLogo },
   { name: 'Ampla', logo: amplaLogo },
   { name: 'Blue Saúde', logo: blueLogo }
 ];

@@ -135,7 +135,7 @@ const MedSeniorPage: React.FC = () => {
                   <img src={medSeniorLogo} alt="MedSênior Logo" className="h-16 w-auto" />
                   <div className="h-12 w-px bg-green-300"></div>
                   <h1 className="text-4xl sm:text-5xl font-bold text-green-800">
-                    MedSênior
+                    WebPlan
                   </h1>
                 </motion.div>
                 

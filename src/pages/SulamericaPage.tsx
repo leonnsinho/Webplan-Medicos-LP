@@ -160,7 +160,7 @@ const SulamericaPage: React.FC = () => {
                   <img src={sulamericaLogo} alt="SulAmérica Logo" className="h-16 w-auto" />
                   <div className="h-12 w-px bg-red-300"></div>
                   <h1 className="text-4xl sm:text-5xl font-bold text-red-800">
-                    SulAmérica
+                    WebPlan
                   </h1>
                 </motion.div>
                 

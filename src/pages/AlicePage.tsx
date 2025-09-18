@@ -152,7 +152,7 @@ const AlicePage: React.FC = () => {
                   <img src={aliceLogo} alt="Alice Logo" className="h-16 w-auto" />
                   <div className="h-12 w-px bg-purple-300"></div>
                   <h1 className="text-4xl sm:text-5xl font-bold text-purple-800">
-                    Alice
+                    WebPlan
                   </h1>
                 </motion.div>
                 

@@ -151,7 +151,7 @@ const AmilPage: React.FC = () => {
                   <img src={amilLogo} alt="Amil Logo" className="h-16 w-auto" />
                   <div className="h-12 w-px bg-blue-300"></div>
                   <h1 className="text-4xl sm:text-5xl font-bold text-blue-800">
-                    Amil
+                    WebPlan
                   </h1>
                 </motion.div>
                 

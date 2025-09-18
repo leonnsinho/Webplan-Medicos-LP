@@ -152,7 +152,7 @@ const PortoSeguroPage: React.FC = () => {
                   <img src={portoLogo} alt="Porto Seguro Logo" className="h-16 w-auto" />
                   <div className="h-12 w-px bg-orange-300"></div>
                   <h1 className="text-4xl sm:text-5xl font-bold text-orange-800">
-                    Porto Seguro
+                    WebPlan
                   </h1>
                 </motion.div>
                 

@@ -49,7 +49,7 @@ const HeroSection: React.FC = () => {
                   <p className="text-lg">
                     Entre essas operadoras estão as melhores opções disponíveis hoje no ramo da Saúde, como:{' '}
                     <span className="font-semibold text-[#00655D]">
-                      Amil, São Camilo, Sul América, Omint, NotreDame
+                      Amil, Sul América, NotreDame
                     </span>{' '}
                     entre outras.
                   </p>
