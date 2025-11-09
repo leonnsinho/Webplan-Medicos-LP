@@ -1,2 +1,14 @@
-# SPA redirect - todas as rotas devem servir index.html
+# Redirects específicos para SEO
+/home /  301
+/inicio /  301
+/index /  301
+
+# Redirects para operadoras (se necessário)
+/amil-medicos /amil  301
+/sulamerica-medicos /sulamerica  301
+/alice-medicos /alice  301
+/porto-seguro-medicos /porto-seguro  301
+/medsenior-medicos /medsenior  301
+
+# SPA redirect - APENAS para rotas inexistentes (deve ser a última regra)
 /*    /index.html   200

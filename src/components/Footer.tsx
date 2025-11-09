@@ -37,10 +37,10 @@ const Footer: React.FC = () => {
                 <div>
                   <p className="font-medium">Endereço</p>
                   <p className="text-teal-200">
-                    Avenida Ipiranga, 344<br />
-                    República, São Paulo - SP<br />
-                    Edifício Itália<br />
-                    CEP: 01046-001
+                    Av. S. Luis N 50 CONJ 62E<br />
+                    Edif Italia, Republica<br />
+                    Sao Paulo<br />
+                    CEP: 01046926
                   </p>
                 </div>
               </div>

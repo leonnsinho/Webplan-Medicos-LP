@@ -226,10 +226,10 @@ function PoliticasPrivacidade() {
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-2">Endereço:</h3>
                   <p className="text-gray-700 mb-4">
+                    Av. S. Luis, N° 50 - Conj. 62E<br/>
                     Edifício Itália<br/>
-                    Avenida Ipiranga, 344<br/>
                     República, São Paulo - SP<br/>
-                    CEP: 01046-001
+                    CEP: 01046-926
                   </p>
                   
                   <h3 className="font-semibold text-gray-900 mb-2">Contato:</h3>

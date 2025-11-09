@@ -6,12 +6,8 @@ const SuccessPage: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Auto redirect after 10 seconds
-    const timer = setTimeout(() => {
-      navigate('/');
-    }, 10000);
-
-    return () => clearTimeout(timer);
+    // Removed auto redirect for SEO purposes
+    // Users can manually navigate back when ready
   }, [navigate]);
 
   const handleWhatsAppClick = () => {
@@ -79,9 +75,9 @@ const SuccessPage: React.FC = () => {
             </button>
           </div>
 
-          {/* Auto redirect notice */}
+          {/* User action notice */}
           <p className="text-sm text-gray-500 mt-6">
-            Você será redirecionado automaticamente em 10 segundos
+            Use os botões acima para navegar ou entre em contato via WhatsApp
           </p>
         </div>
       </div>
