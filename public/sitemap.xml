@@ -6,7 +6,7 @@
   
   <!-- Página Principal -->
   <url>
-    <loc>https://segurosaudeseesp.com/</loc>
+    <loc>https://simuleplanodesaude.com/</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -14,43 +14,59 @@
   
   <!-- Páginas de Operadoras -->
   <url>
-    <loc>https://segurosaudeseesp.com/amil</loc>
+    <loc>https://simuleplanodesaude.com/amil</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://segurosaudeseesp.com/sulamerica</loc>
+    <loc>https://simuleplanodesaude.com/sulamerica</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://segurosaudeseesp.com/alice</loc>
+    <loc>https://simuleplanodesaude.com/alice</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://segurosaudeseesp.com/porto-seguro</loc>
+    <loc>https://simuleplanodesaude.com/porto-seguro</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://segurosaudeseesp.com/medsenior</loc>
+    <loc>https://simuleplanodesaude.com/medsenior</loc>
     <lastmod>2025-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Página Enfermeiros -->
+  <url>
+    <loc>https://simuleplanodesaude.com/planos-de-saude-para-enfermeiros</loc>
+    <lastmod>2025-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Página Profissões -->
+  <url>
+    <loc>https://simuleplanodesaude.com/profissoes</loc>
+    <lastmod>2025-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <!-- Página Sobre/Escritório -->
   <url>
-    <loc>https://segurosaudeseesp.com/sobre</loc>
+    <loc>https://simuleplanodesaude.com/sobre</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -58,7 +74,7 @@
   
   <!-- Página de Políticas de Privacidade -->
   <url>
-    <loc>https://segurosaudeseesp.com/politicas-privacidade</loc>
+    <loc>https://simuleplanodesaude.com/politicas-privacidade</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

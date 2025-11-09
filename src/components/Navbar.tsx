@@ -20,8 +20,16 @@ const navItems: NavItem[] = [
       { label: 'MedSênior', href: '/medsenior' }
     ]
   },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Contato', href: '#contato' }
+  { 
+    label: 'Profissões', 
+    href: '#', 
+    hasDropdown: true,
+    dropdownItems: [
+      { label: 'Enfermeiros COREN', href: '/planos-de-saude-para-enfermeiros' },
+      { label: 'Ver todas', href: '/profissoes' }
+    ]
+  },
+  { label: 'Blog', href: '/blog' }
 ];
 
 const Navbar: React.FC = () => {
@@ -273,7 +281,7 @@ const Navbar: React.FC = () => {
                 
                 {/* CTA Button */}
                 <motion.button
-                  onClick={() => handleNavigation('#contato')}
+                  onClick={() => handleNavigation('/')}
                   className={`ml-4 bg-gradient-to-r from-[#00655D] to-[#005A53] hover:from-[#005A53] hover:to-[#004B44] text-white rounded-xl font-semibold transition-all duration-500 transform hover:scale-105 hover:shadow-lg shadow-teal-200/50 ${
                     isScrolled ? 'px-4 py-2 text-sm' : 'px-6 py-2.5 text-base'
                   }`}
@@ -395,7 +403,7 @@ const Navbar: React.FC = () => {
                 </a>
                 
                 <button
-                  onClick={() => handleNavigation('#contato')}
+                  onClick={() => handleNavigation('/')}
                   className="w-full mt-3 bg-gradient-to-r from-[#00655D] to-[#005A53] text-white px-4 py-3 rounded-xl font-semibold transition-all duration-200 hover:shadow-lg"
                 >
                   Cotação

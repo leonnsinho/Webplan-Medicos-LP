@@ -12,6 +12,8 @@ import SulamericaPage from './pages/SulamericaPage';
 import AlicePage from './pages/AlicePage';
 import PortoSeguroPage from './pages/PortoSeguroPage';
 import MedSeniorPage from './pages/MedSeniorPage';
+import EnfermeirosPage from './pages/EnfermeirosPage';
+import ProfissoesPage from './pages/ProfissoesPage';
 import SupabaseTestPage from './pages/SupabaseTestPage';
 import PoliticasPrivacidade from './pages/PoliticasPrivacidade';
 import { BlogIndexPage } from './pages/BlogIndexPage';
@@ -97,6 +99,26 @@ function AnimatedRoutes() {
             transition={pageTransitions.transition}
           >
             <MedSeniorPage />
+          </motion.div>
+        } />
+        <Route path="/planos-de-saude-para-enfermeiros" element={
+          <motion.div
+            initial={pageTransitions.initial}
+            animate={pageTransitions.animate}
+            exit={pageTransitions.exit}
+            transition={pageTransitions.transition}
+          >
+            <EnfermeirosPage />
+          </motion.div>
+        } />
+        <Route path="/profissoes" element={
+          <motion.div
+            initial={pageTransitions.initial}
+            animate={pageTransitions.animate}
+            exit={pageTransitions.exit}
+            transition={pageTransitions.transition}
+          >
+            <ProfissoesPage />
           </motion.div>
         } />
         <Route path="/sucesso" element={
