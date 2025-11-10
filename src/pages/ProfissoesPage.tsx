@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Briefcase, Brain } from 'lucide-react';
+import { Heart, Briefcase, Brain, Smile } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import AnimatedSection from '../components/AnimatedSection';
 import SEO from '../components/SEO';
@@ -29,6 +29,17 @@ const ProfissoesPage: React.FC = () => {
       link: '/planos-de-saude-para-psicologos',
       available: true,
       tags: ['CRP', 'Amil', 'Hapvida', 'SulAmérica']
+    },
+    {
+      id: 'dentistas',
+      title: 'Dentistas',
+      subtitle: 'Planos de Saúde para Dentistas CRO',
+      description: 'Planos de saúde exclusivos para cirurgiões-dentistas registrados no CRO-SP. Acesso a operadoras renomadas com condições especiais para profissionais da odontologia.',
+      icon: Smile,
+      color: 'cyan',
+      link: '/planos-de-saude-para-dentistas',
+      available: true,
+      tags: ['CRO', 'Amil', 'Hapvida', 'SulAmérica']
     }
     // Futuras profissões serão adicionadas aqui
   ];
@@ -46,6 +57,12 @@ const ProfissoesPage: React.FC = () => {
         hover: 'hover:from-purple-100 hover:to-violet-100',
         text: 'text-purple-600',
         border: 'border-purple-500'
+      },
+      cyan: {
+        bg: 'from-cyan-50 to-blue-50',
+        hover: 'hover:from-cyan-100 hover:to-blue-100',
+        text: 'text-cyan-600',
+        border: 'border-cyan-500'
       }
     };
     return colors[color] || colors.teal;
