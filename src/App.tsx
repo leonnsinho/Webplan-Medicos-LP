@@ -13,6 +13,7 @@ import AlicePage from './pages/AlicePage';
 import PortoSeguroPage from './pages/PortoSeguroPage';
 import MedSeniorPage from './pages/MedSeniorPage';
 import EnfermeirosPage from './pages/EnfermeirosPage';
+import PsicologosPage from './pages/PsicologosPage';
 import ProfissoesPage from './pages/ProfissoesPage';
 import SupabaseTestPage from './pages/SupabaseTestPage';
 import PoliticasPrivacidade from './pages/PoliticasPrivacidade';
@@ -109,6 +110,16 @@ function AnimatedRoutes() {
             transition={pageTransitions.transition}
           >
             <EnfermeirosPage />
+          </motion.div>
+        } />
+        <Route path="/planos-de-saude-para-psicologos" element={
+          <motion.div
+            initial={pageTransitions.initial}
+            animate={pageTransitions.animate}
+            exit={pageTransitions.exit}
+            transition={pageTransitions.transition}
+          >
+            <PsicologosPage />
           </motion.div>
         } />
         <Route path="/profissoes" element={

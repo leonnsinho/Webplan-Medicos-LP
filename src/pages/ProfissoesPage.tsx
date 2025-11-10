@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Briefcase, GraduationCap, Users } from 'lucide-react';
+import { Heart, Briefcase, Brain } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import AnimatedSection from '../components/AnimatedSection';
 import SEO from '../components/SEO';
@@ -18,6 +18,17 @@ const ProfissoesPage: React.FC = () => {
       link: '/planos-de-saude-para-enfermeiros',
       available: true,
       tags: ['COREN', 'Amil', 'Hapvida', 'SulAmérica']
+    },
+    {
+      id: 'psicologos',
+      title: 'Psicólogos',
+      subtitle: 'Planos de Saúde para Psicólogos CRP',
+      description: 'Planos de saúde exclusivos para psicólogos registrados no CRP-SP. Acesso a operadoras renomadas com condições especiais para profissionais da psicologia.',
+      icon: Brain,
+      color: 'purple',
+      link: '/planos-de-saude-para-psicologos',
+      available: true,
+      tags: ['CRP', 'Amil', 'Hapvida', 'SulAmérica']
     }
     // Futuras profissões serão adicionadas aqui
   ];
@@ -29,6 +40,12 @@ const ProfissoesPage: React.FC = () => {
         hover: 'hover:from-teal-100 hover:to-blue-100',
         text: 'text-teal-600',
         border: 'border-teal-500'
+      },
+      purple: {
+        bg: 'from-purple-50 to-violet-50',
+        hover: 'hover:from-purple-100 hover:to-violet-100',
+        text: 'text-purple-600',
+        border: 'border-purple-500'
       }
     };
     return colors[color] || colors.teal;
@@ -139,41 +156,6 @@ const ProfissoesPage: React.FC = () => {
                   </AnimatedSection>
                 );
               })}
-
-              {/* Coming Soon Cards */}
-              {[
-                { title: 'Médicos', icon: Heart, color: 'blue' },
-                { title: 'Advogados', icon: Briefcase, color: 'purple' },
-                { title: 'Engenheiros', icon: GraduationCap, color: 'orange' },
-                { title: 'Professores', icon: Users, color: 'green' },
-              ].map((item, index) => (
-                <AnimatedSection key={item.title} direction="up" delay={(profissoes.length + index) * 0.1}>
-                  <div className="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl p-8 border-l-4 border-gray-400 opacity-60">
-                    {/* Icon */}
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-white shadow-lg mb-6">
-                      <item.icon className="w-8 h-8 text-gray-500" />
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-2xl font-bold text-gray-700 mb-3">
-                      {item.title}
-                    </h3>
-
-                    {/* Coming Soon Badge */}
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full text-sm font-semibold mb-4">
-                      <span className="animate-pulse">●</span>
-                      Em Breve
-                    </div>
-
-                    <p className="text-gray-600 leading-relaxed">
-                      Estamos preparando condições especiais para profissionais da categoria. Em breve você poderá consultar as melhores opções de planos de saúde.
-                    </p>
-
-                    {/* Overlay */}
-                    <div className="absolute inset-0 rounded-2xl bg-white/20 pointer-events-none" />
-                  </div>
-                </AnimatedSection>
-              ))}
             </div>
           </div>
         </section>
