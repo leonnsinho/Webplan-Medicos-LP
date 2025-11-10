@@ -20,12 +20,14 @@ const navItems: NavItem[] = [
       { label: 'MedSênior', href: '/medsenior' }
     ]
   },
-  { 
-    label: 'Profissões', 
-    href: '#', 
+  {
+    label: 'Profissões',
+    href: '#',
     hasDropdown: true,
     dropdownItems: [
       { label: 'Enfermeiros COREN', href: '/planos-de-saude-para-enfermeiros' },
+      { label: 'Psicólogos CRP', href: '/planos-de-saude-para-psicologos' },
+      { label: 'Dentistas CRO', href: '/planos-de-saude-para-dentistas' },
       { label: 'Ver todas', href: '/profissoes' }
     ]
   },
