@@ -48,18 +48,32 @@
     <priority>0.9</priority>
   </url>
   
-  <!-- Página Enfermeiros -->
+  <!-- Páginas por Profissão -->
   <url>
     <loc>https://simuleplanodesaude.com/planos-de-saude-para-enfermeiros</loc>
-    <lastmod>2025-11-09</lastmod>
+    <lastmod>2025-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-  
+
+  <url>
+    <loc>https://simuleplanodesaude.com/planos-de-saude-para-psicologos</loc>
+    <lastmod>2025-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://simuleplanodesaude.com/planos-de-saude-para-dentistas</loc>
+    <lastmod>2025-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Página Profissões -->
   <url>
     <loc>https://simuleplanodesaude.com/profissoes</loc>
-    <lastmod>2025-11-09</lastmod>
+    <lastmod>2025-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>

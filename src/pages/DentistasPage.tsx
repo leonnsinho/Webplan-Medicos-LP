@@ -3,6 +3,7 @@ import { CheckCircle, Phone, MessageCircle, Users, Smile } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import ContactForm from '../components/ContactForm';
 import SEO from '../components/SEO';
+import StructuredData from '../components/StructuredData';
 
 const DentistasPage: React.FC = () => {
   const handleWhatsAppClick = () => {
@@ -13,6 +14,27 @@ const DentistasPage: React.FC = () => {
     window.open(whatsappUrl, '_blank');
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Planos de Saúde para Dentistas CRO",
+    "description": "Planos de saúde exclusivos para cirurgiões-dentistas registrados no CRO-SP com valores até 40% menores",
+    "provider": {
+      "@type": "Organization",
+      "name": "WebPlan Corretora",
+      "url": "https://simuleplanodesaude.com",
+      "telephone": "+55-11-4116-5378"
+    },
+    "areaServed": {
+      "@type": "State",
+      "name": "São Paulo"
+    },
+    "audience": {
+      "@type": "ProfessionalAudience",
+      "name": "Dentistas CRO-SP"
+    }
+  };
+
   return (
     <>
       <SEO
@@ -21,6 +43,7 @@ const DentistasPage: React.FC = () => {
         keywords="planos de saude para dentistas cro, plano saúde cro sp, dentista plano saúde, cro plano saúde, plano saúde odontologia"
         canonicalUrl="https://simuleplanodesaude.com/planos-de-saude-para-dentistas"
       />
+      <StructuredData data={structuredData} />
 
       <div className="min-h-screen bg-gradient-to-br from-cyan-50 to-blue-50">
         {/* Hero Section */}

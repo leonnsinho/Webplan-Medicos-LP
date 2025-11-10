@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://segurosaudeseesp.com/sitemap.xml
+Sitemap: https://simuleplanodesaude.com/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 1
